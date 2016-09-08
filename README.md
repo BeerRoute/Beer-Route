@@ -1,2 +1,2 @@
 # Beer-Route
-ICOM5016 Proyect Fall 2016
+ICOM5016 Project Fall 2016
