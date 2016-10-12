@@ -37,11 +37,12 @@
         {{data.selected_address.street || 'Select address'}}
       </button>
     </div>
-    <h3 class="account-sub-title">Default Credit Card</h3>
+    <!--Solo habilitar esta seccion cuando sea usuario de negocio -->
+    <!--h3 class="account-sub-title">Default Credit Card</h3>
     <div class="card-chooser" ng-click="openCardsPopover($event)">
       <button class="button button-block icon-right cards-popover-button" ng-class="{'ion-chevron-up': addresses_popover.isShown(), 'ion-chevron-down' : !addresses_popover.isShown()}">
         {{data.selected_card.number || 'Select Credit Card'}}
-      </button>
+      </button-->
     </div>
     <div class="list account-divider">
       <div class="item item-divider"></div>
@@ -51,7 +52,7 @@
       <div class="col">
         <ul class="list notifications-list">
           <li class="item item-toggle">
-            <span class="notifications-text">Promotions</span>
+            <span class="notifications-text">Happy Hours</span>
             <label class="toggle">
               <input type="checkbox" ng-model="notifications.promotions">
               <div class="track">
@@ -60,7 +61,8 @@
             </label>
           </li>
           <li class="item item-toggle">
-            <span class="notifications-text">Shipment Updates</span>
+            <!--span class="notifications-text">Shipment Updates</span-->
+            <span class="notifications-text">Events Updates</span>
             <label class="toggle">
               <input type="checkbox" ng-model="notifications.shipment_updates">
               <div class="track">
