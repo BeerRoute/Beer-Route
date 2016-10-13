@@ -24,7 +24,7 @@
     <div class="row brief-info-row">
       <div class="col col-80">
         <h3 class="product-name">{{product.name}}</h3>
-        <h5 class="product-style">Homemade style</h5>
+        <h5 class="product-style">{{product.style}}</h5>
       </div>
       <div class="col col-20">
         <span class="product-price-range" ng-repeat="price in [].constructor(product.price_range) track by $index">$</span>
@@ -98,7 +98,7 @@
       </div>
     </div>
     <hr class="product-sections-divider"/>
-    <h3 class="product-sub-title">Popular dishes</h3>
+    <h3 class="product-sub-title">Popular beers</h3>
     <div class="row popular-dishes-row">
       <div class="col">
         <div class="row dish-row" ng-repeat="dish in product.dishes">

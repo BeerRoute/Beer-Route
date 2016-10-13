@@ -66,17 +66,17 @@ angular.module('your_app_name.content.controllers', [])
 	$scope.product = product;
 
 	$scope.product.selected_schedule = {
-		name: "Today 12:00 pm to 12:00 am"
+		name: "Thursday to Sunday 4:00 pm to 12:00 am"
 	};
 
 	$scope.product.dishes = [
 		{
-			name:"Sanduche pull pork",
+			name:"La Nina",
 			rating: 4
 		},
 		{
-			name:"Bahmin",
-			rating: 2
+			name:"Two Hearted",
+			rating: 4.5
 		}
 	];
 
@@ -90,7 +90,7 @@ angular.module('your_app_name.content.controllers', [])
 			lat: 18.380330,
 			lng: -67.217394
 		},
-		{
+		/*{
 			street: "50 Northfield Way",
 			city: "Brooklyn",
 			state: "NY",
@@ -98,7 +98,7 @@ angular.module('your_app_name.content.controllers', [])
 			phone: "1-(347)846-3569",
 			lat: 43.07493,
 			lng: -88.381388
-		}
+		}*/
 	];
 
 	$scope.product.selected_address = product.addresses[0];

@@ -294,7 +294,7 @@ angular.module('your_app_name', [
                   })
                   //NEW STATE FOR BEERS CONTENTS
                   .state('main.app.feed.food.contentB', {
-                    url: '/content/:productId',
+                    url: '/content/:productId2',
                     views: {
                       'main-view@main': {
                         templateUrl: 'views/content/fashion.html',

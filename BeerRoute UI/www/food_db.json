@@ -12,6 +12,7 @@
         "Draft Beers",
         "Tapas"
       ],
+      "style":"Craft Beer Bar",
       "pictures": [
         "./img/sample-images/food/brewLocal.jpg",
         "./img/sample-images/food/BrosHamb.jpg",
@@ -29,6 +30,7 @@
         "sushi",
         "vegetarian"
       ],
+      "style":"Home Restaurant",
       "pictures": [
         "./img/sample-images/food/Cat2Foto1-1.1.png",
         "./img/sample-images/food/Cat2Foto2-1.1.png",
@@ -51,6 +53,7 @@
         "currys",
         "desserts"
       ],
+      "style": "HomeStyle Restaurant",
       "pictures": [
         "./img/sample-images/food/Cat3Foto1-1.1.png",
         "./img/sample-images/food/Cat3Foto2-1.1.png",
@@ -69,6 +72,7 @@
         "gluten free",
         "pizza"
       ],
+      "style":"SeaFood Restaurant",
       "pictures": [
         "./img/sample-images/food/Cat4Foto1-1.1.png",
         "./img/sample-images/food/Cat4Foto2-1.1.png",
