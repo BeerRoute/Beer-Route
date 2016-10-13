@@ -2,26 +2,22 @@
   "products": [
     {
       "id": 1,
-      "price_range": 3,
-      "image": "./img/sample-images/food/foodlogo1.png",
-      "name": "NomNom",
-      "rating": 4.3,
+      "price_range": 1,
+      "image": "./img/sample-images/food/brew_22416.jpg",
+      "name": "Bros Brewery",
+      "rating": 4.0,
       "tags": [
-        "vegetarian",
-        "vegan",
-        "desserts"
+        "Craft Beers",
+        "Hamburguers",
+        "Draft Beers",
+        "Tapas"
       ],
       "pictures": [
-        "./img/sample-images/food/Cat1Foto1-1.1.png",
-        "./img/sample-images/food/Cat1Foto2-1.1.png",
-        "./img/sample-images/food/Cat1Foto3-1.1.png",
-        "./img/sample-images/food/Cat1Foto4-1.1.png",
-        "./img/sample-images/food/Cat1Foto5-1.1.png",
-        "./img/sample-images/food/Cat1Foto1-1.1.png",
-        "./img/sample-images/food/Cat1Foto2-1.1.png",
-        "./img/sample-images/food/Cat1Foto3-1.1.png"
+        "./img/sample-images/food/brewLocal.jpg",
+        "./img/sample-images/food/BrosHamb.jpg",
+        "./img/sample-images/food/lanina.jpeg"        
       ],
-      "address": "6782 Bobwhite Crossing"
+      "address": "PR-115, 00602"
     }, {
       "id": 2,
       "price_range": 1,

@@ -76,13 +76,13 @@ angular.module('your_app_name.content.controllers', [])
 
 	$scope.product.addresses = [
 		{
-			street: "0 Waubesa Junction",
-			city: "Houston",
-			state: "TX",
-			postal_code: "77020",
+			street: "PR-115, 00602",
+			city: "Aguada",
+			state: "PR",
+			postal_code: "00602",
 			phone: "1-(713)471-0205",
-			lat: 43.07493,
-			lng: -89.381388
+			lat: 18.380330,
+			lng: -67.217394
 		},
 		{
 			street: "50 Northfield Way",

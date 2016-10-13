@@ -11,6 +11,10 @@
         "./img/sample-images/fashion_content/samuel_adams_boston_lager.png"
       ],
       "name": "Samuel Adams Boston Lager",
+      "rating": 3.7,
+      "tags": [
+        "Lager"        
+      ],
       "style": "Lager",
       "related_products": [
         {
