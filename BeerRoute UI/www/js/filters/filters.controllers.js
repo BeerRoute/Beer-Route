@@ -26,12 +26,12 @@ angular.module('your_app_name.filters.controllers', [])
 	$scope.bathroom_filter = 1;
 
 	$scope.price_filter = {
-		from: 144,
-		to: 523
+		from: 0,
+		to: 30
 	};
 	$scope.price_filter_range = {
 		min: 0,
-		max: 800
+		max: 30
 	};
 
 	$scope.cancelRefine = function(){

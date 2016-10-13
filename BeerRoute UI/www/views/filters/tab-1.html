@@ -1,9 +1,9 @@
 <ion-scroll direction="y" ng-controller="FiltersCtrl">
   <div class="card list filter-group">
-    <div class="item item-divider">
+    <!--div class="item item-divider">
       Category
-    </div>
-    <ion-list class="category-filters filter-options-container">
+    </div-->
+    <!--ion-list class="category-filters filter-options-container">
       <ion-radio name="category_filter" ng-model="category_filter" ng-value="'Fashion'">
         <img class="category-icon fashion-icon" ng-src="./img/filters/category-filters_Fashion.png"/>
         <span>Fashion</span>
@@ -25,21 +25,21 @@
         <span>Deals</span>
       </ion-radio>
     </ion-list>
-  </div>
+  </div-->
 
   <div class="card list filter-group">
     <div class="item item-divider">
       Tags
     </div>
     <ion-list class="tags-filters filter-options-container">
-      <tag-checkbox ng-model="tags_filter.meat" title="Meat"></tag-checkbox>
-      <tag-checkbox ng-model="tags_filter.vegetables" title="Vegetables"></tag-checkbox>
-      <tag-checkbox ng-model="tags_filter.eggs" title="Eggs"></tag-checkbox>
-      <tag-checkbox ng-model="tags_filter.breakfast" title="Breakfast"></tag-checkbox>
-      <tag-checkbox ng-model="tags_filter.asian" title="Asian"></tag-checkbox>
-      <tag-checkbox ng-model="tags_filter.fruits" title="Fruits"></tag-checkbox>
-      <tag-checkbox ng-model="tags_filter.light" title="Light"></tag-checkbox>
-      <tag-checkbox ng-model="tags_filter.mexican" title="Mexican"></tag-checkbox>
+      <tag-checkbox ng-model="tags_filter.meat" title="IPA"></tag-checkbox>
+      <tag-checkbox ng-model="tags_filter.vegetables" title="Stout"></tag-checkbox>
+      <tag-checkbox ng-model="tags_filter.eggs" title="Lager"></tag-checkbox>
+      <tag-checkbox ng-model="tags_filter.breakfast" title="Belgian"></tag-checkbox>
+      <tag-checkbox ng-model="tags_filter.asian" title="Pale Ale"></tag-checkbox>
+      <tag-checkbox ng-model="tags_filter.fruits" title="Amber Ale"></tag-checkbox>
+      <tag-checkbox ng-model="tags_filter.light" title="Porter"></tag-checkbox>
+      <tag-checkbox ng-model="tags_filter.mexican" title="Pilsner"></tag-checkbox>
     </ion-list>
   </div>
   
