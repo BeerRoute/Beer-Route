@@ -234,9 +234,9 @@ angular.module('your_app_name', [
                   }
                 },
                 resolve: {
-                  products: function(FashionServiceBeer){
+                  products: function(FashionService){
                     console.log("resolving fashion");
-                    return FashionServiceBeer.getProducts();
+                    return FashionService.getProducts();
                   }
                 }
               })
@@ -252,8 +252,8 @@ angular.module('your_app_name', [
                       }
                     },
                     resolve: {
-                      product: function(FashionServiceBeer, $stateParams){
-                        return FashionServiceBeer.getProduct($stateParams.productId);
+                      product: function(FashionService, $stateParams){
+                        return FashionService.getProduct($stateParams.productId);
                       }
                     }
                   })                  
@@ -289,6 +289,21 @@ angular.module('your_app_name', [
                     resolve: {
                       product: function(FoodService, $stateParams){
                         return FoodService.getProduct($stateParams.productId);
+                      }
+                    }
+                  })
+                  //NEW STATE FOR BEERS CONTENTS
+                  .state('main.app.feed.food.contentB', {
+                    url: '/content/:productId',
+                    views: {
+                      'main-view@main': {
+                        templateUrl: 'views/content/fashion.html',
+                        controller: 'FashionContentCtrl'
+                      }
+                    },
+                    resolve: {
+                      product: function(FashionService, $stateParams){
+                        return FashionService.getProduct($stateParams.productId);
                       }
                     }
                   })

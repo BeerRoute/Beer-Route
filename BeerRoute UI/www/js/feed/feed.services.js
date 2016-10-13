@@ -32,7 +32,7 @@ angular.module('your_app_name.feed.services', [])
   this.getRelatedProducts = function(product){
     var dfd = $q.defer();
 
-    $http.get('fashion_db.json').success(function(database) {
+    $http.get('beer_db.json').success(function(database) {
       //add product data to this order
       var related_products = _.map(product.related_products, function(product){
         return _.find(database.products, function(p){ return p.id == product.id; });
