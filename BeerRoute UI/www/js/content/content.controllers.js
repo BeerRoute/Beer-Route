@@ -65,8 +65,12 @@ angular.module('your_app_name.content.controllers', [])
 
 	$scope.product = product;
 
+	/*var jsonBarInfo = require("./home/prel/Desktop/Beer-Route/BeerRoute UI/www/food_db.json");*/
+
 	$scope.product.selected_schedule = {
 		name: "Thursday to Sunday 4:00 pm to 12:00 am"
+		
+
 	};
 
 	$scope.product.dishes = [
