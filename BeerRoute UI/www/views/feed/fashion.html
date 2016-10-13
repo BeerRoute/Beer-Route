@@ -5,7 +5,7 @@
       <div class="col col-50 fashion-product-container" ng-repeat="product in results = products">
         <div class="list card">
           <div class="item item-image product-image-wrapper">
-            <a class="product-anchor" ui-sref="main.app.feed.fashion.content({productId: product.id})">
+            <a class="product-anchor" ui-sref="main.app.feed.food.contentB({productId: product.id})">
               <pre-img ratio="_3_4">
                 <img class="product-image" ng-src="{{ product.image }}" spinner-on-load>
               </pre-img>
@@ -13,7 +13,7 @@
           </div>
           <div class="item item-body product-description-wrapper">
             <h5 class="product-title">
-              <a class="product-anchor" ui-sref="main.app.feed.fashion.content({productId: product.id})">
+              <a class="product-anchor" ui-sref="main.app.feed.food.contentB({productId: product.id})">
                 {{ product.name }}
               </a>
             </h5>
