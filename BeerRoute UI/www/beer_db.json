@@ -13,7 +13,10 @@
       "name": "Samuel Adams Boston Lager",
       "rating": 3.7,
       "tags": [
-        "Lager"        
+        "Lager"
+      ],
+      "pictures": [
+        "./img/sample-images/fashion/Boston_Beer.png"
       ],
       "style": "Lager",
       "related_products": [

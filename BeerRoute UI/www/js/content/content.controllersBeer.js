@@ -1,4 +1,4 @@
-angular.module('your_app_name.content.controllers', [])
+angular.module('your_app_name.content.controllersBeer', [])
 
 .controller('FashionContentCtrl', function($scope, $state, $ionicPopup, $rootScope, product, ShoppingCartService, $ionicLoading) {
 	$scope.goBack = function() {
