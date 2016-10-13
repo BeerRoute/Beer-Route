@@ -25,6 +25,7 @@ angular.module('your_app_name', [
   'your_app_name.content.directives',
   'your_app_name.content.services',
 
+
   'your_app_name.feed.controllers',
   'your_app_name.feed.directives',
   'your_app_name.feed.filters',
@@ -233,9 +234,9 @@ angular.module('your_app_name', [
                   }
                 },
                 resolve: {
-                  products: function(FashionService){
+                  products: function(FashionServiceBeer){
                     console.log("resolving fashion");
-                    return FashionService.getProducts();
+                    return FashionServiceBeer.getProducts();
                   }
                 }
               })
@@ -251,11 +252,12 @@ angular.module('your_app_name', [
                       }
                     },
                     resolve: {
-                      product: function(FashionService, $stateParams){
-                        return FashionService.getProduct($stateParams.productId);
+                      product: function(FashionServiceBeer, $stateParams){
+                        return FashionServiceBeer.getProduct($stateParams.productId);
                       }
                     }
-                  })
+                  })                  
+
                   // Aca va un resolve con los datos del producto.
                   // Hay que agregarle a la url el product_id, y la categoria la deberia heredar de la vista padre
                   // DONE
