@@ -30,6 +30,8 @@ angular.module('your_app_name', [
   'your_app_name.feed.filters',
   'your_app_name.feed.services',
 
+  'your_app_name.feed.servicesBeer',
+
   'your_app_name.sort.controllers',
 
   'your_app_name.filters.controllers',
@@ -48,6 +50,11 @@ angular.module('your_app_name', [
   'your_app_name.search.directives',
   'your_app_name.search.filters',
   'your_app_name.search.services',
+
+  'your_app_name.search.controllersBeer',
+  'your_app_name.search.directivesBeer',
+  'your_app_name.search.filtersBeer',
+  'your_app_name.search.servicesBeer',
 
   'your_app_name.shopping-cart.controllers',
   'your_app_name.shopping-cart.directives',
@@ -376,7 +383,7 @@ angular.module('your_app_name', [
                       }
                     }
                   })
-
+           //Search Bars       
           .state('main.app.search', {
             url: '/search',
             views: {
@@ -385,9 +392,24 @@ angular.module('your_app_name', [
                 controller: 'SearchCtrl'
               }
             },
-            resolve: {
+            resolve: {              
               results: function(FoodService){
                 return FoodService.getProducts();
+              }
+            }
+          })
+          //Search Beers
+          .state('main.app.searchBeer', {
+            url: '/searchBeer',
+            views: {
+              'app-searchBeer@main.app': {
+                templateUrl: 'views/search/searchBeer.html',
+                controller: 'SearchCtrlBeer'
+              }
+            },
+            resolve: {              
+              results: function(FashionService){
+                return FashionService.getProducts();
               }
             }
           })
