@@ -14,11 +14,11 @@
 
 	.user-info-row
 	{
-		padding: 5px 8px 8px;
+		padding: 0px 0px 0px;
 
 		.pre-img
 		{
-			border-radius: 50%;
+			/*border-radius: 90%;*/
 			background-color: rgba($account-divider-color, .5);
 
 			.spinner svg
@@ -29,13 +29,14 @@
 
 		.profile-image
 		{
-			border-radius: 50%;
-			width: 105%;
+			/*border-radius: 100%;*/
+			width: 90%;
+			clip: rect(10px, 80px,80px,10px);
 		}
 
 		.user-info-col
 		{
-			padding-left: 5px;
+			padding-left: 0px;
 
 			.user-welcome
 			{
