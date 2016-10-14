@@ -14,7 +14,7 @@
 
 	.user-info-row
 	{
-		padding: 5px 30px 15px;
+		padding: 5px 8px 8px;
 
 		.pre-img
 		{
@@ -30,12 +30,12 @@
 		.profile-image
 		{
 			border-radius: 50%;
-			width: 100%;
+			width: 105%;
 		}
 
 		.user-info-col
 		{
-			padding-left: 15px;
+			padding-left: 5px;
 
 			.user-welcome
 			{
@@ -59,7 +59,7 @@
 
 	.user-data-row
 	{
-		padding: 0px 30px;
+		padding: 0px 0px;
 		background-color: $account-profile-data-bg;
 
 		.item.item-input
@@ -139,7 +139,7 @@
 	.account-divider
 	{
 		margin: 0px;
-		padding-top: 30px;
+		padding-top: 10px;
 
 		.item-divider
 		{
@@ -154,13 +154,13 @@
 
 	.notifications-row
 	{
-		padding: 0px 15px;
+		padding: 0px 0px;
 
 		.notifications-list
 		{
 			background-color: $account-notifications-bg;
 			padding: 0px;
-  		margin: 0px;
+  			margin: 0px;
 			border-radius: 6px;
 
 			.item
@@ -168,7 +168,7 @@
 				border: none;
 				margin: 0px;
 				height: $account-notifications-item-height;
-			  padding-top: 0px;
+			  padding-top: 10px;
 			  padding-bottom: 0px;
 			  margin: 0px 15px;
 			  padding-left: 2px;
