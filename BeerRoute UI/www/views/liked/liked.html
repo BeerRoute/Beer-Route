@@ -4,12 +4,11 @@
   </ion-header-bar>
   <ion-content class="padding">
     <div class="card" ng-repeat="list in lists">
-      <img src="{{list.picture}}" alt="beer-logo" style="width:30vh" align="middle">
+      <img src="{{list.picture}}" alt="beer-logo" style="width:30vh">
       <div class="item item-text-wrap">
         <p><b>Name</b>: {{list.name}}</p>
         <p><b>Category</b>: {{list.category}}</p>
         <p><b>Tags</b>: {{list.tags}}</p>
-        <p><b>Creation Date</b>: {{list.creation_date}}</p>
         <!--b>Products</b-->
         <span ng-repeat="product in list.products">
           {{product.id}}
