@@ -112,7 +112,7 @@ angular.module('your_app_name.checkout.controllers', [])
     var editAddressPopup = $ionicPopup.show({
       cssClass: 'popup-outer edit-shipping-address-view',
       templateUrl: 'views/checkout/partials/edit-shipping-address-popup.html',
-      title: address.street,
+      title: address.region,
       scope: $scope,
       buttons: [
         { text: 'Close' },
