@@ -53,6 +53,7 @@
         "name": "morbi a",
         "category": "realstate",
         "tags": "tag3",
+        "picture":"./img/sample-images/fashion/Boston_Beer.png",
         "creation_date": "09/28/2015",
         "products": [
           "4",
