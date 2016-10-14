@@ -114,6 +114,21 @@
       </div>
     </div>
     <hr class="product-sections-divider"/>
+    <h3 class="product-sub-title">Available Beers</h3>
+    <div class="row available-beers-row">
+      <div class="row row-center info-row">
+          <div class="col col-20 image-wrapper">              
+                <a class="product-anchor">
+                <a class="product-anchor" ui-sref="main.app.feed.food.contentB({productId: product.id})">
+                  <pre-img ratio="_1_1">
+                    <img style="width:10vh;" class="logo-image" ng-src="{{ product.pic }}" spinner-on-load>
+                  </pre-img>
+                </a>
+                </a>              
+          </div>                
+      </div>
+    </div>
+    <hr class="product-sections-divider"/>
     <h3 class="product-sub-title">Reviews</h3>
     <article class="row review-item" ng-repeat="review in [].constructor(3) track by $index">
     	<div class="col">
@@ -179,7 +194,7 @@
     </div>
     <div class="row write-review-row">
     	<div class="col">
-    		<button class="button button-block new-review-button" ng-click="newReview()">
+        <button class="button button-block new-review-button" ng-click="newReview()">
     			Write a review
     		</button>
     	</div>

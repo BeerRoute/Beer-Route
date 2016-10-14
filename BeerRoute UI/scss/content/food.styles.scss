@@ -458,6 +458,29 @@
 		}
 	}
 
+	.available-beers-row{
+		.info-row{
+			margin-bottom: 13px;
+		}
+
+		.image-wrapper{
+			position:relative;
+
+			.pre-img
+			{
+				border-radius: 0px;
+			}
+
+			@include spinner-size(20px, 20px);
+
+			.product.image{
+				width:100%;
+				heigth:100%;
+			}
+
+		}
+	}
+
 	.review-item
 	{
 		margin: 0px;

@@ -20,6 +20,7 @@
         "./img/sample-images/food/BrosHamb.jpg",
         "./img/sample-images/food/lanina.jpeg"        
       ],
+      "pic":"./img/sample-images/fashion/samuel-adams-boston-lager.png",
       "address": "PR-115, 00602"
     }, {
       "id": 2,

@@ -30,6 +30,37 @@
           "id": "1"
         }
       ]
+    },
+    {
+      "id": 2,
+      "price": 4.00,
+      "price_sale": 3.25,
+      "image": "./img/sample-images/fashion/OCT_12ozBTL.png",
+      "square_image": "./img/sample-images/fashion/OCT_12ozBTL.png",
+      "showcase_images": [
+        "./img/sample-images/fashion_content/OCT_12ozBTL.png",
+        "./img/sample-images/fashion_content/OCT_12ozBTL.png"
+      ],
+      "name": "Bells Octoberfest",
+      "rating": 4.4,
+      "tags": [
+        "Marzen"
+      ],
+      "pictures": [
+        "./img/sample-images/fashion/bells.jpg"
+      ],
+
+      "descr": "Bell's Brewery, Inc. is a brewing company based in Kalamazoo, Michigan, with a second facility in Comstock, Michigan. Bell's Brewery produces the Bell's brand of beers. Bell's also has a brewpub called the Eccentric Cafe.",
+
+      "style": "Marzen",
+      "related_products": [
+        {
+          "id": "2"
+        },
+        {
+          "id": "1"
+        }
+      ]
     }
   ]
 }
