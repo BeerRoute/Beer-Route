@@ -16,6 +16,19 @@ angular.module('your_app_name.account.controllers', [])
   $scope.notifications = {};
   $scope.notifications.promotions = false;
   $scope.notifications.shipment_updates = true;
+  
+    $scope.test = function(){
+var xhr = new XMLHttpRequest({mozSystem: true});
+
+$http.get("http://localhost:3412/ClassDemo3Srv/ok",xhr).success(function(data){
+var r = data;
+$ionicPopup.alert(
+{title: JSON.stringify(r),
+template: r.Message});
+//console.log(r[0]);
+//console.log(r[1]);
+});
+}
 
   $ionicPopover.fromTemplateUrl('views/checkout/partials/address-chooser-popover.html', {
     scope: $scope
