@@ -10100,7 +10100,7 @@ ion-spinner.spinner-on-load {
 .tabbed-navigation .tabs {
   padding: 0px;
   border-color: transparent;
-  background-color: #e0bc9c;
+  background-color: #c9a98c;
   background-image: linear-gradient(0deg, transparent, transparent 50%, transparent 50%);
   color: #4D301C; }
   .tabbed-navigation .tabs .tab-item-active {
@@ -11923,6 +11923,40 @@ ion-spinner.spinner-on-load {
       line-height: 18px;
       margin: 0px 0px 8px;
       font-weight: 400; }
+  .food-content-view .available-beers-row .info-row {
+    margin-bottom: 13px; }
+  .food-content-view .available-beers-row .image-wrapper {
+    position: relative; }
+    .food-content-view .available-beers-row .image-wrapper .pre-img {
+      border-radius: 0px; }
+    .food-content-view .available-beers-row .image-wrapper .spinner-on-load {
+      position: absolute;
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      -webkit-animation: spin 2s infinite linear;
+      animation: spin 2s infinite linear;
+      top: -webkit-calc(50% - 10px);
+      top: calc(50% - 10px);
+      left: -webkit-calc(50% - 10px);
+      left: calc(50% - 10px); }
+    .food-content-view .available-beers-row .image-wrapper ion-spinner.spinner-on-load {
+      -webkit-animation: none;
+      animation: none;
+      width: 20px;
+      height: 20px;
+      line-height: inherit;
+      top: -webkit-calc(50% - 10px);
+      top: calc(50% - 10px);
+      left: -webkit-calc(50% - 10px);
+      left: calc(50% - 10px); }
+      .food-content-view .available-beers-row .image-wrapper ion-spinner.spinner-on-load.spinner svg {
+        width: 20px;
+        height: 20px; }
+    .food-content-view .available-beers-row .image-wrapper .product.image {
+      width: 100%;
+      heigth: 100%; }
   .food-content-view .review-item {
     margin: 0px;
     padding: 5px 18px 18px; }

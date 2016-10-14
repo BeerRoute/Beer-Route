@@ -22,7 +22,7 @@
 	.tabs
 	{
 		padding: 0px;
-		@include tab-style($navigation-tabs-bg, $navigation-tabs-border, $navigation-tabs-text);
+		@include tab-style(#c9a98c /*$navigation-tabs-bg*/, $navigation-tabs-border, $navigation-tabs-text);
 
 		.tab-item-active
 		{
