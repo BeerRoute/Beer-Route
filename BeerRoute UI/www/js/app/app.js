@@ -317,9 +317,9 @@ angular.module('your_app_name', [
                   }
                 },
                 resolve: {
-                  products: function(TravelService){
+                  products: function(FoodService){
                     console.log("resolving travel");
-                    return TravelService.getProducts();
+                    return FoodService.getProducts();
                   }
                 }
               })

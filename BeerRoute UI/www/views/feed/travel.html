@@ -5,15 +5,15 @@
       <div class="travel-product-container" ng-repeat="product in results = products">
         <div class="row image-row">
           <div class="col product-image-container">
-            <div multi-bg="[product.picture]" interval="3000">
+            <div multi-bg="[product.pictures[1]]" interval="3000">
               <div class="row row-center content-inside-image">
                 <div class="col">
                   <img class="travel-product-icon" ng-src="{{product.icon}}"/>
                   <h2 class="product-name">
-                    <a class="product-anchor">{{product.name}}</a>
-                    <!-- <a class="product-anchor" ui-sref="main.app.feed.travel.content({productId: product.id})">{{product.name}}</a> -->
+                    <!--a class="product-anchor">{{product.name}}</a-->
+                    <a class="product-anchor" ui-sref="main.app.feed.food.content({productId: product.id})">{{product.name}}</a>
                   </h2>
-                  <h4 class="product-tagline">{{product.category}}</h4>
+                  <h4 class="product-tagline">{{product.style}}</h4>
                 </div>
               </div>
             </div>
@@ -23,7 +23,7 @@
           <div class="col description-col">
             <h5 class="product-title">
               <a class="product-anchor">{{product.name}} {{product.category}}</a>
-              <!-- <a class="product-anchor" ui-sref="main.app.feed.travel.content({productId: product.id})">{{product.name}} {{product.category}}</a> -->
+              <a class="product-anchor" ui-sref="main.app.feed.food.content({productId: product.id})">{{product.name}} {{product.category}}</a>
             </h5>
             <p class="product-description">
               {{product.description}}

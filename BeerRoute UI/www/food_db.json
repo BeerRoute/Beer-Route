@@ -14,6 +14,7 @@
       ],
       "style":"Craft Beer Bar",
       "schedule":"Thursday to Sunday 4:00 pm to 12:00 am",
+      "description": "Every Sunday from early morning until three in the afternoon enjoy the biggest market in Montevideo.",
       "pictures": [
         "./img/sample-images/food/brewLocal.jpg",
         "./img/sample-images/food/BrosHamb.jpg",
@@ -34,6 +35,7 @@
       ],
       "style":"Hand-Crafted Artisanal Beers",
       "schedule":"Thursday to Sunday 4:00 pm to 12:00 am",
+      "description": "Every Sunday from early morning until three in the afternoon enjoy the biggest market in Montevideo.",
       "pictures": [
         "./img/sample-images/food/rbclocal.jpg",
         "./img/sample-images/food/rincon-beer-company.jpg",
