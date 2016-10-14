@@ -487,7 +487,7 @@ angular.module('your_app_name', [
             url: '/account',
             views: {
               'app-account@main.app': {
-                templateUrl: 'views/account/account.html'
+                templateUrl: 'views/account/account.html'                
               }
             }
           })
