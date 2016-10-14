@@ -22,11 +22,11 @@
 	.tabs
 	{
 		padding: 0px;
-		@include tab-style(#c9a98c /*$navigation-tabs-bg*/, $navigation-tabs-border, $navigation-tabs-text);
+		@include tab-style($navigation-tabs-active-bg , $navigation-tabs-border, $navigation-tabs-text);
 
 		.tab-item-active
 		{
-			background-color: $navigation-tabs-active-bg;
+			background-color: #c4A488;
 		}
 
 		.tab-title
