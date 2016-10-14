@@ -51,11 +51,10 @@
     "lists": [
       {
         "id": 1,
-        "name": "morbi a",
-        "category": "realstate",
+        "name": "Samuel Adams Boston Lager",
+        "category": "Lager",
         "tags": "tag3",
         "picture":"./img/sample-images/fashion/Boston_Beer.png",
-        "creation_date": "09/28/2015",
         "products": [
           "4",
           "8",
@@ -65,10 +64,10 @@
       },
       {
         "id": 2,
-        "name": "sit amet",
-        "category": "food",
+        "name": "Bells Octoberfest",
+        "category": "Oktoberfest/Märzen",
         "tags": "tag1",
-        "creation_date": "07/04/2015",
+        "picture":"./img/sample-images/fashion/Bells_Logo_NEW.png",
         "products": [
           "3",
           "4",

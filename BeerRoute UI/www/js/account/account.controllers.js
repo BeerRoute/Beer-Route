@@ -1,6 +1,6 @@
 angular.module('your_app_name.account.controllers', [])
 
-.controller('ProfileCtrl', function($scope, user, $ionicPopover, $ionicPopup, $ionicActionSheet, $state) {
+.controller('ProfileCtrl', function($scope, user, $ionicPopover, $ionicPopup, $ionicActionSheet, $state,$http) {
   $scope.user = user;
 
   $scope.user_credit_cards = user.credit_cards;
