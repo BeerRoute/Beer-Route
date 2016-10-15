@@ -74,37 +74,6 @@
           "6",
           "7"
         ]
-      },
-      {
-        "id": 3,
-        "name": "aliquet pulvinar sed",
-        "category": "realstate",
-        "tags": "tag2",
-        "creation_date": "02/01/2016",
-        "products": [
-          "1"
-        ]
-      },
-      {
-        "id": 4,
-        "name": "sollicitudin ut suscipit a feugiat",
-        "category": "fashion",
-        "tags": "tag3",
-        "creation_date": "06/12/2015",
-        "products": [
-          "6"
-        ]
-      },
-      {
-        "id": 5,
-        "name": "lacus",
-        "category": "deals",
-        "tags": "tag1",
-        "creation_date": "11/24/2015",
-        "products": [
-          "4",
-          "5"
-        ]
       }
     ],
     "shipping_addresses": [
