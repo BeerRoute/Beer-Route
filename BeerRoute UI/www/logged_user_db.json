@@ -1,6 +1,7 @@
 {
   "user":{
     "id": 1,
+    "BarOwner":1,
     "first_name": "Manuel",
     "last_name": "Rodriguez",
     "password": "billy12345678",
