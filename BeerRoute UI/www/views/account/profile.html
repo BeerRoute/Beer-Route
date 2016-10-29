@@ -1,10 +1,10 @@
-<ion-view class="account-profile-view account-sub-view" cache-view="false">
+<ion-view class="account-profile-view account-sub-view" cache-view="false">  
   <ion-content>
     <div class="row user-info-row">
       <div class="col col-25">
-        <pre-img ratio="_1_1">
-          <img class="profile-image" ng-src="{{user.picture}}" spinner-on-load/>
-        </pre-img>
+        <!--pre-img ratio="_1_1"-->
+          <img class="profile-image" src="{{user.picture}}" />
+        <!--/pre-img-->
       </div>
       <div class="col col-75 col-center user-info-col">
         <h3 class="user-welcome">Hello {{user.first_name}}!</h3>
@@ -37,12 +37,13 @@
         {{data.selected_address.street || 'Select address'}}
       </button>
     </div>
-    <!--Solo habilitar esta seccion cuando sea usuario de negocio -->
-    <!--h3 class="account-sub-title">Default Credit Card</h3>
+    <div ng-show="isBarOwner()">    
+    <h3 class="account-sub-title">Default Credit Card</h3>
     <div class="card-chooser" ng-click="openCardsPopover($event)">
       <button class="button button-block icon-right cards-popover-button" ng-class="{'ion-chevron-up': addresses_popover.isShown(), 'ion-chevron-down' : !addresses_popover.isShown()}">
         {{data.selected_card.number || 'Select Credit Card'}}
-      </button-->
+      </button>
+    </div>
     </div>
     <div class="list account-divider">
       <div class="item item-divider"></div>
@@ -70,6 +71,11 @@
               </div>
             </label>
           </li>
+
+
+          <li>  <button class= "button button-block test-button" ng-click="test()"> Test Button</button>
+          </li>
+
         </ul>
       </div>
     </div>

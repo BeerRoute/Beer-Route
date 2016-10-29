@@ -14,11 +14,12 @@
 
 	.user-info-row
 	{
-		padding: 5px 30px 15px;
+		padding: 0px 0px 0px;
+		background-color: #e0c9cd;
 
 		.pre-img
 		{
-			border-radius: 50%;
+			/*border-radius: 90%;*/
 			background-color: rgba($account-divider-color, .5);
 
 			.spinner svg
@@ -29,13 +30,16 @@
 
 		.profile-image
 		{
-			border-radius: 50%;
-			width: 100%;
+			/*border-radius: 100%;*/
+			width: 90%;
+			clip: rect(10px, 80px,80px,10px);
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0);
+			border-radius:10px;
 		}
 
 		.user-info-col
 		{
-			padding-left: 15px;
+			padding-left: 0px;
 
 			.user-welcome
 			{
@@ -59,7 +63,7 @@
 
 	.user-data-row
 	{
-		padding: 0px 30px;
+		padding: 0px 0px;
 		background-color: $account-profile-data-bg;
 
 		.item.item-input
@@ -139,7 +143,7 @@
 	.account-divider
 	{
 		margin: 0px;
-		padding-top: 30px;
+		padding-top: 10px;
 
 		.item-divider
 		{
@@ -154,13 +158,13 @@
 
 	.notifications-row
 	{
-		padding: 0px 15px;
+		padding: 0px 0px;
 
 		.notifications-list
 		{
 			background-color: $account-notifications-bg;
 			padding: 0px;
-  		margin: 0px;
+  			margin: 0px;
 			border-radius: 6px;
 
 			.item
@@ -168,7 +172,7 @@
 				border: none;
 				margin: 0px;
 				height: $account-notifications-item-height;
-			  padding-top: 0px;
+			  padding-top: 10px;
 			  padding-bottom: 0px;
 			  margin: 0px 15px;
 			  padding-left: 2px;

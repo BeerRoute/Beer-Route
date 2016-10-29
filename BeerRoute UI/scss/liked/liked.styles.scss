@@ -8,6 +8,20 @@
 		border: none !important;
 		background-size: 0px !important; // To remove bottom border on header
 		
+		.logo-container
+		{
+			width: 33%;
+			height: $bar-height - (2*$bar-padding-portrait);
+			line-height: $bar-height - (2*$bar-padding-portrait);
+			margin:auto;
+			
+			.logo-image
+			{
+				width: 100%;
+				
+			}
+		}
+
 		.title
 		{
 			font-weight: 300;
@@ -40,6 +54,12 @@
 		{
 			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
 			height: auto;
+
+			img{
+				display:block;
+				margin:auto;
+			}
+
 
 			.item p{
 				font-size: 3vh;

@@ -136,7 +136,7 @@ angular.module('your_app_name', [
         }
       })
 
-      .state('intro.walkthrough-learn', {
+      /*.state('intro.walkthrough-learn', {
         url: '/walkthrough-learn',
         views: {
           'intro-view@intro': {
@@ -144,7 +144,7 @@ angular.module('your_app_name', [
             controller: 'GettingStartedCtrl'
           }
         }
-      })
+      })*/
 
       .state('intro.auth-login', {
         url: '/auth-login',
@@ -225,7 +225,7 @@ angular.module('your_app_name', [
             }
           })
 
-              .state('main.app.feed.fashion', {
+              /*.state('main.app.feed.fashion', {
                 url: '/fashion',
                 views: {
                   'category-feed@main.app.feed': {
@@ -239,11 +239,11 @@ angular.module('your_app_name', [
                     return FashionService.getProducts();
                   }
                 }
-              })
+              })*/
               // Aca va un resolve con los primeros N posts del feed de esta categoria
               // DONE
 
-                  .state('main.app.feed.fashion.content', {
+                  /*.state('main.app.feed.fashion.content', {
                     url: '/content/:productId',
                     views: {
                       'main-view@main': {
@@ -256,7 +256,7 @@ angular.module('your_app_name', [
                         return FashionService.getProduct($stateParams.productId);
                       }
                     }
-                  })                  
+                  }) */                 
 
                   // Aca va un resolve con los datos del producto.
                   // Hay que agregarle a la url el product_id, y la categoria la deberia heredar de la vista padre
@@ -277,7 +277,7 @@ angular.module('your_app_name', [
                   }
                 }
               })
-
+                  //BAR CONTENT
                   .state('main.app.feed.food.content', {
                     url: '/content/:productId',
                     views: {
@@ -307,7 +307,7 @@ angular.module('your_app_name', [
                       }
                     }
                   })
-
+              //FEED 
               .state('main.app.feed.travel', {
                 url: '/travel',
                 views: {
@@ -317,14 +317,14 @@ angular.module('your_app_name', [
                   }
                 },
                 resolve: {
-                  products: function(FoodService){
+                  products: function(TravelService){
                     console.log("resolving travel");
-                    return FoodService.getProducts();
+                    return TravelService.getProducts();
                   }
                 }
               })
 
-                  .state('main.app.feed.travel.content', {
+                  /*.state('main.app.feed.travel.content', {
                     url: '/content/:productId',
                     views: {
                       'main-view@main': {
@@ -337,8 +337,8 @@ angular.module('your_app_name', [
                         return TravelService.getProduct($stateParams.productId);
                       }
                     }
-                  })
-
+                  })*/
+              //DEALS FEED
               .state('main.app.feed.deals', {
                 url: '/deals',
                 views: {
@@ -355,7 +355,7 @@ angular.module('your_app_name', [
                 }
               })
 
-                  .state('main.app.feed.deals.content', {
+                  /*.state('main.app.feed.deals.content', {
                     url: '/content/:productId',
                     views: {
                       'main-view@main': {
@@ -368,9 +368,9 @@ angular.module('your_app_name', [
                         return DealsService.getProduct($stateParams.productId);
                       }
                     }
-                  })
+                  })*/
 
-              .state('main.app.feed.real-state', {
+              /*.state('main.app.feed.real-state', {
                 url: '/real-state',
                 views: {
                   'category-feed@main.app.feed': {
@@ -399,8 +399,10 @@ angular.module('your_app_name', [
                         return RealStateService.getProduct($stateParams.productId);
                       }
                     }
-                  })
-           //Search Bars       
+                  })*/
+
+
+           //SEARCH BARS       
           .state('main.app.search', {
             url: '/search',
             views: {
@@ -415,7 +417,7 @@ angular.module('your_app_name', [
               }
             }
           })
-          //Search Beers
+          //SEARCH BEERS
           .state('main.app.searchBeer', {
             url: '/searchBeer',
             views: {
@@ -430,7 +432,7 @@ angular.module('your_app_name', [
               }
             }
           })
-
+          //WISH LIST
           .state('main.app.liked', {
             url: '/liked',
             views: {
@@ -487,7 +489,7 @@ angular.module('your_app_name', [
             url: '/account',
             views: {
               'app-account@main.app': {
-                templateUrl: 'views/account/account.html'
+                templateUrl: 'views/account/account.html'                
               }
             }
           })
@@ -507,7 +509,7 @@ angular.module('your_app_name', [
                 }
               })
 
-              .state('main.app.account.orders', {
+              /*.state('main.app.account.orders', {
                 url: '/orders',
                 views: {
                   'my-orders@main.app.account': {
@@ -520,7 +522,7 @@ angular.module('your_app_name', [
                     return OrderService.getUserOrders();
                   }
                 }
-              })
+              })*/
               // Resolver el listado de productos comprados, los atributos en un principio deberian ser:
               //    - product_id
               //    - fecha de comprado
@@ -589,7 +591,7 @@ angular.module('your_app_name', [
               })
               // Aca deberiamos resolver un listado de tarjetas de credito que el usuario guardo
 
-              .state('main.app.checkout.promo-code', {
+              /*.state('main.app.checkout.promo-code', {
                 url: '/promo-code',
                 views: {
                   'main-view@main': {
@@ -597,7 +599,7 @@ angular.module('your_app_name', [
                     controller: 'CheckoutPromoCodeCtrl'
                   }
                 }
-              })
+              })*/
 
               .state('main.app.checkout.thanks', {
                 url: '/thanks',

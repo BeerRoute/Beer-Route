@@ -1,6 +1,6 @@
 angular.module('your_app_name.account.controllers', [])
 
-.controller('ProfileCtrl', function($scope, user, $ionicPopover, $ionicPopup, $ionicActionSheet, $state) {
+.controller('ProfileCtrl', function($scope, user, $ionicPopover, $ionicPopup, $ionicActionSheet, $state,$http) {
   $scope.user = user;
 
   $scope.user_credit_cards = user.credit_cards;
@@ -8,6 +8,7 @@ angular.module('your_app_name.account.controllers', [])
   $scope.data = {};
   $scope.data.selected_card = user.credit_cards[0];
 	$scope.data.selected_address = user.shipping_addresses[0];
+  $scope.user_bar = user.BarOwner;
 
   $scope.user.name = user.first_name +' '+ user.last_name;
   $scope.user.password = 'pepe123456789';
@@ -41,6 +42,10 @@ template: r.Message});
   }).then(function(popover) {
     $scope.cards_popover = popover;
   });
+
+  $scope.isBarOwner = function(){
+    return ($scope.user_bar == 1);
+  }
 
   $scope.openAddressesPopover = function($event){
 		$scope.addresses_popover.show($event);

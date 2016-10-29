@@ -2,14 +2,14 @@
   "products": [
     {
       "id": 1,
-      "price_range": 1,
+      "price_range": 2,
       "image": "./img/sample-images/food/brew_22416.jpg",
       "name": "Bros Brewery",
       "rating": 4.0,
       "tags": [
-        "Craft Beers",
-        "Hamburguers",
-        "Draft Beers",
+        "Craft_Beers",
+        "Hamburgers",
+        "Draft_Beers",
         "Tapas"
       ],
       "style":"Craft Beer Bar",
@@ -29,10 +29,10 @@
       "name": "Rincon Beer Company",
       "rating": 4.2,
       "tags": [
-        "Craft Beers",
+        "Craft_Beers",
         "Appetizer",
         "Growlers",
-        "Draft Beers"
+        "Draft_Beers"
       ],
       "style":"Hand-Crafted Artisanal Beers",
       "schedule":"Thursday to Sunday 4:00 pm to 12:00 am",
@@ -46,7 +46,8 @@
         "./img/sample-images/food/images.jpg",
         "./img/sample-images/food/rincon-beer-company(2).jpg"      
       ],
-      "address": "1 Buhler Parkway"
+      "pic":"./img/sample-images/fashion/OCT_12ozBTL.png",
+      "address": "15 Cll Muñoz Rivera, Rincon, PR 00677"
     }
   ]
 }

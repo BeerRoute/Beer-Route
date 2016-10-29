@@ -9,13 +9,27 @@
 		border: none !important;
 		background-size: 0px !important; // To remove bottom border on header
 
+		.logo-container
+		{
+			width: 26%;
+			height: $bar-height - (2*$bar-padding-portrait);
+			line-height: $bar-height - (2*$bar-padding-portrait);
+			margin:auto;
+			
+			.logo-image
+			{
+				width: 100%;
+				
+			}
+		}
+
 		.title
 		{
 			color: $account-header-color;
 			font-weight: 300;
 		}
 	}
-
+	/**
 	.account-tabs
 	{
 		justify-content: flex-start;
@@ -23,17 +37,18 @@
 		border-width: 0px;
 
 
+
 		.tabs
 		{
-			top: -5px !important;
+			top: 0px !important;
 		}
 
 		.tab-nav.tabs
 		{
-			padding: 0px;
-			margin: $account-tabs-padding 100px auto;
-			height: $account-tabs-height;
-			line-height: $account-tabs-height;
+			padding: 10px;
+			margin: $account-tabs-padding 1px;
+			height: 10vh;
+			line-height: 0vh;
 			border-radius: 10px;
 			width: 30vh;
 
@@ -73,7 +88,7 @@
 				}
 			}
 		}
-	}
+	}*/
 }
 
 // <ion-view>

@@ -1,11 +1,12 @@
 {
   "user":{
     "id": 1,
-    "first_name": "Billy",
-    "last_name": "Fowler",
+    "BarOwner":1,
+    "first_name": "Manuel",
+    "last_name": "Rodriguez",
     "password": "billy12345678",
-    "email": "bfowler0@gmail.com",
-    "picture": "https://s3.amazonaws.com/uifaces/faces/twitter/teclaro/128.jpg",
+    "email": "manuel.rodriguez7@upr.edu",
+    "picture": "./img/common/profesor.jpg",
     "orders": [
       {
         "id": 1,
@@ -50,11 +51,10 @@
     "lists": [
       {
         "id": 1,
-        "name": "morbi a",
-        "category": "realstate",
+        "name": "Samuel Adams Boston Lager",
+        "category": "Lager",
         "tags": "tag3",
         "picture":"./img/sample-images/fashion/Boston_Beer.png",
-        "creation_date": "09/28/2015",
         "products": [
           "4",
           "8",
@@ -64,10 +64,10 @@
       },
       {
         "id": 2,
-        "name": "sit amet",
-        "category": "food",
+        "name": "Bells Octoberfest",
+        "category": "Oktoberfest/Märzen",
         "tags": "tag1",
-        "creation_date": "07/04/2015",
+        "picture":"./img/sample-images/fashion/Bells_Logo_NEW.png",
         "products": [
           "3",
           "4",
@@ -75,43 +75,12 @@
           "6",
           "7"
         ]
-      },
-      {
-        "id": 3,
-        "name": "aliquet pulvinar sed",
-        "category": "realstate",
-        "tags": "tag2",
-        "creation_date": "02/01/2016",
-        "products": [
-          "1"
-        ]
-      },
-      {
-        "id": 4,
-        "name": "sollicitudin ut suscipit a feugiat",
-        "category": "fashion",
-        "tags": "tag3",
-        "creation_date": "06/12/2015",
-        "products": [
-          "6"
-        ]
-      },
-      {
-        "id": 5,
-        "name": "lacus",
-        "category": "deals",
-        "tags": "tag1",
-        "creation_date": "11/24/2015",
-        "products": [
-          "4",
-          "5"
-        ]
       }
     ],
     "shipping_addresses": [
       {
         "full_name": "Billy Fowler",
-        "street": "0 Waubesa Junction",
+        "region": "Area Oeste",
         "city": "Houston",
         "state": "TX",
         "postal_code": "77020",
@@ -119,7 +88,7 @@
       },
       {
         "full_name": "Betty Adams",
-        "street": "50 Northfield Way",
+        "region": "Area Metro",
         "city": "Brooklyn",
         "state": "NY",
         "postal_code": "11210",
@@ -128,7 +97,7 @@
     ],
     "credit_cards": [
       {
-        "full_name": "Billy Fowler",
+        "full_name": "Manuel Rodriguez",
         "number": "**** **** **** 4295",
         "type": "visa",
         "ccv": 556,
