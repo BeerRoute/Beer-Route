@@ -134,8 +134,21 @@ angular.module('your_app_name.content.controllers', [])
 			scope: angular.extend($scope, {addresses: $scope.product.addresses, selected_address: $scope.product.selected_address}),
 			title: 'Addresses',
 			buttons: [
-				{ text: 'Close', type: 'close-popup' }
+				{ text: 'Close', type: 'close-popup',
+				}
 			]
+		});
+	};
+
+	$scope.newReview = function(){
+		newReviewPopup = $ionicPopup.show({
+			cssClass: 'popup-outer food-review-view',
+			templateUrl: 'views/content/food/review.html',
+			//scope: angular.extend($scope, {})
+			title: 'Review',
+			buttons: [
+				{ text: 'Close', type: 'close-popup' }
+			]			
 		});
 	};
 

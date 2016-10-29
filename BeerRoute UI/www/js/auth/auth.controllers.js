@@ -80,7 +80,7 @@ angular.module('your_app_name.auth.controllers', [])
 
 		$timeout(function(){
 			// Simulate login OK
-			$state.go('main.app.account');
+			$state.go('main.app.account.profile');
       $ionicLoading.hide();
 
 			// Simulate login ERROR
