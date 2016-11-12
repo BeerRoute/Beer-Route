@@ -49,7 +49,7 @@ app.get('/ClassDemo3Srv/ok', function(req,res){
 var config = {
   user: 'postgres', //env var: PGUSER
   database: 'testdb', //env var: PGDATABASE
-  password: 'JoseTheCheater', //env var: PGPASSWORD
+  password: '************', //env var: PGPASSWORD
   host: 'localhost', // Server hosting the postgres database
   port: 5432, //env var: PGPORT
   max: 10, // max number of clients in the pool
