@@ -228,7 +228,7 @@ angular.module('your_app_name', [
           })
           /*
 
-              /*.state('main.app.feed.fashion', {
+              .state('main.app.feed.fashion', {
                 url: '/fashion',
                 views: {
                   'category-feed@main.app.feed': {
@@ -464,7 +464,8 @@ angular.module('your_app_name', [
                       'main-view@main': {
                         templateUrl: 'views/content/fashion.html',
                         controller: 'FashionContentCtrl'
-                      }
+                       }
+                      },
                     resolve: {
                       product: function(FashionService, $stateParams){
                         return FashionService.getProduct($stateParams.productId);
