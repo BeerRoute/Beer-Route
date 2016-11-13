@@ -28,6 +28,13 @@ $ionicPopup.alert(
 template: r.Message});
 //console.log(r[0]);
 //console.log(r[1]);
+})
+.error(function(data,status){
+var d = data;
+var s = status;
+$ionicPopup.alert(
+{title: JSON.stringify(d),
+template: JSON.stringify(s)});
 });
 }
 

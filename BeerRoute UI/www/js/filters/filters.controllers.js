@@ -2,10 +2,10 @@ angular.module('your_app_name.filters.controllers', [])
 
 .controller('FiltersCtrl', function($scope, $state, $rootScope, $ionicSlideBoxDelegate) {
 
-	$scope.category_filter = 'Fashion';
+	$scope.category_filter = 'Food';
 
 	$scope.tags_filter = {};
-	$scope.tags_filter.vegetables = true;
+	$scope.tags_filter.Lager = true;
 	$scope.tags_filter.asian = true;
 
 	$scope.color_filter = '#c284e5';
@@ -18,7 +18,7 @@ angular.module('your_app_name.filters.controllers', [])
 
 	$scope.show_filter = 'Bars';
 
-	$scope.budget_filter = '$';
+	$scope.budget_filter = '$$';
 
 	$scope.distance_filter = 30;
 
@@ -39,9 +39,13 @@ angular.module('your_app_name.filters.controllers', [])
 		$state.go(previous_view.fromState, previous_view.fromParams );
 	};
 
-	$scope.applyRefine = function(){
+	/*$scope.applyRefine = function(){
 		var previous_view = _.last($rootScope.previousView);
 		$state.go(previous_view.fromState, previous_view.fromParams );
+	};*/
+	$scope.applyRefine = function(){
+		$scope.tags_filter = {query: ''};
+		$scope.products = results;
 	};
 
 	$scope.lockSlide = function () {
