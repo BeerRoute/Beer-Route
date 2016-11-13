@@ -1,6 +1,6 @@
 angular.module('your_app_name.auth.controllers', [])
 
-.controller('LoginCtrl', function($scope, $state, $ionicLoading, $timeout) {
+.controller('LoginCtrl', function($scope, $state, $ionicLoading, $timeout, $http, $ionicPopup) {
 	$scope.user = {};
 
 	$scope.user.email = "";
@@ -11,15 +11,32 @@ angular.module('your_app_name.auth.controllers', [])
 		console.log("doing log in");
 
 		$ionicLoading.show({
-      template: 'Loging in...'
-    });
+      		template: 'Loging in...'
+    		});
 
 		$timeout(function(){
+			var xhr = new XMLHttpRequest({mozSystem: true});
+			$http.get("http://localhost:3412/ClassDemo3Srv/login",{params: {email: $scope.user.email, password: $scope.user.password}},xhr).success(function(data){
+			var r = data;
+			//$ionicPopup.alert(
+			//{title: JSON.stringify(r),
+			//template: r.Exists});
+
 			// Simulate login OK
 			// $state.go('main.app.feed.fashion');
-      // $ionicLoading.hide();
-      		$state.go('main.app.account');
-      $ionicLoading.hide();
+      			// $ionicLoading.hide();
+			if(r.Exists){
+			$state.go('main.app.account');}
+			else{
+			$ionicPopup.alert(
+			{title: 'Login failed',			
+			template: 'email or password incorrect'});
+			$scope.user.email = "";
+			$scope.user.password = "";
+			}
+			$ionicLoading.hide();
+			});
+      		
 
 			// Simulate login ERROR
 			//$scope.error = "This is an error message";
@@ -46,10 +63,10 @@ angular.module('your_app_name.auth.controllers', [])
 	};
 })
 
-.controller('SignupCtrl', function($scope, $state, $ionicLoading, $timeout, $ionicModal) {
+.controller('SignupCtrl', function($scope, $state, $ionicLoading, $timeout, $ionicModal, $http, $ionicPopup) {
 	$scope.user = {};
 
-	$scope.user.name = "Marian Hill";
+	$scope.user.name = "";
 	$scope.user.email = "";
 	$scope.user.password = "";
 
@@ -57,17 +74,39 @@ angular.module('your_app_name.auth.controllers', [])
 		console.log("doing sign up");
 
 		$ionicLoading.show({
-      template: 'Creating account...'
-    });
+      		template: 'Creating account...'
+    		});
+
 
 		$timeout(function(){
-			// Simulate login OK
-			// $state.go('main.app.feed.fashion');
-      // $ionicLoading.hide();
+			
+		var xhr = new XMLHttpRequest({mozSystem: true});
+		$http.get("http://localhost:3412/ClassDemo3Srv/signup",{params: {username: $scope.user.name, email: $scope.user.email, password: $scope.user.password}},xhr).success(function(data){
+		console.log("Query success");		
+		var r = data;
+		$ionicPopup.alert(
+		{title: JSON.stringify(r),
+		template: r.Exists});
+		if(!r.Exists){
+		$state.go('main.app.account');}
+		else{
+		$ionicPopup.alert(
+		{title: 'Account creation failed',			
+		template: 'Username or email already exists'});
+		$scope.user.name = "";
+		$scope.user.email = "";
+		$scope.user.password = "";}
+		$ionicLoading.hide();
+		});
 
-			// Simulate login ERROR
-			$scope.error = "This is an error message";
-			$ionicLoading.hide();
+
+		// Simulate login OK
+		// $state.go('main.app.feed.fashion');
+      		// $ionicLoading.hide();
+
+		// Simulate login ERROR
+		//$scope.error = "This is an error message";
+		//$ionicLoading.hide();
 		}, 800);
 	};
 
@@ -79,8 +118,10 @@ angular.module('your_app_name.auth.controllers', [])
     });
 
 		$timeout(function(){
+			
+			
 			// Simulate login OK
-			$state.go('main.app.account.profile');
+			$state.go('main.app.account');
       $ionicLoading.hide();
 
 			// Simulate login ERROR
