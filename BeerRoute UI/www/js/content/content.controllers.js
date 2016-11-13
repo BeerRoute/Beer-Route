@@ -51,6 +51,23 @@ angular.module('your_app_name.content.controllers', [])
 		});
 	};
 
+	$scope.newReview = function(){
+		newReviewPopup = $ionicPopup.show({
+			cssClass: 'popup-outer food-review-view',
+			templateUrl: 'views/content/food/review.html',
+			//scope: angular.extend($scope, {})
+			title: 'Review',
+			scope: $scope,
+			buttons: [
+				{ text: 'Close', type: 'close-popup' }
+			]			
+		});
+	};
+
+	$scope.SaveReview = function(){
+		newReviewPopup.close();
+	};
+
 	$scope.$on('mapInitialized', function(event, map) {
 		// If we want to access the map in the future
 		$scope.map = map;
@@ -139,17 +156,23 @@ angular.module('your_app_name.content.controllers', [])
 			]
 		});
 	};
-
+	var newReviewPopup;
 	$scope.newReview = function(){
 		newReviewPopup = $ionicPopup.show({
 			cssClass: 'popup-outer food-review-view',
 			templateUrl: 'views/content/food/review.html',
+			controller: 'FoodContentCtrl',
 			//scope: angular.extend($scope, {})
 			title: 'Review',
+			scope: $scope,
 			buttons: [
 				{ text: 'Close', type: 'close-popup' }
 			]			
 		});
+	};
+
+	$scope.SaveReview = function(){
+		newReviewPopup.close();
 	};
 
 	$scope.$on('mapInitialized', function(event, map) {
