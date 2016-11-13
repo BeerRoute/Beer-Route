@@ -4,14 +4,14 @@
       "id": 1,
       "code": "15OKTOBER15",
       "description": "Amazing 15% off when buy any octoberfest beer.",
-      "name": "15% OFF Craft Beers",
+      "name": "Rincon Beer Company",
       "expiration_date": "10/31/2016",
       "picture": "./img/sample-images/food/rbc.jpeg"
     }, {
       "id": 2,
       "code": "GETBEER15",
       "description": "15% off in La Nina beer and 10% off in all other beers.",
-      "name": "15% OFF La Nina Beer",
+      "name": "Bros. Brewing",
       "expiration_date": "10/25/2016",
       "picture": "./img/sample-images/food/brew_22416.jpg"
     }
