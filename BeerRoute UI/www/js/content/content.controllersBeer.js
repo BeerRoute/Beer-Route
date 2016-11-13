@@ -1,9 +1,11 @@
-angular.module('your_app_name.content.controllersBeer', [])
+/*angular.module('your_app_name.content.controllersBeer', [])
 
 .controller('FashionContentCtrl', function($scope, $state, $ionicPopup, $rootScope, product, ShoppingCartService, $ionicLoading) {
 	$scope.goBack = function() {
 		var previous_view = _.last($rootScope.previousView);
-		$state.go(previous_view.fromState, previous_view.fromParams );
+		console.log(previous_view);
+		//$state.go(previous_view.fromState, previous_view.fromParams );
+		$state.go('main.app.searchBeer');
   };
 
 	$scope.product = product;
@@ -54,6 +56,8 @@ angular.module('your_app_name.content.controllersBeer', [])
 .controller('FoodContentCtrl', function($scope, $state, $rootScope, $ionicPopup, product) {
 	$scope.goBack = function() {
 		var previous_view = _.last($rootScope.previousView);
+		console.log(previous_view);
+
 		$state.go(previous_view.fromState, previous_view.fromParams );
 	};
 
@@ -143,7 +147,7 @@ angular.module('your_app_name.content.controllersBeer', [])
 
 	$scope.product = product;
 })
-
+/*
 .controller('DealsContentCtrl', function($scope, $state, $rootScope, product) {
 	$scope.goBack = function() {
 		var previous_view = _.last($rootScope.previousView);
@@ -164,5 +168,5 @@ angular.module('your_app_name.content.controllersBeer', [])
 
 
 
+*/
 
-;

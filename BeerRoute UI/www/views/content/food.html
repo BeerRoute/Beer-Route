@@ -1,3 +1,6 @@
+
+<!--BUSINESS CONTENT-->
+
 <ion-view class="food-content-view" cache-view="false">
   <ion-header-bar class="food-content-header">
     <div class="buttons">
@@ -5,7 +8,7 @@
     </div>
     <h1 class="title">{{product.name}}</h1>
     <div class="buttons">
-      <button class="button button-clear share-button">Share</button>
+      <!--button class="button button-clear share-button">Share</button-->
     </div>
   </ion-header-bar>
   <ion-content>
@@ -53,6 +56,15 @@
     </div>
     <div class="row schedules-and-address-row">
       <div class="col">
+      <div class="col">
+      <div class="row middle-row">
+          <div class="col">
+            <p class="review-description">
+             {{product.descr}}
+            </p>
+          </div>
+        </div>
+        </div>
         <button class="button button-block icon-right ion-chevron-right schedules-button" ng-class="{'with-value': product.selected_schedule.name}" ng-click="openSchedules()">
           <span class="button-title">Schedules</span>
           <span class="button-data" ng-if="product.selected_schedule.name">{{ product.selected_schedule.name }}</span>

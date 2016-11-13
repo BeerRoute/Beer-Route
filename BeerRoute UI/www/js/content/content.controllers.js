@@ -3,6 +3,8 @@ angular.module('your_app_name.content.controllers', [])
 .controller('FashionContentCtrl', function($scope, $state, $rootScope, $ionicPopup, product) {
 	$scope.goBack = function() {
 		var previous_view = _.last($rootScope.previousView);
+		console.log(previous_view);
+
 		$state.go(previous_view.fromState, previous_view.fromParams );
 	};
 
@@ -60,6 +62,8 @@ angular.module('your_app_name.content.controllers', [])
 .controller('FoodContentCtrl', function($scope, $state, $rootScope, $ionicPopup, product) {
 	$scope.goBack = function() {
 		var previous_view = _.last($rootScope.previousView);
+		console.log(previous_view);
+
 		$state.go(previous_view.fromState, previous_view.fromParams );
 	};
 
@@ -153,7 +157,7 @@ angular.module('your_app_name.content.controllers', [])
 
 	$scope.product = product;
 })
-
+/*
 .controller('DealsContentCtrl', function($scope, $state, $rootScope, product) {
 	$scope.goBack = function() {
 		var previous_view = _.last($rootScope.previousView);
@@ -171,7 +175,7 @@ angular.module('your_app_name.content.controllers', [])
 
 	$scope.product = product;
 })
-
+*/
 
 
 

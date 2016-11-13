@@ -44,7 +44,7 @@ angular.module('your_app_name.feed.servicesBeer', [])
   };
 })
 
-.service('FoodService', function ($http, $q){
+.service('FoodServiceBeer', function ($http, $q){
   this.getProducts = function(){
     var dfd = $q.defer();
     $http.get('food_db.json').success(function(database) {

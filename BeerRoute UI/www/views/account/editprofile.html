@@ -1,0 +1,29 @@
+<ion-view class="editprofile-view edit-view" cache-view="false">
+  <ion-header-bar align-title="left" class="bar-positive">
+  <button class="button back-button" ui-sref="main.app.account.profile">Back
+    </button>
+  </ion-header-bar>
+  <ion-content>
+  <h3 class="edit-descr">Edit Description</h3>
+  	<textarea class="input-box">{{user.name}}
+  	</textarea>
+  	<h6></h6>
+  	<div class="button save-button">Save Changes
+    </div>
+        <h5> </h5>
+  <form>
+  	<h3 class="edit-descr" type="text">Edit Address</h3> 
+    <input class="addressbar" type="text" name="text" value={{user.address}} />
+    <h5></h5>
+    <div class="button addpic-button">Save
+    </div>
+  	</form>
+  	    <h5> </h5>
+  <form>
+  	<h3 class="edit-descr" type="text">Upload file:</h3> 
+    <input class="filebutton" type="file" name="file" />
+    <div class="button addpic-button">Upload
+    </div>
+  	</form>
+  </ion-content>
+</ion-view>

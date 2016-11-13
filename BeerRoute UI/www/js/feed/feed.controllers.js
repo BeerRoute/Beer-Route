@@ -5,16 +5,17 @@ angular.module('your_app_name.feed.controllers', [])
 		return ShoppingCartService.getProducts().length;
 	};
 })
-
+/*
 .controller('FashionCtrl', function($scope, $stateParams, products) {
 	$scope.filters = $stateParams.filters;
 
 	$scope.products = products;
 })
-
+*/
+/*
 .controller('FoodCtrl', function($scope, products) {
 	$scope.products = products;
-})
+})*/
 
 .controller('TravelCtrl', function($scope, products) {
 	$scope.products = products;
