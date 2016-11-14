@@ -110,7 +110,7 @@ angular.module('your_app_name', [
 
 .config(function($ionicConfigProvider) {
   $ionicConfigProvider.tabs.position('bottom');
-  $ionicConfigProvider.views.swipeBackEnabled(false);
+  $ionicConfigProvider.views.swipeBackEnabled(true);
   $ionicConfigProvider.form.checkbox('circle');
 
   if(!ionic.Platform.isWebView())
@@ -186,7 +186,6 @@ angular.module('your_app_name', [
 
       .state('main.app', {
         url: '/app',
-        abstract: true,
         views: {
           'main-view@main': {
             templateUrl: 'views/common/app.html',
@@ -459,7 +458,7 @@ angular.module('your_app_name', [
           })
                   //NEW STATE FOR BEERS CONTENTS
                   .state('main.app.searchBeer.contentB', {
-                    url: '/content/:productId',
+                    url: '/contentB/:productId',
                     views: {
                       'main-view@main': {
                         templateUrl: 'views/content/fashion.html',

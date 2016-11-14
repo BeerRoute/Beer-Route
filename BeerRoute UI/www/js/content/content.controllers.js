@@ -5,7 +5,7 @@ angular.module('your_app_name.content.controllers', [])
 		var previous_view = _.last($rootScope.previousView);
 		console.log(previous_view);
 
-		$state.go(previous_view.fromState, previous_view.fromParams );
+		$state.go(previous_view.fromState, previous_view.fromParams);
 	};
 
 	$scope.product = product;
