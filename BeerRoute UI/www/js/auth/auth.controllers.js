@@ -44,6 +44,7 @@ angular.module('your_app_name.auth.controllers', [])
 			{title: 'Login failed',
 			template: 'Could not connect to server. Please try again'});
 			});
+      		
 
       			$ionicLoading.hide();
 

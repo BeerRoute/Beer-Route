@@ -1,11 +1,10 @@
-/*angular.module('your_app_name.content.controllersBeer', [])
+angular.module('your_app_name.content.controllersBeer', [])
 
-.controller('FashionContentCtrl', function($scope, $state, $ionicPopup, $rootScope, product, ShoppingCartService, $ionicLoading) {
+.controller('FashionContentCtrlBeer', function($scope, $state, $rootScope, $ionicPopup, product) {
 	$scope.goBack = function() {
 		var previous_view = _.last($rootScope.previousView);
 		console.log(previous_view);
-		//$state.go(previous_view.fromState, previous_view.fromParams );
-		$state.go('main.app.searchBeer');
+		$state.go(previous_view.fromState, previous_view.fromParams );
   };
 
 	$scope.product = product;
@@ -53,7 +52,7 @@
 	};
 })
 
-.controller('FoodContentCtrl', function($scope, $state, $rootScope, $ionicPopup, product) {
+.controller('FoodContentCtrlBeer', function($scope, $state, $rootScope, $ionicPopup, product) {
 	$scope.goBack = function() {
 		var previous_view = _.last($rootScope.previousView);
 		console.log(previous_view);
@@ -139,7 +138,7 @@
 	});
 })
 
-.controller('TravelContentCtrl', function($scope, $state, $rootScope, product) {
+.controller('TravelContentCtrlBeer', function($scope, $state, $rootScope, product) {
 	$scope.goBack = function() {
 		var previous_view = _.last($rootScope.previousView);
 		$state.go(previous_view.fromState, previous_view.fromParams );
