@@ -1,17 +1,19 @@
 angular.module('your_app_name.account.controllers', [])
 
-.controller('ProfileCtrl', function($scope, user, $ionicPopover, $ionicPopup, $ionicActionSheet, $state, $http) {
+.controller('ProfileCtrl', function($scope, user, $ionicPopover, $ionicPopup, $ionicActionSheet, $state, $http, $rootScope) {
   $scope.user = user;
 
-  $scope.user_credit_cards = user.credit_cards;
-  $scope.user_shipping_addresses = user.shipping_addresses;
+  //$scope.user_credit_cards = user.credit_cards;
+  //$scope.user_shipping_addresses = user.shipping_addresses;
   $scope.data = {};
   $scope.data.selected_card = user.credit_cards[0];
-	$scope.data.selected_address = user.shipping_addresses[0];
+  $scope.data.selected_address = user.shipping_addresses[0];
   $scope.user_bar = user.BarOwner;
 
-  $scope.user.name = user.first_name +' '+ user.last_name;
-  $scope.user.password = 'pepe123456789';
+  $scope.user.name = $rootScope.username;
+  $scope.user.password = $rootScope.password;
+  $scope.user.email = $rootScope.email;
+  $scope.user.region = $rootScope.region;
   $scope.show_new_address_button = false;
   $scope.show_new_card_button = false;
   $scope.notifications = {};
@@ -21,11 +23,11 @@ angular.module('your_app_name.account.controllers', [])
   $scope.test = function(){
 var xhr = new XMLHttpRequest({mozSystem: true});
 
-$http.get("http://localhost:3412/ClassDemo3Srv/login",{params: {sname: 'Apu', password:'********'}},xhr).success(function(data){
+$http.get("http://localhost:3412/ClassDemo3Srv/ok",{params: {sname: '', password:'********'}},xhr).success(function(data){
 var r = data;
 $ionicPopup.alert(
 {title: JSON.stringify(r),
-template: r.Exists});
+template: r.Message});
 //console.log(r[0]);
 //console.log(r[1]);
 })

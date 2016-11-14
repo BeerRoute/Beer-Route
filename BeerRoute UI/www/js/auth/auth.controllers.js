@@ -1,6 +1,6 @@
 angular.module('your_app_name.auth.controllers', [])
 
-.controller('LoginCtrl', function($scope, $state, $ionicLoading, $timeout, $http, $ionicPopup) {
+.controller('LoginCtrl', function($scope, $state, $ionicLoading, $timeout, $http, $ionicPopup, $rootScope) {
 	$scope.user = {};
 
 	$scope.user.email = "";
@@ -26,6 +26,10 @@ angular.module('your_app_name.auth.controllers', [])
 			// $state.go('main.app.feed.fashion');
       			// $ionicLoading.hide();
 			if(r.Exists){
+			$rootScope.username = r.username;
+			$rootScope.password = r.password;
+			$rootScope.email = r.email;
+			$rootScope.region = r.region;
 			$state.go('main.app.account');}
 			else{
 			$ionicPopup.alert(
@@ -34,9 +38,14 @@ angular.module('your_app_name.auth.controllers', [])
 			$scope.user.email = "";
 			$scope.user.password = "";
 			}
-			$ionicLoading.hide();
+			})
+			.error(function(data,status){
+			$ionicPopup.alert(
+			{title: 'Login failed',
+			template: 'Could not connect to server. Please try again'});
 			});
-      		
+
+      			$ionicLoading.hide();
 
 			// Simulate login ERROR
 			//$scope.error = "This is an error message";
@@ -96,9 +105,14 @@ angular.module('your_app_name.auth.controllers', [])
 		$scope.user.name = "";
 		$scope.user.email = "";
 		$scope.user.password = "";}
-		$ionicLoading.hide();
+		})
+		.error(function(data,status){
+		$ionicPopup.alert(
+		{title: 'Signup failed',
+		template: 'Could not connect to server. Please try again'});
 		});
 
+		$ionicLoading.hide();
 
 		// Simulate login OK
 		// $state.go('main.app.feed.fashion');
