@@ -225,129 +225,7 @@ angular.module('your_app_name', [
               }
             }
           })
-          /*
 
-              .state('main.app.feed.fashion', {
-                url: '/fashion',
-                views: {
-                  'category-feed@main.app.feed': {
-                    templateUrl: 'views/feed/fashion.html',
-                    controller: 'FashionCtrl'
-                  }
-                },
-                resolve: {
-                  products: function(FashionService){
-                    console.log("resolving fashion");
-                    return FashionService.getProducts();
-                  }
-                }
-              })*/
-              // Aca va un resolve con los primeros N posts del feed de esta categoria
-              // DONE
-              /*
-
-                  /*.state('main.app.feed.fashion.content', {
-                    url: '/content/:productId',
-                    views: {
-                      'main-view@main': {
-                        templateUrl: 'views/content/fashion.html',
-                        controller: 'FashionContentCtrl'
-                      }
-                    },
-                    resolve: {
-                      product: function(FashionService, $stateParams){
-                        return FashionService.getProduct($stateParams.productId);
-                      }
-                    }
-                  })  
-                  */                
-
-                  // Aca va un resolve con los datos del producto.
-                  // Hay que agregarle a la url el product_id, y la categoria la deberia heredar de la vista padre
-                  // DONE
-
-                  /*
-              .state('main.app.feed.food', {
-                url: '/food',
-                abstract:true,
-                views: {
-                  'category-feed@main.app.feed': {
-                    templateUrl: 'views/feed/food.html',
-                    controller: 'FoodCtrl'
-                  }
-                },
-                /*resolve: {
-                  products: function(FoodService){
-                    console.log("resolving food");
-                    return FoodService.getProducts();
-                  }
-                }
-              })
-
-                  .state('main.app.feed.food.content',
-                    url: '/content/:productId',
-                    views: {
-                      'main-view@main': {
-                        templateUrl: 'views/content/food.html',
-                        controller: 'FoodContentCtrl'
-                      }
-                    },
-                    resolve: {
-                      product: function(FoodService, $stateParams){
-                        return FoodService.getProduct($stateParams.productId);
-                      }
-                    }
-                  })
-                  
-                  //NEW STATE FOR BEERS CONTENTS
-                  .state('main.app.feed.food.contentB', {
-                    url: '/content/:productId',
-                    views: {
-                      'main-view@main': {
-                        templateUrl: 'views/content/fashion.html',
-                        controller: 'FashionContentCtrl'
-                      }
-                    },
-                    resolve: {
-                      product: function(FashionService, $stateParams){
-                        return FashionService.getProduct($stateParams.productId);
-                      }
-                    }
-                  })
-                  */
-
-
-                  
-              .state('main.app.feed.travel', {
-                url: '/travel',
-                views: {
-                  'category-feed@main.app.feed': {
-                    templateUrl: 'views/feed/travel.html',
-                    controller: 'TravelCtrl'
-                  }
-                },
-                resolve: {
-                  products: function(TravelService){
-                    console.log("resolving travel");
-                    return TravelService.getProducts();
-                  }
-                }
-              })
-
-                  /*.state('main.app.feed.travel.content', {
-                    url: '/content/:productId',
-                    views: {
-                      'main-view@main': {
-                        templateUrl: 'views/content/travel.html',
-                        controller: 'TravelContentCtrl'
-                      }
-                    },
-                    resolve: {
-                      product: function(TravelService, $stateParams){
-                        return TravelService.getProduct($stateParams.productId);
-                      }
-                    }
-                  })*/
               //DEALS FEED
               .state('main.app.feed.deals', {
                 url: '/deals',
@@ -365,51 +243,6 @@ angular.module('your_app_name', [
                 }
               })
 
-                  /*.state('main.app.feed.deals.content', {
-                    url: '/content/:productId',
-                    views: {
-                      'main-view@main': {
-                        templateUrl: 'views/content/deals.html',
-                        controller: 'DealsContentCtrl'
-                      }
-                    },
-                    resolve: {
-                      product: function(DealsService, $stateParams){
-                        return DealsService.getProduct($stateParams.productId);
-                      }
-                    }
-                  })*/
-
-              /*.state('main.app.feed.real-state', {
-                url: '/real-state',
-                views: {
-                  'category-feed@main.app.feed': {
-                    templateUrl: 'views/feed/real-state.html',
-                    controller: 'RealStateCtrl'
-                  }
-                },
-                resolve: {
-                  products: function(RealStateService){
-                    console.log("resolving real state");
-                    return RealStateService.getProducts();
-                  }
-                }
-              })
-
-                  .state('main.app.feed.real-state.content', {
-                    url: '/content/:productId',
-                    views: {
-                      'main-view@main': {
-                        templateUrl: 'views/content/real-state.html',
-                        controller: 'RealStateContentCtrl'
-                      }
-                    },
-                    resolve: {
-                      product: function(RealStateService, $stateParams){
-                        return RealStateService.getProduct($stateParams.productId);
-                      }
-                    }
-                  })*/
 
 
            //SEARCH BARS       
@@ -447,7 +280,7 @@ angular.module('your_app_name', [
             views: {
               'app-searchBeer@main.app': {
                 templateUrl: 'views/search/searchBeer.html',
-                controller: 'SearchCtrlBeer'
+                controller: 'SearchCtrl'
               }
             },
             resolve: {              
