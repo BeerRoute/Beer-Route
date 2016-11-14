@@ -1,6 +1,6 @@
 angular.module('your_app_name.account.controllers', [])
 
-.controller('ProfileCtrl', function($scope, user, $ionicPopover, $ionicPopup, $ionicActionSheet, $state,$http) {
+.controller('ProfileCtrl', function($scope, user, $ionicPopover, $ionicPopup, $ionicActionSheet, $state, $http) {
   $scope.user = user;
 
   $scope.user_credit_cards = user.credit_cards;
@@ -18,14 +18,14 @@ angular.module('your_app_name.account.controllers', [])
   $scope.notifications.promotions = false;
   $scope.notifications.shipment_updates = true;
   
-    $scope.test = function(){
+  $scope.test = function(){
 var xhr = new XMLHttpRequest({mozSystem: true});
 
-$http.get("http://localhost:3412/ClassDemo3Srv/ok",xhr).success(function(data){
+$http.get("http://localhost:3412/ClassDemo3Srv/login",{params: {sname: 'Apu', password:'********'}},xhr).success(function(data){
 var r = data;
 $ionicPopup.alert(
 {title: JSON.stringify(r),
-template: r.Message});
+template: r.Exists});
 //console.log(r[0]);
 //console.log(r[1]);
 })

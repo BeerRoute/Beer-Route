@@ -48,15 +48,13 @@ app.get('/ClassDemo3Srv/ok', function(req,res){
 // will be read if the config is not present
 var config = {
   user: 'postgres', //env var: PGUSER
-  database: 'testdb', //env var: PGDATABASE
-  password: '************', //env var: PGPASSWORD
+  database: 'test', //env var: PGDATABASE
+  password: '*************', //env var: PGPASSWORD
   host: 'localhost', // Server hosting the postgres database
   port: 5432, //env var: PGPORT
   max: 10, // max number of clients in the pool
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
-
-
 
 var conStringPri = 'postgres://' + config.user + ':' + config.password + '@' + config.host + 
     '/postgres';
@@ -80,6 +78,82 @@ var conStringPost = 'postgres://' + config.user + ':' + config.password + '@' + 
 //    });
 //});
 
+app.get('/ClassDemo3Srv/login', function(req,res){
+console.log("GET TEST QUERY");
+console.log(req.query);
+var exists = false;
+var response = {Exists : exists};
+pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
+    if (err)
+        console.log('Error while connecting: ' + err); 
+    client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
+        if (err) 
+            console.log('ignoring the error. DB already exists'); // ignore if the db is there
+        client.end(); // close the connection
+
+	
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            // create the table
+            var q = clientOrg.query("SELECT email, password FROM users", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);}
+            });
+    		q.on('row', function(row){
+		console.log(row);
+		if(req.query.email == row.email){
+			exists = true;
+			console.log("name exists " + exists);}
+		});
+		q.on('end', function(result){
+		response = {Exists : exists};
+		res.json(response);
+		});
+	    });
+        });
+    });
+});
+
+app.get('/ClassDemo3Srv/signup', function(req,res){
+console.log("GET TEST QUERY");
+console.log(req.query);
+var exists = false;
+var response = {Exists : exists};
+pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
+    if (err)
+        console.log('Error while connecting: ' + err); 
+    client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
+        if (err) 
+            console.log('ignoring the error. DB already exists'); // ignore if the db is there
+        client.end(); // close the connection
+
+	
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            // create the table
+            var q = clientOrg.query("SELECT username, email FROM users", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);}
+            });
+		console.log('New username: ' + req.query.username);
+    		q.on('row', function(row){
+		console.log(row);
+		if((req.query.email == row.email) || (req.query.username == row.username)){
+			exists = true;
+			console.log("name exists " + exists);}
+		});
+		q.on('end', function(result){
+		response = {Exists : exists};
+		res.json(response);
+		});
+	    });
+        });
+    });
+});
+
+
 // Server starts running when listen is called.
 app.listen(process.env.PORT || 3412);
 console.log("server listening");
@@ -94,18 +168,16 @@ pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query('SELECT * FROM student', function(err){
+            var q = clientOrg.query('SELECT * FROM student natural join takes', function(err){
 
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);}
-        });
-    q.on('row', function(row){
-	console.log(row);
-});
-});
-    	
-
-});
+            });
+    		q.on('row', function(row){
+		console.log(row);
+		});
+	});
+    });
 });
 
