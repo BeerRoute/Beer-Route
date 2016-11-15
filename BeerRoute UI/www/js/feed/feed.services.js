@@ -42,7 +42,8 @@ angular.module('your_app_name.feed.services', [])
 
     //$http.get('beer_db.json').success(function(database) {
       var xhr = new XMLHttpRequest({mozSystem: true});
-     $http.get("http://localhost:3412/ClassDemo3Srv/getbeer", {params: {username: $rootScope.username}},xhr).success(function(products){
+     $http.get("http://localhost:3412/ClassDemo3Srv/getbeer",xhr)
+     .success(function(products){
       //add product data to this order
 
       console.log("HEHA...");
