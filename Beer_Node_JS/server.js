@@ -235,7 +235,8 @@ app.get('/ClassDemo3Srv/getbusiness', function(req,res){
 console.log("GET TEST QUERY");
 console.log(req.query);
 var exists = false;
-var response = [];
+var response = {};
+response.products = [];
 pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
     if (err)
         console.log('Error while connecting: ' + err); 
@@ -248,14 +249,14 @@ pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("SELECT businessname, address, region, description, path FROM business", function(err){
+            var q = clientOrg.query("SELECT name, businessname, address, region, description, path, rating, logo, businessid, pictures, schedule, tags, price_range, id FROM business", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);}
             });
 		q.on('row', function(row){
 		console.log(row);
-		response.push(row);
+		response.products.push(row);
 		});
 		q.on('end', function(result){
 		res.json(response);
