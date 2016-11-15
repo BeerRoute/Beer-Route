@@ -159,7 +159,7 @@ pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
         });
     });
 });
-
+//////////////////////////////////////////////////////////////////////////////////
 app.get('/ClassDemo3Srv/getbeer', function(req,res){
 console.log("GET TEST QUERY");
 console.log(req.query);
@@ -177,7 +177,7 @@ pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("SELECT beername, description, path FROM beer", function(err){
+            var q = clientOrg.query("SELECT beerid, beername, description, path FROM beer", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);}

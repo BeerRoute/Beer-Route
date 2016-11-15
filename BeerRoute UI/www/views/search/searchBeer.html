@@ -22,13 +22,13 @@
       <section ng-include="'views/common/sort-and-filters-bar.html'"></section>
       <div class="search-results-container">
         <div class="products-row">
-          <div class="food-product-container" ng-repeat="product in results = (products | searchField : 'product.name' | filter:search.query)">
+          <div class="food-product-container" ng-repeat="product in results = (products | searchField : 'product.beername' | filter:search.query)">
             <div class="row info-row">
               <div class="col logo-col">
                 <a class="product-anchor">
-                <a class="product-anchor" ui-sref="main.app.searchBeer.contentB({productId: product.id})">
+                <a class="product-anchor" ui-sref="main.app.searchBeer.contentB({productId: product.beerid})">
                   <pre-img ratio="_1_1">
-                    <img class="logo-image" ng-src="{{ product.image }}" spinner-on-load>
+                    <img class="logo-image" ng-src="{{ product.path }}" spinner-on-load>
                   </pre-img>
                 </a>
               </div>
@@ -37,7 +37,7 @@
                   <div class="col data-col">
                     <h5 class="product-title">
                       <!--a class="product-anchor">{{product.name}}</a-->
-                      <a class="product-anchor" ui-sref="main.app.searchBeer.contentB({productId: product.id})">{{product.name}}</a>
+                      <a class="product-anchor" ui-sref="main.app.searchBeer.contentB({productId: product.id})">{{product.beername}}</a>
                     </h5>
                     <p class="address-and-price-container">
                       <span class="product-address">{{product.address}}</span>

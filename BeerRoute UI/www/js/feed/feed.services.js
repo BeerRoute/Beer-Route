@@ -3,8 +3,13 @@ angular.module('your_app_name.feed.services', [])
 .service('FashionService', function ($http, $q){
   this.getProducts = function(){
     var dfd = $q.defer();
-    $http.get('beer_db.json').success(function(database) {
-      dfd.resolve(database.products);
+     var xhr = new XMLHttpRequest({mozSystem: true});
+     $http.get("http://localhost:3412/ClassDemo3Srv/getbeer",xhr)
+     .success(function(products){
+      console.log(products);
+    //$http.get('beer_db.json').success(function(database) {
+      console.log("JEJEJE");
+      dfd.resolve(products);
     });
     return dfd.promise;
   };
@@ -13,9 +18,12 @@ angular.module('your_app_name.feed.services', [])
     var dfd = $q.defer();
     var service = this;
 
-    $http.get('beer_db.json').success(function(database) {
-      var product = _.find(database.products, function(product){
-        return product.id == productId;
+    //$http.get('beer_db.json').success(function(database) {
+      var xhr = new XMLHttpRequest({mozSystem: true});
+     $http.get("http://localhost:3412/ClassDemo3Srv/getbeer",xhr)
+     .success(function(products){
+      var product = _.find(products, function(product){
+        return product.beerid == productId;
       });
 
       service.getRelatedProducts(product).then(function(related_products){
@@ -32,10 +40,14 @@ angular.module('your_app_name.feed.services', [])
   this.getRelatedProducts = function(product){
     var dfd = $q.defer();
 
-    $http.get('beer_db.json').success(function(database) {
+    //$http.get('beer_db.json').success(function(database) {
+      var xhr = new XMLHttpRequest({mozSystem: true});
+     $http.get("http://localhost:3412/ClassDemo3Srv/getbeer", {params: {username: $rootScope.username}},xhr).success(function(products){
       //add product data to this order
+
+      console.log("HEHA...");
       var related_products = _.map(product.related_products, function(product){
-        return _.find(database.products, function(p){ return p.id == product.id; });
+        return _.find(products, function(p){ return p.id == product.beerid; });
       });
       dfd.resolve(related_products);
     });

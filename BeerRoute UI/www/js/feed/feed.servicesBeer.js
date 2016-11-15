@@ -2,9 +2,13 @@ angular.module('your_app_name.feed.servicesBeer', [])
 
 .service('FashionServiceBeer', function ($http, $q){
   this.getProducts = function(){
+    //var dfd = $q.defer();
+    //$http.get('beer_db.json').success(function(database) {
+    var xhr = new XMLHttpRequest({mozSystem: true});
     var dfd = $q.defer();
-    $http.get('beer_db.json').success(function(database) {
-      dfd.resolve(database.products);
+    $http.get("http://localhost:3412/ClassDemo3Srv/getbeer", {params: {username: $rootScope.username}},xhr).success(function(products){
+    dfd.resolve(products);
+    console.log(products);
     });
     return dfd.promise;
   };
@@ -12,8 +16,10 @@ angular.module('your_app_name.feed.servicesBeer', [])
   this.getProduct = function(productId){
     var dfd = $q.defer();
     var service = this;
-
-    $http.get('beer_db.json').success(function(database) {
+    var xhr = new XMLHttpRequest({mozSystem: true});
+    //$http.get('beer_db.json').success(function(database) {
+      $http.get("http://localhost:3412/ClassDemo3Srv/getbeer", {params: {username: $rootScope.username}},xhr).success(function(products){
+      console.log("I am here...")
       var product = _.find(database.products, function(product){
         return product.id == productId;
       });
