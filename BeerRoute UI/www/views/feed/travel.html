@@ -11,7 +11,7 @@
                   <img class="travel-product-icon" ng-src="{{product.icon}}"/>
                   <h2 class="product-name">
                     <!--a class="product-anchor">{{product.name}}</a-->
-                    <a class="product-anchor" ui-sref="main.app.feed.food.content({productId: product.id})">{{product.name}}</a>
+                    <a class="product-anchor" ui-sref="main.app.search.content({productId: product.id})">{{product.name}}</a>
                   </h2>
                   <h4 class="product-tagline">{{product.style}}</h4>
                 </div>
@@ -23,7 +23,7 @@
           <div class="col description-col">
             <h5 class="product-title">
               <!--a class="product-anchor">{{product.name}} {{product.category}}</a-->
-              <a class="product-anchor" ui-sref="main.app.feed.food.content({productId: product.id})">{{product.name}} {{product.category}}</a>
+              <a class="product-anchor" ui-sref="main.app.search.content({productId: product.id})">{{product.name}} {{product.category}}</a>
             </h5>
             <p class="product-description">
               {{product.description}}

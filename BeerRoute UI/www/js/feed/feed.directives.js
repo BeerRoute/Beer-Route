@@ -21,6 +21,7 @@ angular.module('your_app_name.feed.directives', [])
 				// if(!$fromState.includes('main.app.feed') && $toState.includes('main.app.feed'))
 				console.log("from ["+fromState.name+"] indexOf", fromState.name.indexOf('main.app.feed'));
 				console.log("to ["+toState.name+"] indexOf", toState.name.indexOf('main.app.feed'));
+				console.log(JSON.stringify($rootScope.previousView));
 				if(fromState.name.indexOf('main.app.feed')==-1 && toState.name.indexOf('main.app.feed')>=0)
 				{
 					// Estoy navegando de otra tab hacia la tab de feed

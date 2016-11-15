@@ -1,0 +1,53 @@
+.editprofile-view{
+	background-color: #c9a98c;
+	/*#e0c9cd*/
+	.back-button{
+		background-color: #ff984c;
+	}
+
+	.bar-positive{
+		background-color: #ff984c;
+	}
+	.edit-descr{
+    	color:#4D301C;
+    	background-color:#FFFFFF;
+    	border-radius: 10px;
+    	padding:5px;
+  	}
+
+  	.input-box{
+  		border-style: solid;
+    	border-width: 1.5px;
+    	border-color: #4D301C;
+    	width:90%;
+    	height:100px;
+    	border-radius:6px;
+    	display:block;
+		margin:auto;
+    }
+
+    .addpic-button{
+    	display:block;
+		margin:auto;
+		border-radius: 10px;
+		width: 90px;
+		height:10px;
+    }
+
+    .save-button{
+    	display:block;
+		margin:auto;
+		border-radius: 10px;
+		width: 150px;
+    }
+
+    .addressbar{
+    	width:95%;
+    	display: block;
+    	margin-left: 5px;
+    }
+
+
+
+
+ }
