@@ -18,6 +18,7 @@ angular.module('your_app_name.auth.controllers', [])
 			var xhr = new XMLHttpRequest({mozSystem: true});
 			$http.get("http://localhost:3412/ClassDemo3Srv/login",{params: {email: $scope.user.email, password: $scope.user.password}},xhr).success(function(data){
 			var r = data;
+			console.log(r);
 			//$ionicPopup.alert(
 			//{title: JSON.stringify(r),
 			//template: r.Exists});
