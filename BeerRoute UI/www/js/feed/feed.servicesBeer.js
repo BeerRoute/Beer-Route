@@ -53,7 +53,11 @@ angular.module('your_app_name.feed.servicesBeer', [])
 .service('FoodServiceBeer', function ($http, $q){
   this.getProducts = function(){
     var dfd = $q.defer();
-    $http.get('food_db.json').success(function(database) {
+    $http.get('http://localhost:3412/ClassDemo3Srv/getbusiness').success(function(database) {
+      console.log("Checking bars from DB");
+      console.log(database.products[1].businessname);
+      console.log(database.products[1].id);
+      console.log("Results logged");
       dfd.resolve(database.products);
     });
     return dfd.promise;
@@ -61,7 +65,7 @@ angular.module('your_app_name.feed.servicesBeer', [])
 
   this.getProduct = function(productId){
     var dfd = $q.defer();
-    $http.get('food_db.json').success(function(database) {
+    $http.get('http://localhost:3412/ClassDemo3Srv/getbusiness').success(function(database) {
       var product = _.find(database.products, function(product){
         return product.id == productId;
       });
@@ -92,7 +96,7 @@ angular.module('your_app_name.feed.servicesBeer', [])
 .service('TravelService', function ($http, $q){
   this.getProducts = function(){
     var dfd = $q.defer();
-    $http.get('food_db.json').success(function(database) {
+    $http.get('travel_db.json').success(function(database) {
       dfd.resolve(database.products);
     });
     return dfd.promise;
@@ -100,7 +104,7 @@ angular.module('your_app_name.feed.servicesBeer', [])
 
   this.getProduct = function(productId){
     var dfd = $q.defer();
-    $http.get('food_db.json').success(function(database) {
+    $http.get('travel_db.json').success(function(database) {
       var product = _.find(database.products, function(product){
         return product.id == productId;
       });

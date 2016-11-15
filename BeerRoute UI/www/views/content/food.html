@@ -27,7 +27,7 @@
     <div class="row brief-info-row">
       <div class="col col-80">
         <h3 class="product-name">{{product.name}}</h3>
-        <h5 class="product-style">{{product.style}}</h5>
+        <h5 class="product-style">{{product.description}}</h5>
       </div>
       <div class="col col-20">
         <span class="product-price-range" ng-repeat="price in [].constructor(product.price_range) track by $index">$</span>
@@ -133,7 +133,7 @@
                 <a class="product-anchor">
                 <a class="product-anchor" ui-sref="main.app.feed.food.contentB({productId: product.id})">
                   <pre-img ratio="_1_1">
-                    <img style="width:6vh;" class="logo-image" ng-src="{{ product.pic }}" spinner-on-load>
+                    <img style="width:10vh;" class="logo-image" ng-src="{{ product.pic }}" spinner-on-load>
                   </pre-img>
                 </a>
                 </a>              
@@ -142,7 +142,7 @@
     </div>
     <hr class="product-sections-divider"/>
     <h3 class="product-sub-title">Reviews</h3>
-    <article class="row review-item" ng-repeat="review in [].constructor(5) track by $index">
+    <article class="row review-item" ng-repeat="review in [].constructor(3) track by $index">
     	<div class="col">
     		<div class="row top-row">
     			<div class="col image-col">
@@ -153,14 +153,14 @@
     			<div class="col description-col">
     				<h3 class="review-author-name">John Smith</h3>
     				<div class="row icons-container">
-              <!--div class="col icon-group">
+              <div class="col icon-group">
                 <i class="icon ion-navicon"></i>
                 <span class="icon-text">2 Reviews</span>
               </div>
               <div class="col icon-group">
                 <i class="icon ion-ionic"></i>
                 <span class="icon-text">26 Points</span>
-              </div-->
+              </div>
             </div>
     			</div>
     			<div class="col reputation-col">
@@ -177,7 +177,7 @@
     				</p>
     			</div>
     		</div>
-    		<!--div class="row bottom-row">
+    		<div class="row bottom-row">
           <div class="col review-other-ratings-container">
             <div class="row">
               <div class="col rating-col">
@@ -194,17 +194,16 @@
               </div>
             </div>
           </div>
-    		</div-->
+    		</div>
     	</div>
     </article>
-    <!--div class="row all-reviews-row">
+    <div class="row all-reviews-row">
       <div class="col">
         <button class="button button-block icon-right ion-chevron-right read-all-reviews-button" ng-click="showAllReviews()">
         	Read all the reviews (15)
         </button>
       </div>
-    </div-->
-    <hr class="product-sections-divider"/>
+    </div>
     <div class="row write-review-row">
     	<div class="col">
         <button class="button button-block new-review-button" ng-click="newReview()">
