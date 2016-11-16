@@ -177,7 +177,41 @@ pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("SELECT beerid, beername, description, path FROM beer", function(err){
+            var q = clientOrg.query("SELECT beerid, beername, beerStyle, beerRating, description, path FROM beer", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);}
+            });
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		res.json(response);
+		});
+	    });
+        });
+    });
+});
+//*************************************************
+app.get('/ClassDemo3Srv/getreviews', function(req,res){
+console.log("GET TEST QUERY");
+console.log(req.query);
+var exists = false;
+var response = [];
+pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
+    if (err)
+        console.log('Error while connecting: ' + err); 
+    client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
+        if (err) 
+            console.log('ignoring the error. DB already exists'); // ignore if the db is there
+        client.end(); // close the connection
+
+	
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            // create the table
+            var q = clientOrg.query("SELECT beerid, rating, comment, rdate, username FROM beer natural join beerrating WHERE beerid = " + req.query.id, function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);}

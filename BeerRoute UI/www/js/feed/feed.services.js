@@ -23,11 +23,14 @@ angular.module('your_app_name.feed.services', [])
      $http.get("http://localhost:3412/ClassDemo3Srv/getbeer",xhr)
      .success(function(products){
       var product = _.find(products, function(product){
+        console.log("Esto es product:");
+        console.log(product);
         return product.beerid == productId;
       });
 
       service.getRelatedProducts(product).then(function(related_products){
         product.related_products = related_products;
+        //console.log(product);
       }, function(error){
         console.log("ups", error);
       });
@@ -39,18 +42,35 @@ angular.module('your_app_name.feed.services', [])
 
   this.getRelatedProducts = function(product){
     var dfd = $q.defer();
-
+    
     //$http.get('beer_db.json').success(function(database) {
       var xhr = new XMLHttpRequest({mozSystem: true});
-     $http.get("http://localhost:3412/ClassDemo3Srv/getbeer",xhr)
-     .success(function(products){
+     $http.get("http://localhost:3412/ClassDemo3Srv/getreviews",{params: {id: product.beerid}},xhr)
+     .success(function(reviews){
+    
       //add product data to this order
 
       console.log("HEHA...");
-      var related_products = _.map(product.related_products, function(product){
-        return _.find(products, function(p){ return p.id == product.beerid; });
-      });
+      var related_products = reviews;
+      /*var related_products = _.map(reviews, function(product){
+        console.log("Esto es product: dentro de map:");
+        console.log(product);
+
+
+        return _.find(reviews, function(reviews){
+        console.log("Esto es reviews dentro de find:"); 
+        console.log(reviews);
+
+        console.log("Esto es reviews.beerid dentro de find:"); 
+        console.log(reviews.beerid);
+        console.log("Esto es product.beerid dentro de find:"); 
+        console.log(product.beerid);
+
+
+          return reviews.beerid == product.beerid; });
+      });*/
       dfd.resolve(related_products);
+      console.log(related_products);
     });
 
     return dfd.promise;

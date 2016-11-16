@@ -27,7 +27,7 @@
     <div class="row brief-info-row">
       <div class="col col-80">
         <h3 class="product-name">{{product.beername}}</h3>
-        <h5 class="product-style">{{product.beerStyle}}</h5>
+        <h5 class="product-style">{{product.beerstyle}}</h5>
       </div>
       <div class="col col-20">
         <span class="product-price-range" ng-repeat="price in [].constructor(product.price_range) track by $index">$</span>
@@ -88,7 +88,7 @@
     </div>
     <hr class="product-sections-divider"/>
     <h3 class="product-sub-title">Reviews</h3>
-    <article class="row review-item" ng-repeat="review in [].constructor(3) track by $index">
+    <article class="row review-item" ng-repeat="related_product in product.related_products">
       <div class="col">
         <div class="row top-row">
           <div class="col image-col">
@@ -97,29 +97,29 @@
             </pre-img>
           </div>
           <div class="col description-col">
-            <h3 class="review-author-name">John Smith</h3>
+            <h3 class="review-author-name">{{related_product.username}}</h3>
             <div class="row icons-container">
-              <div class="col icon-group">
+              <!--div class="col icon-group">
                 <i class="icon ion-navicon"></i>
                 <span class="icon-text">2 Reviews</span>
-              </div>
-              <div class="col icon-group">
+              </div-->
+              <!--div class="col icon-group">
                 <i class="icon ion-ionic"></i>
                 <span class="icon-text">26 Points</span>
-              </div>
+              </div-->
             </div>
           </div>
           <div class="col reputation-col">
-            <span class="review-date">{{'07/07/2016' | amDateFormat:'YYYY, MMM Do'}}</span>
+            <span class="review-date">{{related_product.rdate | amDateFormat:'MMM Do, YYYY'}}</span>
             <div class="rating-outer">
-              <span class="review-rating rating-{{ product.rating | floor }}">{{product.rating}}</span>
+              <span class="review-rating rating-{{ related_product.rating | floor }}">{{related_product.rating}}</span>
             </div>
           </div>
         </div>
         <div class="row middle-row">
           <div class="col">
             <p class="review-description">
-              This review is long overdue but memories still vivid. We were at La Olla for a wedding. I had only thought of it as a great restaurant but never thought of it as an event space. The wedding was on a Sunday and we had the entire use of the space.
+              {{related_product.comment}}
             </p>
           </div>
         </div>
@@ -158,7 +158,8 @@
         </button>
       </div>
     </div>
-    <h5 class="incorrect-info-title">Is the restaurant information incorrect?</h5>
+
+    <h5 class="incorrect-info-title">Is the bar information incorrect?</h5>
     <span class="incorrect-info-sub-title">Let us know what's wrong!</span>
   </ion-content>
 </ion-view>

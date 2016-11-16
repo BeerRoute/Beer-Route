@@ -10,7 +10,7 @@ angular.module('your_app_name.content.controllers', [])
 
 	$scope.product = product;
 
-	/*$scope.product.addresses = [
+	$scope.product.addresses = [
 		{
 			street: "0 Waubesa Junction",
 			city: "Houston",
@@ -29,14 +29,14 @@ angular.module('your_app_name.content.controllers', [])
 			lat: 43.07493,
 			lng: -88.381388
 		}
-	];*/
+	];
 
-	/*$scope.product.selected_address = product.addresses[0];
+	$scope.product.selected_address = product.addresses[0];
 
 	$scope.selectAddress = function(address){
 		$scope.product.selected_address = address;
 		addressPopup.close();
-	};*/
+	};
 
 	var schedulesPopup = {},
 			addressPopup = {};
