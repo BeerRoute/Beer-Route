@@ -78,7 +78,7 @@ angular.module('your_app_name.feed.servicesBeer', [])
 .service('DealsService', function ($http, $q){
   this.getProducts = function(){
     var dfd = $q.defer();
-    $http.get('deals_db.json').success(function(database) {
+    $http.get('http://localhost:3412/ClassDemo3Srv/getevents').success(function(database) {
       dfd.resolve(database.products);
     });
     return dfd.promise;
@@ -86,7 +86,7 @@ angular.module('your_app_name.feed.servicesBeer', [])
 
   this.getProduct = function(productId){
     var dfd = $q.defer();
-    $http.get('deals_db.json').success(function(database) {
+    $http.get('http://localhost:3412/ClassDemo3Srv/getevents').success(function(database) {
       var product = _.find(database.products, function(product){ return product.id == productId; });
       dfd.resolve(product);
     });

@@ -368,6 +368,41 @@ pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
     });
 });
 
+app.get('/ClassDemo3Srv/getevents', function(req,res){
+console.log("GET TEST QUERY");
+console.log(req.query);
+var exists = false;
+var response = {};
+response.products = [];
+pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
+    if (err)
+        console.log('Error while connecting: ' + err); 
+    client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
+        if (err) 
+            console.log('ignoring the error. DB already exists'); // ignore if the db is there
+        client.end(); // close the connection
+
+	
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            // create the table
+            var q = clientOrg.query("SELECT picture, expiration_date, description, name, businessid, event_id, code FROM newsfeed", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);}
+            });
+		q.on('row', function(row){
+		console.log(row);
+		response.products.push(row);
+		});
+		q.on('end', function(result){
+		res.json(response);
+		});
+	    });
+        });
+    });
+});
+
 // Server starts running when listen is called.
 app.listen(process.env.PORT || 3412);
 console.log("server listening");
