@@ -6,7 +6,7 @@
     <div class="buttons">
       <button class="button button-clear back-button" ng-click="goBack()">Back</button>
     </div>
-    <h1 class="title">{{product.name}}</h1>
+    <h1 class="title">{{product.businessname}}</h1>
     <div class="buttons">
       <!--button class="button button-clear share-button">Share</button-->
     </div>
@@ -14,7 +14,7 @@
   <ion-content>
     <ion-slide-box class="product-images-slider" show-pager="false">
       <ion-slide>
-        <div class="image-container" multi-bg="[product.pictures[0]]">
+        <div class="image-container" multi-bg="[product.path]">
           <div class="product-illustration-container">
             <!--img class="product-illustration" ng-src="./img/sample-images/travel/TravelIcon1.png"/-->
           </div>
@@ -26,7 +26,7 @@
     </ion-slide-box>
     <div class="row brief-info-row">
       <div class="col col-80">
-        <h3 class="product-name">{{product.name}}</h3>
+        <h3 class="product-name">{{product.businessname}}</h3>
         <h5 class="product-style">{{product.description}}</h5>
       </div>
       <div class="col col-20">
@@ -60,7 +60,7 @@
       <div class="row middle-row">
           <div class="col">
             <p class="review-description">
-             {{product.descr}}
+             {{product.description}}
             </p>
           </div>
         </div>
@@ -141,43 +141,43 @@
       </div>
     </div>
     <hr class="product-sections-divider"/>
-    <h3 class="product-sub-title">Reviews</h3>
-    <article class="row review-item" ng-repeat="review in [].constructor(3) track by $index">
-    	<div class="col">
-    		<div class="row top-row">
-    			<div class="col image-col">
+        <h3 class="product-sub-title">Reviews</h3>
+    <article class="row review-item" ng-repeat="related_product in product.related_products">
+      <div class="col">
+        <div class="row top-row">
+          <div class="col image-col">
             <pre-img ratio="_1_1">
               <img class="review-image" ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/andyvitale/73.jpg" spinner-on-load>
             </pre-img>
-    			</div>
-    			<div class="col description-col">
-    				<h3 class="review-author-name">John Smith</h3>
-    				<div class="row icons-container">
-              <div class="col icon-group">
+          </div>
+          <div class="col description-col">
+            <h3 class="review-author-name">{{related_product.username}}</h3>
+            <div class="row icons-container">
+              <!--div class="col icon-group">
                 <i class="icon ion-navicon"></i>
                 <span class="icon-text">2 Reviews</span>
-              </div>
-              <div class="col icon-group">
+              </div-->
+              <!--div class="col icon-group">
                 <i class="icon ion-ionic"></i>
                 <span class="icon-text">26 Points</span>
-              </div>
+              </div-->
             </div>
-    			</div>
-    			<div class="col reputation-col">
-    				<span class="review-date">{{'07/07/2016' | amDateFormat:'YYYY, MMM Do'}}</span>
+          </div>
+          <div class="col reputation-col">
+            <span class="review-date">{{related_product.rdate | amDateFormat:'MMM Do, YYYY'}}</span>
             <div class="rating-outer">
-              <span class="review-rating rating-{{ product.rating | floor }}">{{product.rating}}</span>
+              <span class="review-rating rating-{{ related_product.rating | floor }}">{{related_product.rating}}</span>
             </div>
-    			</div>
-    		</div>
-    		<div class="row middle-row">
-    			<div class="col">
-    				<p class="review-description">
-    					This review is long overdue but memories still vivid. We were at La Olla for a wedding. I had only thought of it as a great restaurant but never thought of it as an event space. The wedding was on a Sunday and we had the entire use of the space.
-    				</p>
-    			</div>
-    		</div>
-    		<div class="row bottom-row">
+          </div>
+        </div>
+        <div class="row middle-row">
+          <div class="col">
+            <p class="review-description">
+              {{related_product.comment}}
+            </p>
+          </div>
+        </div>
+        <!--div class="row bottom-row">
           <div class="col review-other-ratings-container">
             <div class="row">
               <div class="col rating-col">
@@ -194,24 +194,26 @@
               </div>
             </div>
           </div>
-    		</div>
-    	</div>
+        </div-->
+      </div>
     </article>
-    <div class="row all-reviews-row">
+    <!--div class="row all-reviews-row">
       <div class="col">
         <button class="button button-block icon-right ion-chevron-right read-all-reviews-button" ng-click="showAllReviews()">
-        	Read all the reviews (15)
+          Read all the reviews (15)
+        </button>
+      </div>
+    </div-->
+    <hr class="product-sections-divider"/>
+    <div class="row write-review-row">
+      <div class="col">
+        <button class="button button-block new-review-button" ng-click="newReview()">
+          Write a review
         </button>
       </div>
     </div>
-    <div class="row write-review-row">
-    	<div class="col">
-        <button class="button button-block new-review-button" ng-click="newReview()">
-    			Write a review
-    		</button>
-    	</div>
-    </div>
-    <h5 class="incorrect-info-title">Is the restaurant information incorrect?</h5>
+
+    <h5 class="incorrect-info-title">Is the bar information incorrect?</h5>
     <span class="incorrect-info-sub-title">Let us know what's wrong!</span>
   </ion-content>
 </ion-view>

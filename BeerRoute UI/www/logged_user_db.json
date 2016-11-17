@@ -6,7 +6,7 @@
     "last_name": "Rodriguez",
     "password": "billy12345678",
     "email": "manuel.rodriguez7@upr.edu",
-    "picture": "./img/common/profesor.jpg",
+    "picture": "",
     "address":"UPRM ICOM Stefany S-213",
     "orders": [
       {
