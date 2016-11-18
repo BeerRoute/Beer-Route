@@ -14,6 +14,7 @@ angular.module('your_app_name.account.controllers', [])
   $scope.user.password = $rootScope.password;
   $scope.user.email = $rootScope.email;
   $scope.user.region = $rootScope.region;
+  $scope.user.picture = $rootScope.picture;
   $scope.show_new_address_button = false;
   $scope.show_new_card_button = false;
   $scope.notifications = {};

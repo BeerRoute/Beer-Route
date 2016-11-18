@@ -31,6 +31,7 @@ angular.module('your_app_name.auth.controllers', [])
 			$rootScope.password = r.password;
 			$rootScope.email = r.email;
 			$rootScope.region = r.region;
+			$rootScope.picture = r.picture;
 			$state.go('main.app.account');}
 			else{
 			$ionicPopup.alert(

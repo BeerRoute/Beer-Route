@@ -74,7 +74,7 @@ angular.module('your_app_name.feed.servicesBeer', [])
     return dfd.promise;
   };
 })
-
+/*
 .service('DealsService', function ($http, $q){
   this.getProducts = function(){
     var dfd = $q.defer();
@@ -93,6 +93,7 @@ angular.module('your_app_name.feed.servicesBeer', [])
     return dfd.promise;
   };
 })
+*/
 .service('TravelService', function ($http, $q){
   this.getProducts = function(){
     var dfd = $q.defer();
