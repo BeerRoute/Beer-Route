@@ -5,8 +5,8 @@
       <div class="card deals-product-container" ng-repeat="product in results = products">
         <div class="row row-center top-row">
           <div class="col col-66 logo-col">
-            <img class="deal-logo" ng-src="{{product.path}}"/>
-             <a class="product-anchor">{{product.businessname}}</a>
+            <img class="deal-logo" ng-src="{{product.path}}" ui-sref="main.app.search.content({productId: product.businessid})"/>
+             <a class="product-anchor" ui-sref="main.app.search.content({productId: product.businessid})">{{product.businessname}}</a>
           </div>
           <!--div class="col shop-col">
             <button class="button shop-button">

@@ -1,6 +1,6 @@
 angular.module('your_app_name.liked.services', [])
 
-.service('ListService', function ($http, $q, $rootScope){
+.service('ListService', function ($http, $q, $rootScope,$ionicPopup){
 
   this.getUserLists = function(){
     /*var dfd = $q.defer();
@@ -38,7 +38,16 @@ angular.module('your_app_name.liked.services', [])
 
         
         
-      });
+      })
+
+
+      .error(function(data,status){
+        var d = data;
+        var s = status;
+        $ionicPopup.alert(
+        {title: JSON.stringify(d),
+        template: JSON.stringify(s)});
+        });
       
 
     

@@ -227,7 +227,7 @@ var response = [];
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("SELECT beerid, rating, comment, rdate, username FROM beer natural inner join beerrating WHERE beerid = " + req.query.id, function(err){
+            var q = clientOrg.query("SELECT picture, beerid, rating, comment, rdate, username FROM beer natural inner join beerrating natural inner join users WHERE beerid = " + req.query.id, function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -344,7 +344,7 @@ var response = [];
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("SELECT businessid, ratingid, rdate, comment, username FROM businessrating WHERE businessid = " + req.query.id, function(err){
+            var q = clientOrg.query("SELECT picture, businessid, ratingid, rdate, comment, username FROM businessrating natural inner join users WHERE businessid = " + req.query.id, function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);

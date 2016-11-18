@@ -1,6 +1,6 @@
 angular.module('your_app_name.feed.services', [])
 
-.service('FashionService', function ($http, $q){
+.service('FashionService', function ($http, $q, $ionicPopup){
   this.getProducts = function(){
     var dfd = $q.defer();
      var xhr = new XMLHttpRequest({mozSystem: true});
@@ -36,7 +36,14 @@ angular.module('your_app_name.feed.services', [])
       });
 
       dfd.resolve(product);
-    });
+    })
+     .error(function(data,status){
+        var d = data;
+        var s = status;
+        $ionicPopup.alert(
+        {title: JSON.stringify(d),
+        template: JSON.stringify(s)});
+        });
     return dfd.promise;
   };
 
@@ -77,7 +84,7 @@ angular.module('your_app_name.feed.services', [])
   };
 })
 
-.service('FoodService', function ($http, $q){
+.service('FoodService', function ($http, $q, $ionicPopup){
   this.getProducts = function(){
     var dfd = $q.defer();
      var xhr = new XMLHttpRequest({mozSystem: true});
@@ -107,7 +114,14 @@ angular.module('your_app_name.feed.services', [])
       dfd.resolve(product);
       console.log('AQUI ESTA GET PRODUCT');
       console.log(product);
-    });
+    })
+    .error(function(data,status){
+        var d = data;
+        var s = status;
+        $ionicPopup.alert(
+        {title: JSON.stringify(d),
+        template: JSON.stringify(s)});
+        });
     return dfd.promise;
   };
 
@@ -132,7 +146,7 @@ angular.module('your_app_name.feed.services', [])
   };
 })
 
-.service('DealsService', function ($http, $q){
+.service('DealsService', function ($http, $q,$ionicPopup){
   this.getProducts = function(){
     var dfd = $q.defer();
     $http.get('http://localhost:3412/ClassDemo3Srv/getevents').success(function(database) {
@@ -146,7 +160,14 @@ angular.module('your_app_name.feed.services', [])
     $http.get('http://localhost:3412/ClassDemo3Srv/getevents').success(function(database) {
       var product = _.find(database.products, function(product){ return product.id == productId; });
       dfd.resolve(product);
-    });
+    })
+    .error(function(data,status){
+        var d = data;
+        var s = status;
+        $ionicPopup.alert(
+        {title: JSON.stringify(d),
+        template: JSON.stringify(s)});
+        });
     return dfd.promise;
   };
 })
