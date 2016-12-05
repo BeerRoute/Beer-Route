@@ -98,7 +98,7 @@ var response = {Exists : exists,
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("SELECT username, email, region, password, picture FROM users natural join regularuser", function(err){
+            var q = clientOrg.query("SELECT username, email, password, picture FROM users", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -114,7 +114,7 @@ var response = {Exists : exists,
 			console.log("name exists " + exists);
 			response.username = row.username;
 			response.email = row.email;
-			response.region = row.region;
+			//response.region = row.region;
 			response.password = row.password;
 			response.picture = row.picture;
 			};
@@ -159,16 +159,50 @@ var response = {Exists : exists};
 		if((req.query.email == row.email) || (req.query.username == row.username)){
 			exists = true;
 			console.log("name exists " + exists);}
-		});
+		}); //End q.onRow
 		q.on('end', function(result){
 		response = {Exists : exists};
+		res.json(response);
+		});
+	    });	//End Connect
+        //});
+    });//END Get
+//});
+//////////////////////////////////////////////////////////////////////////////////
+app.get('/ClassDemo3Srv/addUser', function(req,res){
+console.log("GET Add User");
+console.log(req.query);
+var exists = false;
+var response = [];
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            // create the table
+            var q = clientOrg.query("INSERT INTO users (username, email,password) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"')", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+            //clientOrg.end();
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
 		res.json(response);
 		});
 	    });
         //});
     });
-//});
-//////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
 app.get('/ClassDemo3Srv/getbeer', function(req,res){
 console.log("GET BEER QUERY");
 console.log(req.query);
@@ -186,7 +220,7 @@ var response = [];
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("SELECT beerid, beername, beerStyle, beerRating, description, path FROM beer", function(err){
+            var q = clientOrg.query("SELECT beerid, beername, beerStyle, description, path FROM beer", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -209,6 +243,39 @@ var response = [];
         //});
     });
 //});
+
+
+app.get('/ClassDemo3Srv/wishBeer', function(req,res){
+console.log("Wish Beer");
+console.log(req.query);
+var exists = false;
+var response = [];
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            // create the table
+            var q = clientOrg.query("INSERT INTO wishlist (username, beerid) VALUES ('"+req.query.username+"',"+req.query.beerid+")", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+            //clientOrg.end();
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		res.json(response);
+		});
+	    });
+        //});
+    });
+
+
+
+
+
 //*************************************************
 app.get('/ClassDemo3Srv/getreviews', function(req,res){
 console.log("GET BEER REVIEW QUERY");
@@ -265,7 +332,7 @@ var response = [];
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("SELECT beerid, beername, description, path FROM wishlist natural inner join beer natural inner join regularuser", function(err){
+            var q = clientOrg.query("SELECT beerid, beername, description, path FROM wishlist natural inner join beer natural inner join users WHERE username='"+req.query.username+"'", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);

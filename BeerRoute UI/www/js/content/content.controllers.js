@@ -1,12 +1,37 @@
 angular.module('your_app_name.content.controllers', [])
 
-.controller('FashionContentCtrl', function($scope, $state, $rootScope, $ionicPopup, product) {
+.controller('FashionContentCtrl', function($scope, $state, $rootScope, $ionicPopup, product, $http) {
 	$scope.goBack = function() {
 		var previous_view = _.last($rootScope.previousView);
 		//console.log(previous_view);
 
 		$state.go(previous_view.fromState, previous_view.fromParams,{reload:true});
 	};
+
+	$scope.wishBeer = function(beerid) {
+		console.log(beerid);
+		var xhr = new XMLHttpRequest({mozSystem: true});
+			$http.get("http://localhost:3412/ClassDemo3Srv/wishBeer",{params: {beerid: beerid, username: $rootScope.username}},xhr).success(function(data){
+			var r = data;
+			console.log(r);
+
+			})
+			.error(function(data,status){
+			$ionicPopup.alert(
+			{title: 'Login failed',
+			template: 'Could not connect to server. Please try again'});
+			});
+      		
+
+      	
+
+			// Simulate login ERROR
+			//$scope.error = "This is an error message";
+			//$ionicLoading.hide();
+	};	
+
+
+
 
 	$scope.product = product;
 
