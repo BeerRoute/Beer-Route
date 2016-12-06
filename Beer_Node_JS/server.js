@@ -48,8 +48,8 @@ app.get('/ClassDemo3Srv/ok', function(req,res){
 // will be read if the config is not present
 var config = {
   user: 'postgres', //env var: PGUSER
-  database: 'LastestBeerRoute', //env var: PGDATABASE
-  password: 'Miflaquis15', //env var: PGPASSWORD
+  database: 'BeerRoute_1', //env var: PGDATABASE
+  password: '', //env var: PGPASSWORD
   host: 'localhost', // Server hosting the postgres database
   port: 5432, //env var: PGPORT
   max: 10, // max number of clients in the pool
@@ -177,7 +177,7 @@ var response = [];
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("INSERT INTO users (username, email,password) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"')", function(err){
+            var q = clientOrg.query("INSERT INTO users (username, email,password, isbusinessowner) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"',"+req.query.isbusinessowner+")", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);

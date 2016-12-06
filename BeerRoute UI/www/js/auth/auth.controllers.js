@@ -94,16 +94,18 @@ angular.module('your_app_name.auth.controllers', [])
 			
 		var xhr = new XMLHttpRequest({mozSystem: true});
 		$http.get("http://localhost:3412/ClassDemo3Srv/signup",{params: {username: $scope.user.name, email: $scope.user.email, password: $scope.user.password}},xhr).success(function(data){
-		console.log("Query success");		
+		console.log("Query success");	
+		console.log("Is Business Owner:"+$scope.user.type)	
 		var r = data;
 		$ionicPopup.alert(
 		{title: JSON.stringify(r),
 		template: r.Exists});
 		if(!r.Exists){
-		$http.get("http://localhost:3412/ClassDemo3Srv/addUser",{params: {username: $scope.user.name, email: $scope.user.email, password: $scope.user.password}},xhr).success(function(data){
+		$http.get("http://localhost:3412/ClassDemo3Srv/addUser",{params: {username: $scope.user.name, email: $scope.user.email, password: $scope.user.password, isbusinessowner: $scope.user.type}},xhr).success(function(data){
 		$rootScope.username = $scope.user.name;
 		$rootScope.password = $scope.user.password;
 		$rootScope.email = $scope.user.email;
+		$rootScope.businessOwner=$scope.user.type;
 												});
 		$state.go('main.app.account');}
 		else{
