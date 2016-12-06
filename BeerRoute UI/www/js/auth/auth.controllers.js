@@ -75,7 +75,7 @@ angular.module('your_app_name.auth.controllers', [])
 	};
 })
 
-.controller('SignupCtrl', function($scope, $state, $ionicLoading, $timeout, $ionicModal, $http, $ionicPopup) {
+.controller('SignupCtrl', function($scope, $state, $ionicLoading, $timeout, $ionicModal, $http, $ionicPopup,$rootScope) {
 	$scope.user = {};
 
 	$scope.user.name = "";
@@ -100,6 +100,11 @@ angular.module('your_app_name.auth.controllers', [])
 		{title: JSON.stringify(r),
 		template: r.Exists});
 		if(!r.Exists){
+		$http.get("http://localhost:3412/ClassDemo3Srv/addUser",{params: {username: $scope.user.name, email: $scope.user.email, password: $scope.user.password}},xhr).success(function(data){
+		$rootScope.username = $scope.user.name;
+		$rootScope.password = $scope.user.password;
+		$rootScope.email = $scope.user.email;
+												});
 		$state.go('main.app.account');}
 		else{
 		$ionicPopup.alert(
@@ -126,6 +131,10 @@ angular.module('your_app_name.auth.controllers', [])
 		//$ionicLoading.hide();
 		}, 800);
 	};
+	//END doSignup()
+
+
+
 
 	$scope.doFacebookSignUp = function(){
 		console.log("doing FACEBOOK sign up");
