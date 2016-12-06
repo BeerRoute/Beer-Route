@@ -101,7 +101,7 @@ angular.module('your_app_name.content.controllers', [])
 	});
 })
 
-.controller('FoodContentCtrl', function($scope, $state, $rootScope, $ionicPopup, product) {
+.controller('FoodContentCtrl', function($scope, $state, $rootScope, $ionicPopup, product, $http) {
 	$scope.goBack = function() {
 		var previous_view = _.last($rootScope.previousView);
 		console.log(previous_view);
@@ -201,6 +201,43 @@ angular.module('your_app_name.content.controllers', [])
 	};
 
 	$scope.SaveReview = function(){
+		console.log('INSIDE Save Review Function!!');
+		console.log($rootScope.username);
+		var xhr = new XMLHttpRequest({mozSystem: true});
+
+		var comments = document.getElementById("myTextArea").value;		
+		console.log(comments);		
+
+		var starValue = 0;
+    	var checkStars = document.getElementsByName("star");
+    	var size = checkStars.length;
+    	
+    	for (i=0; i < size; i++) {
+            if (checkStars[i].checked == true) {            	 
+            	starValue = checkStars[i].value;
+            	break;            
+        	}
+    	}
+    	console.log('Rating Value: ' + starValue);
+
+		
+
+		$http.get("http://localhost:3412/ClassDemo3Srv/addReview",{params: {id: product.businessid, rating: starValue, comment: comments, rdate: '2015-12-12', username: $rootScope.username}},xhr).success(function(data){
+		var r = data;
+		$ionicPopup.alert(
+		{title: JSON.stringify('success'),
+		template: r.Message});
+		//console.log(r[0]);
+		//console.log(r[1]);
+		})
+		.error(function(data,status){
+		var d = data;
+		var s = status;
+		console.log('Error');
+		$ionicPopup.alert(
+		{title: JSON.stringify(d),
+		template: JSON.stringify('Error')});
+		});
 		newReviewPopup.close();
 	};
 

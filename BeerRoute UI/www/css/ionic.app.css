@@ -10270,6 +10270,7 @@ ion-spinner.spinner-on-load {
 
 .login-view .images-row {
   padding-top: 0px;
+  margin-top: 30px;
   height: 27%; }
   .login-view .images-row .illustration-container {
     margin: 0px auto;
@@ -10279,10 +10280,10 @@ ion-spinner.spinner-on-load {
   height: 73%; }
 
 .login-view .facebook-button {
-  margin-top: 6vh; }
+  margin-top: 15vh; }
 
 .login-view .form-divider {
-  margin: 5vh 0px; }
+  margin: 10vh 0px; }
 
 .login-view .auth-action-button {
   margin-top: 2vh; }
@@ -10325,8 +10326,12 @@ ion-spinner.spinner-on-load {
     .modal-view.legal-view .legal-content .title {
       color: #4D301C; }
 
-.signup-view .facebook-button {
-  margin-top: 6vh; }
+.signup-view .logo-container {
+  width: 85% auto;
+  margin-top: 30px; }
+  .signup-view .logo-container .logo-image {
+    width: 100%;
+    vertical-align: middle; }
 
 .signup-view .form-divider {
   margin: 7vh 0px; }
@@ -14086,6 +14091,13 @@ ion-spinner.spinner-on-load {
     border-bottom-right-radius: 0px; }
 
 .account-profile-view .edit-button {
+  margin: 15px;
+  border-radius: 6px;
+  padding: 0px 0px;
+  width: 92%;
+  color: #4d301c; }
+
+.account-profile-view .post-button {
   margin: 15px;
   border-radius: 6px;
   padding: 0px 0px;

@@ -120,6 +120,25 @@ template: JSON.stringify(s)});
     });
   };
 
+  var newPostPopup;
+  $scope.newPost = function(){
+    newPostPopup = $ionicPopup.show({
+      cssClass: 'popup-outer food-review-view',
+      templateUrl: 'views/account/post.html',
+      controller: 'FoodContentCtrl',
+      //scope: angular.extend($scope, {})
+      title: 'Post',
+      scope: $scope,
+      buttons: [
+        { text: 'Close', type: 'close-popup' }
+      ]     
+    });
+  };
+
+  $scope.SavePost = function(){
+    newPostPopup.close();
+  };
+
   $scope.showEditAddressPopup = function(address) {
 		$scope.address = address;
 
