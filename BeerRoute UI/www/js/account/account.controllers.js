@@ -1,14 +1,25 @@
 angular.module('your_app_name.account.controllers', [])
 
 .controller('ProfileCtrl', function($scope, user, $ionicPopover, $ionicPopup, $ionicActionSheet, $state, $http, $rootScope) {
-  $scope.user = user;
-
+  //$scope.user = user;
+  $scope.user = {};
+  console.log(user[0]);
   //$scope.user_credit_cards = user.credit_cards;
   //$scope.user_shipping_addresses = user.shipping_addresses;
   $scope.data = {};
-  $scope.data.selected_card = user.credit_cards[0];
-  $scope.data.selected_address = user.shipping_addresses[0];
-  $scope.user_bar = user.BarOwner;
+  //$scope.data.selected_card = user.credit_cards[0];
+  //$scope.data.selected_address = user.shipping_addresses[0];
+
+  //console.log("Printing Redit card number: " + user.creditcard);
+
+  $scope.data.selected_card = user[0].creditcard; 
+  $scope.data.card_exp = user[0].ccexp;
+  $scope.data.businessid = user[0].businessid;  
+  //$scope.user_bar = BarOwner;
+
+  console.log($scope.data.selected_card);
+  console.log($scope.data.card_exp);
+  console.log($scope.data.businessid );
 
   $scope.user.name = $rootScope.username;
   $scope.user.password = $rootScope.password;
@@ -125,7 +136,7 @@ template: JSON.stringify(s)});
     newPostPopup = $ionicPopup.show({
       cssClass: 'popup-outer food-review-view',
       templateUrl: 'views/account/post.html',
-      controller: 'FoodContentCtrl',
+      controller: 'ProfileCtrl',
       //scope: angular.extend($scope, {})
       title: 'Post',
       scope: $scope,
@@ -136,6 +147,34 @@ template: JSON.stringify(s)});
   };
 
   $scope.SavePost = function(){
+    console.log('INSIDE new Post Function!!');
+    //console.log($rootScope.username);
+    var xhr = new XMLHttpRequest({mozSystem: true});
+
+    var comments = document.getElementById("myTextArea").value;   
+    //console.log(comments);    
+    console.log(user);
+    
+
+    $http.get("http://localhost:3412/ClassDemo3Srv/addFeedPost",{params: {description: comments, businessid: $scope.data.businessid }},xhr).success(function(data){
+    var r = data;
+    $ionicPopup.alert(
+    {title: JSON.stringify('success'),
+    template: r.Message});
+    //console.log(r[0]);
+    //console.log(r[1]);
+    })
+    .error(function(data,status){
+    var d = data;
+    var s = status;
+    console.log('Error');
+    $ionicPopup.alert(
+    {title: JSON.stringify(d),
+    template: JSON.stringify('Error')});
+    });
+    
+
+
     newPostPopup.close();
   };
 

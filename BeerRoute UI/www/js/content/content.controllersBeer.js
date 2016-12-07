@@ -132,6 +132,63 @@ angular.module('your_app_name.content.controllersBeer', [])
 		});
 	};
 
+
+	var newBeerReviewPopup;
+	$scope.newBeeerReview = function(){
+		newBeerReviewPopup = $ionicPopup.show({
+			cssClass: 'popup-outer food-review-view',
+			templateUrl: 'views/content/food/review.html',
+			controller: 'FoodContentCtrlBeer',
+			//scope: angular.extend($scope, {})
+			title: 'Review',
+			scope: $scope,
+			buttons: [
+				{ text: 'Close', type: 'close-popup' }
+			]			
+		});
+	};
+
+	$scope.SaveReview = function(){
+		console.log('INSIDE Save Beer Review Function!!');
+		console.log($rootScope.username);
+		var xhr = new XMLHttpRequest({mozSystem: true});
+
+		var comments = document.getElementById("myTextArea").value;		
+		console.log(comments);		
+
+		var starValue = 0;
+    	var checkStars = document.getElementsByName("star");
+    	var size = checkStars.length;
+    	
+    	for (i=0; i < size; i++) {
+            if (checkStars[i].checked == true) {            	 
+            	starValue = checkStars[i].value;
+            	break;            
+        	}
+    	}
+    	console.log('Rating Value: ' + starValue);
+
+		
+
+		$http.get("http://localhost:3412/ClassDemo3Srv/addBeerReview",{params: {id: product.beerid, rating: starValue, comment: comments, rdate: '2015-12-12', username: $rootScope.username}},xhr).success(function(data){
+		var r = data;
+		$ionicPopup.alert(
+		{title: JSON.stringify('success'),
+		template: r.Message});
+		//console.log(r[0]);
+		//console.log(r[1]);
+		})
+		.error(function(data,status){
+		var d = data;
+		var s = status;
+		console.log('Error');
+		$ionicPopup.alert(
+		{title: JSON.stringify(d),
+		template: JSON.stringify('Error')});
+		});
+		newReviewPopup.close();
+	};
+
 	$scope.$on('mapInitialized', function(event, map) {
 		// If we want to access the map in the future
 		$scope.map = map;

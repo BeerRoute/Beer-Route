@@ -38,12 +38,40 @@ angular.module('your_app_name.account.services', [])
 
 
 
-.service('ProfileService', function ($http, $q){
+.service('ProfileService', function ($http, $q, $ionicPopup, $rootScope){
   this.getUserData = function(){
     var dfd = $q.defer();
-    $http.get('logged_user_db.json').success(function(database) {
-      dfd.resolve(database.user);
-    });
+    //$http.get('logged_user_db.json').success(function(database) {
+      //dfd.resolve(database.user);
+
+
+      console.log('INSIDE get Business Owner Info!!');
+      //console.log($rootScope.username);
+      var xhr = new XMLHttpRequest({mozSystem: true});    
+    
+
+      $http.get("http://localhost:3412/ClassDemo3Srv/getbusinessuser", {params: {username: $rootScope.username}},xhr).success(function(data){
+      var r = data;
+      //$ionicPopup.alert(
+      //{title: JSON.stringify('success'),
+      //template: r.Message});
+      //console.log(r[0]);
+      //console.log(r[1]);
+      dfd.resolve(data);
+      })
+      .error(function(data,status){
+      var d = data;
+      var s = status;
+      console.log('Error');
+      $ionicPopup.alert(
+      {title: JSON.stringify(d),
+      template: JSON.stringify('Error')});
+      });
+
+      console.log("End Query");
+
+
+    //});
     return dfd.promise;
   };
 })
