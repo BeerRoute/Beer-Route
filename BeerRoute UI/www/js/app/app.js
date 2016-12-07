@@ -378,6 +378,7 @@ angular.module('your_app_name', [
                   user: function(ProfileService){
                     return ProfileService.getUserData();
                   }
+
                 }
               })
                   .state('main.app.account.profile.edit', {

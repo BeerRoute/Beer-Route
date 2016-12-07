@@ -376,6 +376,95 @@ var response = [];
         //});
     });
 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+app.get('/ClassDemo3Srv/addBeerReview', function(req,res){
+console.log("POST Add Beer Review");
+console.log(req.body);
+var exists = false;
+var response = [];
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            
+            var q = clientOrg.query("INSERT INTO beerrating (beerid, rating, comment, rdate,  username) VALUES ("+req.query.beerid+",'"+req.query.rating+"','"+req.query.comment+"','"+req.query.rdate+"','"+req.query.username+"')", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+            //clientOrg.end();
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		res.json(response);
+		});
+	    });
+        //});
+    });
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+app.get('/ClassDemo3Srv/addFeedPost', function(req,res){
+console.log("POST Add new Feed");
+console.log(req.body);
+var exists = false;
+var response = [];
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            
+            var q = clientOrg.query("INSERT INTO newsfeed (description, businessid) VALUES ('"+req.query.description+"',"+req.query.businessid+")", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+            //clientOrg.end();
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		res.json(response);
+		});
+	    });
+        //});
+    });
+
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+app.get('/ClassDemo3Srv/getbusinessuser', function(req,res){
+console.log("GET BUSINESS USER INFO QUERY");
+console.log(req.query);
+var exists = false;
+var response = [];
+	
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            // create the table
+		//console.log(req.query.username);
+            var q = clientOrg.query("SELECT username, creditcard, ccexp, businessid FROM businessowner WHERE username='"+req.query.username+"'", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+           
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		res.json(response);
+		});
+	    });        
+    });
+
+
 //#############################################################
 
 app.get('/ClassDemo3Srv/getwishlist', function(req,res){
@@ -549,7 +638,7 @@ response.products = [];
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("SELECT path, newsfeed.description, businessname, business.businessid, event_id, event_name FROM newsfeed, business WHERE newsfeed.businessid=business.businessid", function(err){
+            var q = clientOrg.query("SELECT path, newsfeed.description, businessname, business.businessid, event_id, event_name FROM newsfeed, business WHERE newsfeed.businessid=business.businessid ORDER BY event_id desc", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
