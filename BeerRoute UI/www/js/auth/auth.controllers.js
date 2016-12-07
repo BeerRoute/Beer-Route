@@ -105,7 +105,7 @@ angular.module('your_app_name.auth.controllers', [])
 		$rootScope.username = $scope.user.name;
 		$rootScope.password = $scope.user.password;
 		$rootScope.email = $scope.user.email;
-		$rootScope.businessOwner=$scope.user.type;
+		$rootScope.isbusinessowner = r.isbusinessowner;
 												});
 		$state.go('main.app.account');}
 		else{

@@ -1,5 +1,6 @@
 // Express is the web framework 
 var express = require('express');
+var nodemailer = require('nodemailer');
 var pg = require('pg');
 var app = express();
 var router = express.Router();
@@ -113,7 +114,7 @@ var response = {Exists : exists,
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("SELECT username, email, password, picture FROM users", function(err){
+            var q = clientOrg.query("SELECT username, email, password, picture, isbusinessowner  FROM users", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -132,6 +133,7 @@ var response = {Exists : exists,
 			//response.region = row.region;
 			response.password = row.password;
 			response.picture = row.picture;
+			response.isbusinessowner = row.isbusinessowner;
 			};
 		});
 		q.on('end', function(result){

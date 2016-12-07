@@ -99,6 +99,13 @@ angular.module('your_app_name.content.controllers', [])
 		// If we want to access the map in the future
 		$scope.map = map;
 	});
+	
+	$scope.isBarOwner = function(){
+	console.log("Calling Owner function");
+	console.log('isbusinessowner: ' + JSON.stringify($rootScope.isbusinessowner));
+	return $rootScope.isbusinessowner;
+	
+};
 })
 
 .controller('FoodContentCtrl', function($scope, $state, $rootScope, $ionicPopup, product, $http) {
@@ -245,6 +252,13 @@ angular.module('your_app_name.content.controllers', [])
 		// If we want to access the map in the future
 		$scope.map = map;
 	});
+	
+	$scope.isBarOwner = function(){
+	console.log("Calling Owner function");
+	console.log('isbusinessowner: ' + JSON.stringify($rootScope.isbusinessowner));
+	return $rootScope.isbusinessowner;
+	
+};
 })
 
 .controller('TravelContentCtrl', function($scope, $state, $rootScope, product) {
