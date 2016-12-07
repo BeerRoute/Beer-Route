@@ -2,6 +2,11 @@
 var express = require('express');
 var pg = require('pg');
 var app = express();
+var router = express.Router();
+var bodyParser = require('body-parser');
+
+var transporter;
+
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -16,12 +21,12 @@ var allowCrossDomain = function(req, res, next) {
     }
 };
 
-app.configure(function () {
-  app.use(allowCrossDomain);
-});
+var env = process.env.NODE_ENV || 'development';
+if ('development' == env) {
+   app.use(allowCrossDomain);
+}
 
-
-app.use(express.bodyParser());
+app.use(bodyParser.json());
 
 
 // REST Operations
@@ -60,6 +65,16 @@ var conStringPri = 'postgres://' + config.user + ':' + config.password + '@' + c
     '/postgres';
 var conStringPost = 'postgres://' + config.user + ':' + config.password + '@' + config.host + 
     '/' + config.database;
+	
+var text = 'Hello world from \n\n' + 'Node js server';
+
+var mailOptions = {
+    from: 'beer.route2016@gmail.com', // sender address
+    to: '', // list of receivers
+    subject: 'Email Example', // Subject line
+    text: text //, // plaintext body
+    // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+};
 
 //pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
 //    if (err)
@@ -190,6 +205,22 @@ var response = [];
 		response.push(row);
 		});
 		q.on('end', function(result){
+		console.log("Sending Message");
+		var transporter = nodemailer.createTransport({
+        	service: 'Gmail',
+       		auth: {user: 'beer.route2016@gmail.com', // Your email id
+            	pass: 'Beer_Craft2016'} // Your password
+    		});
+		mailOptions.to = req.query.email
+		transporter.sendMail(mailOptions, function(error, info){
+    		if(error){
+       		console.log(error);
+        	//res.json({yo: 'error'});
+    		}else{
+        	console.log('Message sent: ' + info.response);
+        	//res.json({yo: info.response});
+    		};
+		});
 		res.json(response);
 		});
 	    });
