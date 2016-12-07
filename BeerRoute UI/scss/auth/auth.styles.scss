@@ -83,6 +83,41 @@
 				  }
 				}
 			}
+
+			.item-input-user
+			{
+				height: $auth-inputs-height;
+				padding: 15px 20px;
+				margin-bottom: 13px;
+				border-radius: $auth-inputs-height/2;
+				color: $auth-color;
+				text-align: center;
+
+
+				@include item-style($auth-input-bg, $auth-input-border, $auth-input-text);
+
+				&:last-child
+				{
+					margin-bottom: 0px;
+				}
+
+				input
+				{	width:20px;
+					height: initial;
+					color: $auth-color;
+					/*display: none;*/
+				}
+
+				label
+				{	
+					font-family:Arial;
+    				font-size:14px;
+    				color:$auth-placeholder-color;
+
+				}
+			}
+
+
 		}
 	}
 

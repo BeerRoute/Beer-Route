@@ -1,10 +1,16 @@
 .signup-view
 {
-	.facebook-button
+	.logo-container
 	{
-		margin-top: 6vh;
+		
+		width: 85% auto;
+		margin-top:30px;
+		.logo-image
+		{
+			width: 100%;
+			vertical-align: middle;
+		}
 	}
-
 	.form-divider
 	{
 		margin: 7vh 0px;

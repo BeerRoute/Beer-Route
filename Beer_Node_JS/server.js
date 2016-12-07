@@ -192,7 +192,7 @@ var response = [];
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("INSERT INTO users (username, email,password) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"')", function(err){
+            var q = clientOrg.query("INSERT INTO users (username, email,password, isbusinessowner) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"',"+req.query.isbusinessowner+")", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -345,6 +345,36 @@ var response = [];
     });
 //});
 ///////////////////////////////////
+
+//#############################################################
+app.get('/ClassDemo3Srv/addReview', function(req,res){
+console.log("POST Add Review");
+console.log(req.body);
+var exists = false;
+var response = [];
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            
+            var q = clientOrg.query("INSERT INTO businessrating (businessid, rating, comment, rdate,  username) VALUES ("+req.query.id+",'"+req.query.rating+"','"+req.query.comment+"','"+req.query.rdate+"','"+req.query.username+"')", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+            //clientOrg.end();
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		res.json(response);
+		});
+	    });
+        //});
+    });
+
+//#############################################################
 
 app.get('/ClassDemo3Srv/getwishlist', function(req,res){
 console.log("GET WISH QUERY");
