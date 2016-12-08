@@ -15,7 +15,7 @@ angular.module('your_app_name.account.controllers', [])
   $scope.data.selected_card = user[0].creditcard; 
   $scope.data.card_exp = user[0].ccexp;
   $scope.data.businessid = user[0].businessid;  
-  //$scope.user_bar = BarOwner;
+  $scope.user_bar = $rootScope.owner;
 
   console.log($scope.data.selected_card);
   console.log($scope.data.card_exp);
@@ -65,7 +65,7 @@ template: JSON.stringify(s)});
   });
 
   $scope.isBarOwner = function(){
-    return ($scope.user_bar == 1);
+    return ($scope.user_bar == true);
   }
 
   $scope.openAddressesPopover = function($event){

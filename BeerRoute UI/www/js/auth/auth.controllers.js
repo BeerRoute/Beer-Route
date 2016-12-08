@@ -32,7 +32,9 @@ angular.module('your_app_name.auth.controllers', [])
 			$rootScope.email = r.email;
 			$rootScope.region = r.region;
 			$rootScope.picture = r.picture;
+			$rootScope.owner = r.isbusinessowner;
 			$state.go('main.app.account');}
+
 			else{
 			$ionicPopup.alert(
 			{title: 'Login failed',			
@@ -107,7 +109,13 @@ angular.module('your_app_name.auth.controllers', [])
 		$rootScope.email = $scope.user.email;
 		$rootScope.isbusinessowner = r.isbusinessowner;
 												});
-		$state.go('main.app.account');}
+		if(r.isbusinessowner == false){
+			$state.go('main.app.account');
+		}
+		else{
+			$state.go('intro.business-info');
+		}
+		}
 		else{
 		$ionicPopup.alert(
 		{title: 'Account creation failed',			
@@ -180,6 +188,78 @@ angular.module('your_app_name.auth.controllers', [])
 		$scope.privacy_policy_modal.show();
 	};
 })
+
+//********************************************
+.controller('BusinessInfoCtrl', function($scope, $state, $ionicLoading, $timeout, $ionicModal, $http, $ionicPopup,$rootScope) {
+	$scope.bus = {};
+	//quitar la comillas y sustituirlo por los parametros de la funcion
+	$scope.bus.businessname = "";
+	$scope.bus.address = "";
+	$scope.bus.region = "";
+	$scope.bus.description = "";
+	$scope.bus.path = "";
+
+	$scope.bus.username = "";
+	$scope.bus.creditcard = "";
+	$scope.bus.ccexp = "";
+	$scope.bus.businessid = ""; //Este ahi que hacer otro query para sacarlo de la tabla business
+								//antes de hacer insert a este bloque de info a la tabla businessowner
+
+	$scope.busInfo = function(){
+		console.log("getting business info from user");
+
+		//$ionicLoading.show({
+      	//	template: 'Creating account...'
+    	//	});		
+			
+		var xhr = new XMLHttpRequest({mozSystem: true});
+
+		$http.get("http://localhost:3412/ClassDemo3Srv/businessInfo",{params: {businessname: $scope.bus.businessname, address: $scope.bus.address, region:$scope.bus.region, description:$scope.bus.description}},xhr).success(function(data){
+	    var r = data;
+	    $ionicPopup.alert(
+	    {title: JSON.stringify('success'),
+	    template: r.Message});
+	    //console.log(r[0]);
+	    //console.log(r[1]);
+	    })
+	    .error(function(data,status){
+	    var d = data;
+	    var s = status;
+	    console.log('Error');
+	    $ionicPopup.alert(
+	    {title: JSON.stringify(d),
+	    template: JSON.stringify('Error')});
+	    });
+
+	    //FALTA UN QUERY para businessid!!!!!!!! 
+
+
+	    $http.get("http://localhost:3412/ClassDemo3Srv/businessownerInfo",{params: {username:$scope.bus.username, creditcard:$scope.bus.creditcard, ccexp:$scope.bus.ccexp, businessid: $scope.bus.businessid}},xhr).success(function(data2){
+	    var r = data2;
+	    $ionicPopup.alert(
+	    {title: JSON.stringify('success'),
+	    template: r.Message});
+	    //console.log(r[0]);
+	    //console.log(r[1]);
+	    })
+	    .error(function(data2,status2){
+	    var d2 = data2;
+	    var s2 = status2;
+	    console.log('Error');
+	    $ionicPopup.alert(
+	    {title: JSON.stringify(d2),
+	    template: JSON.stringify('Error')});
+	    });		
+
+		$state.go('main.app.feed.deals');
+	};
+	
+	
+})
+
+//********************************************
+
+
 
 .controller('ForgotPasswordCtrl', function($scope, $state, $ionicLoading, $timeout) {
 	$scope.user = {};
