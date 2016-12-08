@@ -31,21 +31,23 @@
         </label>
       </div>
     </div>
-    <h3 class="account-sub-title">Default Shipping Address</h3>
-    <div class="address-chooser" ng-click="openAddressesPopover($event)">
+    <h3 class="account-sub-title" ng-show="isBarOwner()">Business Address</h3>
+    <div class="address-chooser" ng-show="isBarOwner()" ng-click="openAddressesPopover($event)">
       <button class="button button-block icon-right addresses-popover-button" ng-class="{'ion-chevron-up': addresses_popover.isShown(), 'ion-chevron-down' : !addresses_popover.isShown()}">
         {{data.selected_address.street || 'Select address'}}
       </button>
     </div>
     <div ng-show="isBarOwner()">    
-    <h3 class="account-sub-title">Default Credit Card</h3>
+    <h3 class="account-sub-title">Credit Card</h3>
     <div class="card-chooser" ng-click="openCardsPopover($event)">
       <button class="button button-block icon-right cards-popover-button" ng-class="{'ion-chevron-up': addresses_popover.isShown(), 'ion-chevron-down' : !addresses_popover.isShown()}">
         {{data.selected_card.number || 'Select Credit Card'}}
       </button>
     </div>
+	</div>
+	
      <button class="button button-block edit-button" ui-sref='main.app.account.profile.edit'>Edit Profile</button>
-    </div>
+    
 
 
 
@@ -82,7 +84,7 @@
           </li-->
 
 
-          <li>  <button class= "button button-block test-button" ng-click="test()"> Test Button</button>
+          <li>  <button class= "button button-block test-button" ng-click="showConfirm()">Make Payment</button>
           </li>
 
         </ul>

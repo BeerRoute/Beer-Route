@@ -13,10 +13,10 @@ angular.module('your_app_name.account.controllers', [])
   //console.log("Printing Redit card number: " + user.creditcard);
 
   //$scope.data.selected_card = user[0].creditcard; 
-  $scope.data.selected_card = $rootScope.creditcard;
+  $scope.data.selected_card = user[0].creditcard;
 
-  $scope.data.card_exp = $rootScope.ccexp;
-  $scope.data.businessid = $rootScope.businessid;  
+  $scope.data.card_exp = user[0].ccexp;
+  $scope.data.businessid = user[0].businessid;  
   $scope.user_bar = $rootScope.owner;
 
   console.log($scope.data.selected_card);
@@ -33,6 +33,7 @@ angular.module('your_app_name.account.controllers', [])
   $scope.notifications = {};
   $scope.notifications.promotions = false;
   $scope.notifications.shipment_updates = true;
+  $scope.ownerid = user[0].ownerid;
   
   $scope.test = function(){
 var xhr = new XMLHttpRequest({mozSystem: true});
@@ -214,6 +215,34 @@ template: JSON.stringify(s)});
       else {}
     });
   };
+  
+    $scope.showConfirm = function() {
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Pay Membership fee',
+     template: 'Are you sure you want to pay the $15.00 membership fee with your current credit card?'
+   });
+
+   confirmPopup.then(function(res) {
+     if(res) {
+       $http.get("http://localhost:3412/ClassDemo3Srv/makePayment",{params: {ownerid: $scope.ownerid, creditcard: $scope.data.selected_card, email: $scope.user.email }},xhr).success(function(data){
+       $ionicPopup.alert(
+       {title: 'Transaction is a success',
+       template: 'Thank you for using Beer Route'});
+       })
+    .error(function(data,status){
+    var d = data;
+    var s = status;
+    console.log('Error');
+    $ionicPopup.alert(
+    {title: JSON.stringify(d),
+    template: JSON.stringify('Error')});
+
+});
+     } else {
+       console.log('You are not sure');
+     }
+   });
+ };
 })
 
 .controller('OrdersCtrl', function($scope, orders, OrderService) {
