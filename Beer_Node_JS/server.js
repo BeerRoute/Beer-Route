@@ -54,8 +54,8 @@ app.get('/ClassDemo3Srv/ok', function(req,res){
 // will be read if the config is not present
 var config = {
   user: 'postgres', //env var: PGUSER
-  database: 'LastestBeerRoute', //env var: PGDATABASE
-  password: 'Miflaquis15', //env var: PGPASSWORD
+  database: 'BeerRoute_1', //env var: PGDATABASE
+  password: '', //env var: PGPASSWORD
   host: 'localhost', // Server hosting the postgres database
   port: 5432, //env var: PGPORT
   max: 10, // max number of clients in the pool

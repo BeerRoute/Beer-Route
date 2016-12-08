@@ -12,9 +12,11 @@ angular.module('your_app_name.account.controllers', [])
 
   //console.log("Printing Redit card number: " + user.creditcard);
 
-  $scope.data.selected_card = user[0].creditcard; 
-  $scope.data.card_exp = user[0].ccexp;
-  $scope.data.businessid = user[0].businessid;  
+  //$scope.data.selected_card = user[0].creditcard; 
+  $scope.data.selected_card = $rootScope.creditcard;
+
+  $scope.data.card_exp = $rootScope.ccexp;
+  $scope.data.businessid = $rootScope.businessid;  
   $scope.user_bar = $rootScope.owner;
 
   console.log($scope.data.selected_card);

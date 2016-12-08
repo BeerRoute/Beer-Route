@@ -10,27 +10,36 @@
         <form name="signup_form" class="form-container" novalidate>
           <div class="input-list list list-inset">
             <label class="item item-input">
-              <input type="text" placeholder="name" name="name" ng-model="user.name" required>
+              <input type="text" placeholder="businessname" name="bussname" ng-model="bus.businessname" required>
             </label>
             <label class="item item-input">
-              <input type="text" placeholder="email" name="email" ng-model="user.email" required>
+              <input type="text" placeholder="description" name="description" ng-model="bus.description" required>
             </label>
-            <label class="item item-input" show-hide-container>
-              <input type="password" placeholder="password" name="password" ng-model="user.password" required show-hide-input>
+            <label class="item item-input">
+              <input type="text" placeholder="address" name="address" ng-model="bus.address" required>
             </label>
              <label class="item item-input-user">
-              <input type="radio" id="r1" name="user.type" ng-model="user.type" value="false"/>
-                <label for="r1">regular user</label>
+              <input type="radio" id="r1" name="business.region" ng-model="bus.region" value="false"/>
+                <label for="r1">oeste</label>
 
-              <input type="radio" id="r2" name="user.type" ng-model="user.type" value="true"/>
-                <label for="r2">business user</label>
+              <input type="radio" id="r2" name="business.region" ng-model="bus.region" value="true"/>
+                <label for="r2">metro</label>
+            </label>
+
+                <label class="item item-input" >
+              <input type="text" placeholder="credit card" name="creditcard" ng-model="bus.creditcard" required>
+            </label>
+
+
+            <label class="item item-input" >
+              <input type="text" placeholder="expiration date" name="expdate" ng-model="bus.ccexp" required>
             </label>
           </div>
-          <!--p ng-show="error" class="message error">{{error}}</p>
-          <button type="submit" class="button button-block auth-action-button" ng-click="doSignUp()" ng-disabled="signup_form.$invalid">
-            Sign up
+          <p ng-show="error" class="message error">{{error}}</p>
+          <button type="submit" class="button button-block auth-action-button" ng-click="busInfo()" ng-disabled="signup_form.$invalid">
+            Save Info
           </button>
-        </form-->
+        </form>
         <!--div class="alternative-actions">
           <a class="action-link button button-small button-clear" ng-click="showTerms()">Terms</a>
           <a class="action-link button button-small button-clear" ng-click="showPrivacyPolicy()">Privacy policy</a>

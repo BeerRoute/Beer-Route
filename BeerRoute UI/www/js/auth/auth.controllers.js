@@ -2,6 +2,7 @@ angular.module('your_app_name.auth.controllers', [])
 
 .controller('LoginCtrl', function($scope, $state, $ionicLoading, $timeout, $http, $ionicPopup, $rootScope) {
 	$scope.user = {};
+	$scope.business = {};
 
 	$scope.user.email = "";
 	$scope.user.password = "";
@@ -83,6 +84,7 @@ angular.module('your_app_name.auth.controllers', [])
 	$scope.user.name = "";
 	$scope.user.email = "";
 	$scope.user.password = "";
+	$scope.user.type="";
 
 	$scope.doSignUp = function(){
 		console.log("doing sign up");
@@ -97,7 +99,7 @@ angular.module('your_app_name.auth.controllers', [])
 		var xhr = new XMLHttpRequest({mozSystem: true});
 		$http.get("http://localhost:3412/ClassDemo3Srv/signup",{params: {username: $scope.user.name, email: $scope.user.email, password: $scope.user.password}},xhr).success(function(data){
 		console.log("Query success");	
-		console.log("Is Business Owner:"+$scope.user.type)	
+		console.log("Is Business Owner:"+$scope.user.type);	
 		var r = data;
 		$ionicPopup.alert(
 		{title: JSON.stringify(r),
@@ -107,14 +109,26 @@ angular.module('your_app_name.auth.controllers', [])
 		$rootScope.username = $scope.user.name;
 		$rootScope.password = $scope.user.password;
 		$rootScope.email = $scope.user.email;
-		$rootScope.isbusinessowner = r.isbusinessowner;
-												});
-		if(r.isbusinessowner == false){
-			$state.go('main.app.account');
+		$rootScope.isbusinessowner = $scope.user.type;
+		$rootScope.owner=$scope.user.type;
+		console.log("Is business owner"+$scope.user.type);
+		console.log("Is business owner"+$rootScope.isbusinessowner);
+
+		if($scope.user.type){
+			$state.go('intro.business-info');
+			console.log("To business View");
 		}
 		else{
-			$state.go('intro.business-info');
+			$state.go('main.app.account.profile');
+			console.log("To regular user View");
+			console.log("Is business owner"+$scope.user.type);
+			
 		}
+
+
+
+
+												});
 		}
 		else{
 		$ionicPopup.alert(
@@ -199,7 +213,7 @@ angular.module('your_app_name.auth.controllers', [])
 	$scope.bus.description = "";
 	$scope.bus.path = "";
 
-	$scope.bus.username = "";
+	$scope.bus.username = $rootScope.username;
 	$scope.bus.creditcard = "";
 	$scope.bus.ccexp = "";
 	$scope.bus.businessid = ""; //Este ahi que hacer otro query para sacarlo de la tabla business
@@ -221,6 +235,15 @@ angular.module('your_app_name.auth.controllers', [])
 	    template: r.Message});
 	    //console.log(r[0]);
 	    //console.log(r[1]);
+	    
+	    $rootScope.business.businessname=$scope.bus.businessname;
+		$rootScope.business.address	=	 $scope.bus.address;
+		$rootScope.business.region=		 $scope.bus.region;
+		$rootScope.business.description= $scope.bus.description;
+		$rootScope.business.path = 		 $scope.bus.path;//????
+		$rootScope.creditcard=	 		$scope.bus.creditcard;
+		$rootScope.ccexp=		 		$scope.bus.ccexp;
+		$rootScope.businessid=	 $scope.bus.businessid;//????
 	    })
 	    .error(function(data,status){
 	    var d = data;
