@@ -31,21 +31,36 @@
         </label>
       </div>
     </div>
+<<<<<<< HEAD
+    <h3 class="account-sub-title" ng-show="isBarOwner()">Business Address</h3>
+    <div class="address-chooser" ng-show="isBarOwner()" ng-click="openAddressesPopover($event)">
+=======
     <div ng-show="isBarOwner()"> 
     <h3 class="account-sub-title">Default Shipping Address</h3>
     <div class="address-chooser" ng-click="openAddressesPopover($event)">
+>>>>>>> 20769d1358d65a457048a47161136eb64a518b93
       <button class="button button-block icon-right addresses-popover-button" ng-class="{'ion-chevron-up': addresses_popover.isShown(), 'ion-chevron-down' : !addresses_popover.isShown()}">
         {{data.selected_address.street || 'Select address'}}
       </button>
     </div>
+<<<<<<< HEAD
+    <div ng-show="isBarOwner()">    
+    <h3 class="account-sub-title">Credit Card</h3>
+=======
        
     <h3 class="account-sub-title">Default Credit Card</h3>
+>>>>>>> 20769d1358d65a457048a47161136eb64a518b93
     <div class="card-chooser" ng-click="openCardsPopover($event)">
       <button class="button button-block icon-right cards-popover-button" ng-class="{'ion-chevron-up': addresses_popover.isShown(), 'ion-chevron-down' : !addresses_popover.isShown()}">
         {{data.selected_card.number || 'Select Credit Card'}}
       </button>
     </div>
+<<<<<<< HEAD
+	</div>
+	
+=======
     </div>
+>>>>>>> 20769d1358d65a457048a47161136eb64a518b93
      <button class="button button-block edit-button" ui-sref='main.app.account.profile.edit'>Edit Profile</button>
     
 
@@ -83,8 +98,13 @@
             </label>
           </li-->
 
+<<<<<<< HEAD
+
+          <li>  <button class= "button button-block test-button" ng-click="showConfirm()">Make Payment</button>
+=======
           <div ng-show="isBarOwner()">
           <li>  <button class= "button button-block test-button" ng-click="test()"> Test Button</button>
+>>>>>>> 20769d1358d65a457048a47161136eb64a518b93
           </li>
           </div>
 
