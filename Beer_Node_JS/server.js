@@ -54,8 +54,8 @@ app.get('/ClassDemo3Srv/ok', function(req,res){
 // will be read if the config is not present
 var config = {
   user: 'postgres', //env var: PGUSER
-  database: 'BeerRoute_1', //env var: PGDATABASE
-  password: '', //env var: PGPASSWORD
+  database: 'LastestBeerRoute', //env var: PGDATABASE
+  password: 'Miflaquis15', //env var: PGPASSWORD
   host: 'localhost', // Server hosting the postgres database
   port: 5432, //env var: PGPORT
   max: 10, // max number of clients in the pool
@@ -229,9 +229,63 @@ var response = [];
         //});
     });
 
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+app.get('/ClassDemo3Srv/businessInfo', function(req,res){
+console.log("POST business Info");
+console.log(req.body);
+var exists = false;
+var response = [];
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            
+            var q = clientOrg.query("INSERT INTO business (businessname, address, region, description) VALUES ('"+req.query.businessname+"','"+req.query.address+"','"+req.query.region+"','"+req.query.description+"')", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+            //clientOrg.end();
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		res.json(response);
+		});
+	    });
+        //});
+    });
 
+//*******************************************************************
+app.get('/ClassDemo3Srv/businessownerInfo', function(req,res){
+console.log("POST business owner Info");
+console.log(req.body);
+var exists = false;
+var response = [];
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            
+            var q = clientOrg.query("INSERT INTO businessowner (username, creditcard, ccexp, businessid) VALUES ('"+req.query.username+"','"+req.query.creditcard+"','"+req.query.ccexp+"','"+req.query.businessid+"')", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+            //clientOrg.end();
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		res.json(response);
+		});
+	    });
+        //});
+    });
 
-
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 

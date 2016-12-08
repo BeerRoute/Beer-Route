@@ -1,7 +1,13 @@
 // Express is the web framework 
 var express = require('express');
+var nodemailer = require('nodemailer');
 var pg = require('pg');
 var app = express();
+var router = express.Router();
+var bodyParser = require('body-parser');
+
+var transporter;
+
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -16,12 +22,12 @@ var allowCrossDomain = function(req, res, next) {
     }
 };
 
-app.configure(function () {
-  app.use(allowCrossDomain);
-});
+var env = process.env.NODE_ENV || 'development';
+if ('development' == env) {
+   app.use(allowCrossDomain);
+}
 
-
-app.use(express.bodyParser());
+app.use(bodyParser.json());
 
 
 // REST Operations
@@ -48,8 +54,8 @@ app.get('/ClassDemo3Srv/ok', function(req,res){
 // will be read if the config is not present
 var config = {
   user: 'postgres', //env var: PGUSER
-  database: 'BeerRoute_1', //env var: PGDATABASE
-  password: '', //env var: PGPASSWORD
+  database: 'LastestBeerRoute', //env var: PGDATABASE
+  password: 'Miflaquis15', //env var: PGPASSWORD
   host: 'localhost', // Server hosting the postgres database
   port: 5432, //env var: PGPORT
   max: 10, // max number of clients in the pool
@@ -60,6 +66,16 @@ var conStringPri = 'postgres://' + config.user + ':' + config.password + '@' + c
     '/postgres';
 var conStringPost = 'postgres://' + config.user + ':' + config.password + '@' + config.host + 
     '/' + config.database;
+	
+var text = 'Hello world from \n\n' + 'Node js server';
+
+var mailOptions = {
+    from: 'beer.route2016@gmail.com', // sender address
+    to: '', // list of receivers
+    subject: 'Email Example', // Subject line
+    text: text //, // plaintext body
+    // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+};
 
 //pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
 //    if (err)
@@ -98,7 +114,7 @@ var response = {Exists : exists,
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("SELECT username, email, password, picture FROM users", function(err){
+            var q = clientOrg.query("SELECT username, email, password, picture, isbusinessowner  FROM users", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -117,6 +133,7 @@ var response = {Exists : exists,
 			//response.region = row.region;
 			response.password = row.password;
 			response.picture = row.picture;
+			response.isbusinessowner = row.isbusinessowner;
 			};
 		});
 		q.on('end', function(result){
@@ -177,7 +194,51 @@ var response = [];
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("INSERT INTO users (username, email,password, isbusinessowner) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"',"+req.query.isbusinessowner, function(err){
+            var q = clientOrg.query("INSERT INTO users (username, email,password, isbusinessowner) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"',"+req.query.isbusinessowner+")", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+            //clientOrg.end();
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		console.log("Sending Message");
+		var transporter = nodemailer.createTransport({
+        	service: 'Gmail',
+       		auth: {user: 'beer.route2016@gmail.com', // Your email id
+            	pass: 'Beer_Craft2016'} // Your password
+    		});
+		mailOptions.to = req.query.email
+		transporter.sendMail(mailOptions, function(error, info){
+    		if(error){
+       		console.log(error);
+        	//res.json({yo: 'error'});
+    		}else{
+        	console.log('Message sent: ' + info.response);
+        	//res.json({yo: info.response});
+    		};
+		});
+		res.json(response);
+		});
+	    });
+        //});
+    });
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+app.get('/ClassDemo3Srv/businessInfo', function(req,res){
+console.log("POST business Info");
+console.log(req.body);
+var exists = false;
+var response = [];
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            
+            var q = clientOrg.query("INSERT INTO business (businessname, address, region, description) VALUES ('"+req.query.businessname+"','"+req.query.address+"','"+req.query.region+"','"+req.query.description+"')", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -196,9 +257,35 @@ var response = [];
         //});
     });
 
+//*******************************************************************
+app.get('/ClassDemo3Srv/businessownerInfo', function(req,res){
+console.log("POST business owner Info");
+console.log(req.body);
+var exists = false;
+var response = [];
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            
+            var q = clientOrg.query("INSERT INTO businessowner (username, creditcard, ccexp, businessid) VALUES ('"+req.query.username+"','"+req.query.creditcard+"','"+req.query.ccexp+"','"+req.query.businessid+"')", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+            //clientOrg.end();
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		res.json(response);
+		});
+	    });
+        //});
+    });
 
-
-
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -605,7 +692,7 @@ response.products = [];
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("SELECT path, newsfeed.description, businessname, business.businessid, event_id, event_name FROM newsfeed, business WHERE newsfeed.businessid=business.businessid", function(err){
+            var q = clientOrg.query("SELECT path, newsfeed.description, businessname, business.businessid, event_id, event_name FROM newsfeed, business WHERE newsfeed.businessid=business.businessid ORDER BY event_id desc", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);

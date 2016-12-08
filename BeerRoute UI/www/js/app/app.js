@@ -167,6 +167,16 @@ angular.module('your_app_name', [
           }
         }
       })
+      //New Business Info Form State
+      .state('intro.business-info', {
+        url: '/business-info',
+        views: {
+          'intro-view@intro': {
+            templateUrl: 'views/auth/BusinessInfoForm.html',
+            controller: 'BusinessInfoCtrl'
+          }
+        }
+      })
 
       .state('intro.auth-forgot-password', {
         url: '/forgot-password',
