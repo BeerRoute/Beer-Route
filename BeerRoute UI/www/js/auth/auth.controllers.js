@@ -286,14 +286,13 @@ angular.module('your_app_name.auth.controllers', [])
 	    //console.log(r[0]);
 	    //console.log(r[1]);
 	    
-	    $rootScope.business.businessname=$scope.bus.businessname;
-		$rootScope.business.address	=	 $scope.bus.address;
-		$rootScope.business.region=		 $scope.bus.region;
-		$rootScope.business.description= $scope.bus.description;
-		$rootScope.business.path = 		 $scope.bus.path;//????
-		$rootScope.creditcard=	 		$scope.bus.creditcard;
-		$rootScope.ccexp=		 		$scope.bus.ccexp;
-		$rootScope.businessid=	 $scope.bus.businessid;//????
+	    $rootScope.businessname = $scope.bus.businessname;
+		$rootScope.address		= $scope.bus.address;
+		$rootScope.region		= $scope.bus.region;
+		$rootScope.description  = $scope.bus.description;
+		$rootScope.path 		= $scope.bus.path;//????
+		$rootScope.creditcard   = $scope.bus.creditcard;
+		$rootScope.ccexp		= $scope.bus.ccexp;
 	    })
 	    .error(function(data,status){
 	    var d = data;
@@ -304,13 +303,33 @@ angular.module('your_app_name.auth.controllers', [])
 	    template: JSON.stringify('Error')});
 	    });
 
+
+	    //Query Get B ID
+	    $http.get("http://localhost:3412/ClassDemo3Srv/getbusinessID",{params: {businessname: $rootScope.businessname}},xhr).success(function(data3){
+	    var bID = data3;
+	    $ionicPopup.alert(
+	    {title: JSON.stringify('Business Owner Info Success'),
+	    template: bID.Message});
+	    $rootScope.businessid=bID.businessid;
+	    //console.log(r[0]);
+	    //console.log(r[1]);
+	    })
+	    .error(function(data3,status3){
+	    var d3 = data3;
+	    var s3 = status3;
+	    console.log('Error');
+	    $ionicPopup.alert(
+	    {title: JSON.stringify(d3),
+	    template: JSON.stringify('Error')});
+	    });	
+
 	    //FALTA UN QUERY para businessid!!!!!!!! 
 
-
-	    $http.get("http://localhost:3412/ClassDemo3Srv/businessownerInfo",{params: {username:$scope.bus.username, creditcard:$scope.bus.creditcard, ccexp:$scope.bus.ccexp, businessid: $scope.bus.businessid}},xhr).success(function(data2){
+	    console.log("Second Query Should Start");
+	    $http.get("http://localhost:3412/ClassDemo3Srv/businessownerInfo",{params: {username:$rootScope.username, creditcard:$rootScope.creditcard, ccexp:$rootScope.ccexp, businessid: $rootScope.businessid}},xhr).success(function(data2){
 	    var r = data2;
 	    $ionicPopup.alert(
-	    {title: JSON.stringify('success'),
+	    {title: JSON.stringify('Business Owner Info Success'),
 	    template: r.Message});
 	    //console.log(r[0]);
 	    //console.log(r[1]);
@@ -323,6 +342,7 @@ angular.module('your_app_name.auth.controllers', [])
 	    {title: JSON.stringify(d2),
 	    template: JSON.stringify('Error')});
 	    });		
+	     console.log("Second Query Should End");
 
 	    $scope.completeReg();
 		//$state.go('main.app.feed.deals');
