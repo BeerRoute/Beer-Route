@@ -85,6 +85,29 @@ angular.module('your_app_name.auth.controllers', [])
 	$scope.user.email = "";
 	$scope.user.password = "";
 	$scope.user.type="";
+	var fun = this;
+
+	var newPopup;
+	this.completeReg = function(){
+		newPopup = $ionicPopup.show({
+			cssClass: 'popup-outer food-review-view',
+			templateUrl: 'views/auth/completeReg.html',
+			controller: 'SignupCtrl',
+			//scope: angular.extend($scope, {})
+			title: 'Registration',
+			scope: $scope,
+			buttons: [
+				{ text: 'Close', type: 'close-popup'}
+			]
+		})
+		
+	}
+
+	$scope.Closecomplete = function(){
+		newPopup.close();
+		$state.go('intro.walkthrough-welcome');
+	}
+
 
 	$scope.doSignUp = function(){
 		console.log("doing sign up");
@@ -114,12 +137,13 @@ angular.module('your_app_name.auth.controllers', [])
 		console.log("Is business owner"+$scope.user.type);
 		console.log("Is business owner"+$rootScope.isbusinessowner);
 
-		if($scope.user.type){
+		if($scope.user.type === "true"){
 			$state.go('intro.business-info');
 			console.log("To business View");
 		}
 		else{
-			$state.go('main.app.account.profile');
+			//$state.go('main.app.account.profile');
+			fun.completeReg();
 			console.log("To regular user View");
 			console.log("Is business owner"+$scope.user.type);
 			
@@ -146,6 +170,9 @@ angular.module('your_app_name.auth.controllers', [])
 
 		$ionicLoading.hide();
 
+
+
+
 		// Simulate login OK
 		// $state.go('main.app.feed.fashion');
       		// $ionicLoading.hide();
@@ -154,6 +181,8 @@ angular.module('your_app_name.auth.controllers', [])
 		//$scope.error = "This is an error message";
 		//$ionicLoading.hide();
 		}, 800);
+
+		
 	};
 	//END doSignup()
 
@@ -218,6 +247,27 @@ angular.module('your_app_name.auth.controllers', [])
 	$scope.bus.ccexp = "";
 	$scope.bus.businessid = ""; //Este ahi que hacer otro query para sacarlo de la tabla business
 								//antes de hacer insert a este bloque de info a la tabla businessowner
+	var newPopup;
+	$scope.completeReg = function(){
+		newPopup = $ionicPopup.show({
+			cssClass: 'popup-outer food-review-view',
+			templateUrl: 'views/auth/completeReg.html',
+			controller: 'BusinessInfoCtrl',
+			//scope: angular.extend($scope, {})
+			title: 'Registration',
+			scope: $scope,
+			buttons: [
+				{ text: 'Close', type: 'close-popup'}
+			]
+		})
+		//$state.go('intro.walkthrough-welcome');
+	}
+
+	$scope.Closecomplete = function(){
+		newPopup.close();
+		$state.go('intro.walkthrough-welcome');
+	}
+	
 
 	$scope.busInfo = function(){
 		console.log("getting business info from user");
@@ -274,7 +324,8 @@ angular.module('your_app_name.auth.controllers', [])
 	    template: JSON.stringify('Error')});
 	    });		
 
-		$state.go('main.app.feed.deals');
+	    $scope.completeReg();
+		//$state.go('main.app.feed.deals');
 	};
 	
 	
@@ -306,7 +357,4 @@ angular.module('your_app_name.auth.controllers', [])
 			// $ionicLoading.hide();
 		}, 800);
 	};
-})
-
-
-;
+});
