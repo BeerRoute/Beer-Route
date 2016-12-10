@@ -30,10 +30,28 @@ angular.module('your_app_name.auth.controllers', [])
 			if(r.Exists){
 			$rootScope.username = r.username;
 			$rootScope.password = r.password;
+			console.log(r.password)
 			$rootScope.email = r.email;
 			$rootScope.region = r.region;
 			$rootScope.picture = r.picture;
 			$rootScope.owner = r.isbusinessowner;
+			console.log(r.businessid);
+			console.log(r.isbusinessowner);
+				if($rootScope.owner==true){
+					$rootScope.businessid=r.businessid;
+					console.log($rootScope.businessid);
+					$rootScope.creditcard=r.creditcard;
+					console.log($rootScope.creditcard);
+					$rootScope.ccexp=r.ccexp;
+					console.log($rootScope.ccexp);
+					$rootScope.address=r.address;
+					console.log($rootScope.address);
+					$rootScope.busDescription=r.description;
+					console.log($rootScope.busDescription);
+					$rootScope.ownerid=r.ownerid;
+					console.log($rootScope.ownerid);
+				}
+
 			$state.go('main.app.account');}
 
 			else{

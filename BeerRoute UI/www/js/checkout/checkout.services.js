@@ -1,6 +1,6 @@
 angular.module('your_app_name.checkout.services', [])
 
-.service('CheckoutService', function ($http, $q){
+.service('CheckoutService', function ($http, $q,$rootScope){
 
   this.getUserCreditCards = function(){
     var dfd = $q.defer();
@@ -19,10 +19,10 @@ angular.module('your_app_name.checkout.services', [])
   };
 
   this.saveUserSelectedCard = function(card){
-    window.localStorage.your_app_name_selected_card = JSON.stringify(card);
+    window.localStorage.your_app_name_selected_card = JSON.stringify($rootScope.creditcard);
   }
-  this.saveUserSelectedAddress = function(address){
-    window.localStorage.your_app_name_selected_address = JSON.stringify(address);
+  this.saveUserSelectedAddress = function(){
+    window.localStorage.your_app_name_selected_address = JSON.stringify($rootScope.address);
   }
   this.getUserSelectedCard = function(){
     return JSON.parse(window.localStorage.your_app_name_selected_card || '[]');

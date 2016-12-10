@@ -8,17 +8,18 @@ angular.module('your_app_name.account.controllers', [])
   //$scope.user_shipping_addresses = user.shipping_addresses;
   $scope.data = {};
   //$scope.data.selected_card = user.credit_cards[0];
-  //$scope.data.selected_address = user.shipping_addresses[0];
+  $scope.data.selected_address = $rootScope.address;
 
   //console.log("Printing Redit card number: " + user.creditcard);
 
   //$scope.data.selected_card = user[0].creditcard; 
-  $scope.data.selected_card = user[0].creditcard;
+  $scope.data.selected_card = $rootScope.creditcard;
 
-  $scope.data.card_exp = user[0].ccexp;
-  $scope.data.businessid = user[0].businessid;  
+  $scope.data.card_exp = $rootScope.ccexp;
+  $scope.data.businessid = $rootScope.businessid;  
   $scope.user_bar = $rootScope.owner;
 
+  console.log("En account contollers:")
   console.log($scope.data.selected_card);
   console.log($scope.data.card_exp);
   console.log($scope.data.businessid );
@@ -33,7 +34,7 @@ angular.module('your_app_name.account.controllers', [])
   $scope.notifications = {};
   $scope.notifications.promotions = false;
   $scope.notifications.shipment_updates = true;
-  $scope.ownerid = user[0].ownerid;
+  $scope.ownerid = $rootScope.ownerid;
   
   
   $scope.test = function(){

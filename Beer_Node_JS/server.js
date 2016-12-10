@@ -114,7 +114,7 @@ var response = {Exists : exists,
         // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
-            var q = clientOrg.query("SELECT username, email, password, picture, isbusinessowner  FROM users", function(err){
+            var q = clientOrg.query("SELECT us.username, email, password, picture, creditcard, ccexp, bus.businessid, address, description, isbusinessowner,ownerid FROM users as us full outer join businessowner as bo inner join business as bus on bus.businessid=bo.businessid on bo.username=us.username", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -134,6 +134,14 @@ var response = {Exists : exists,
 			response.password = row.password;
 			response.picture = row.picture;
 			response.isbusinessowner = row.isbusinessowner;
+			if(row.isbusinessowner){
+			response.creditcard=row.creditcard;
+			response.ccexp=row.ccexp;
+			response.businessid=row.businessid;
+			response.address=row.address;	
+			response.description=row.description;
+			respone.ownerid=row.ownerid;		
+			}
 			};
 		});
 		q.on('end', function(result){

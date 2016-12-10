@@ -35,25 +35,24 @@
 
     <div ng-show="isBarOwner()"> 
     <h3 class="account-sub-title">Business Address</h3>
-    <div class="address-chooser" ng-click="openAddressesPopover($event)">
-
+     <button class="button button-block edit-button">{{data.selected_address}}</button>
+    <!--div class="address-chooser" ng-click="openAddressesPopover($event)">
       <button class="button button-block icon-right addresses-popover-button" ng-class="{'ion-chevron-up': addresses_popover.isShown(), 'ion-chevron-down' : !addresses_popover.isShown()}">
         {{data.selected_address.street || 'Select address'}}
       </button>
-    </div>
+    </div-->
 
-    <!--div ng-show="isBarOwner()">    
+    <div ng-show="isBarOwner()">    
     <h3 class="account-sub-title">Credit Card</h3>
+    <button class="button button-block edit-button">{{data.selected_card}}</button>
+    
+    <!--h3 class="account-sub-title">Default Credit Card</h3-->
 
-       
-    <h3 class="account-sub-title">Default Credit Card</h3>
-
-    <div class="card-chooser" ng-click="openCardsPopover($event)">
+    <!--div class="card-chooser" ng-click="openCardsPopover($event)">
       <button class="button button-block icon-right cards-popover-button" ng-class="{'ion-chevron-up': addresses_popover.isShown(), 'ion-chevron-down' : !addresses_popover.isShown()}">
         {{data.selected_card.number || 'Select Credit Card'}}
       </button>
     </div-->
-
 	</div>
 	
 
