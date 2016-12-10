@@ -67,7 +67,7 @@ var conStringPri = 'postgres://' + config.user + ':' + config.password + '@' + c
 var conStringPost = 'postgres://' + config.user + ':' + config.password + '@' + config.host + 
     '/' + config.database;
 	
-var text = 'Hello world from \n\n' + 'Node js server';
+var text = 'Hello. Thank you for creating an account in Beer Route. Please confirm your account by logging in \n\n' + 'http://localhost:8100/#/intro/auth-login';
 
 var mailOptions = {
     from: 'beer.route2016@gmail.com', // sender address
@@ -267,6 +267,37 @@ var response = [];
         pg.connect(conStringPost, function(err, clientOrg, done) {
             console.log(req.query);
             var q = clientOrg.query("INSERT INTO businessowner (username, creditcard, ccexp, businessid) VALUES ('"+req.query.username+"',"+req.query.creditcard+",'"+req.query.ccexp+"',"+req.query.businessid+")", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+            //clientOrg.end();
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		res.json(response);
+		});
+	    });
+        //});
+    });
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+//*******************************************************************
+app.get('/ClassDemo3Srv/getbusinessID', function(req,res){
+console.log("POST business owner Info");
+console.log(req.body);
+var exists = false;
+var response = [];
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            console.log(req.query);
+            var q = clientOrg.query("SELECT businessid FROM business WHERE businessname='"+req.query.businessname+"'", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -500,7 +531,7 @@ var response = [];
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
 		//console.log(req.query.username);
-            var q = clientOrg.query("SELECT username, creditcard, ccexp, businessid FROM businessowner WHERE username='"+req.query.username+"'", function(err){
+            var q = clientOrg.query("SELECT username, creditcard, ccexp, businessid, ownerid FROM businessowner WHERE username='"+req.query.username+"'", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -713,6 +744,50 @@ response.products = [];
         //});
     });
 //});
+
+app.get('/ClassDemo3Srv/makePayment', function(req,res){
+console.log("GET Add Transaction");
+console.log(req.query);
+var exists = false;
+var response = [];
+        // create a new connection to the new db
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            // create the table
+            var q = clientOrg.query("INSERT INTO transaction (ownerid, amount, creditcard) VALUES ('"+req.query.ownerid+"','"+15.00+"','"+req.query.creditcard+"')", function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+            //clientOrg.end();
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		console.log("Sending Message");
+		var transporter = nodemailer.createTransport({
+
+        	service: 'Gmail',
+       		auth: {user: 'beer.route2016@gmail.com', // Your email id
+            	pass: 'Beer_Craft2016'} // Your password
+    		});
+		mailOptions.to = req.query.email;
+		mailOptions.text ='Membership payment successfully processed. Thank you for your continued support of Beer Route';
+		transporter.sendMail(mailOptions, function(error, info){
+    		if(error){
+       		console.log(error);
+        	//res.json({yo: 'error'});
+    		}else{
+        	console.log('Message sent: ' + info.response);
+        	//res.json({yo: info.response});
+    		};
+		});
+		res.json(response);
+		});
+	 });
+});
 
 // Server starts running when listen is called.
 app.listen(process.env.PORT || 3412);

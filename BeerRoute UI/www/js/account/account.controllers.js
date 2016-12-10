@@ -183,6 +183,7 @@ template: JSON.stringify(s)});
   };
 
   $scope.showConfirm = function() {
+  	var xhr = new XMLHttpRequest({mozSystem: true});
    var confirmPopup = $ionicPopup.confirm({
      title: 'Pay Membership fee',
      template: 'Are you sure you want to pay the $15.00 membership fee with your current credit card?'

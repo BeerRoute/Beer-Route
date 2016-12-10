@@ -287,6 +287,8 @@ angular.module('your_app_name.auth.controllers', [])
 	    //console.log(r[1]);
 	    
 	    $rootScope.businessname = $scope.bus.businessname;
+	    console.log("Business Name arriba: "+ $rootScope.businessname);
+	    console.log("Business Name arriba bus: "+ $scope.bus.businessname);
 		$rootScope.address		= $scope.bus.address;
 		$rootScope.region		= $scope.bus.region;
 		$rootScope.description  = $scope.bus.description;
@@ -303,10 +305,20 @@ angular.module('your_app_name.auth.controllers', [])
 	    template: JSON.stringify('Error')});
 	    });
 
+	    $scope.businessID();
 
-	    //Query Get B ID
+	};
+
+	//Get businessID
+	$scope.businessID = function(){
+		var xhr = new XMLHttpRequest({mozSystem: true});
+
+		//Query Get B ID
+	    console.log("Get ID query start")
+	    console.log("Business Name: "+ $rootScope.businessname);
 	    $http.get("http://localhost:3412/ClassDemo3Srv/getbusinessID",{params: {businessname: $rootScope.businessname}},xhr).success(function(data3){
 	    var bID = data3;
+	    console.log(bID);
 	    $ionicPopup.alert(
 	    {title: JSON.stringify('Business Owner Info Success'),
 	    template: bID.Message});
@@ -322,9 +334,17 @@ angular.module('your_app_name.auth.controllers', [])
 	    {title: JSON.stringify(d3),
 	    template: JSON.stringify('Error')});
 	    });	
+	    console.log("End ID query");
 
-	    //FALTA UN QUERY para businessid!!!!!!!! 
+	    $scope.toOwner();
+	}
 
+
+	//Insert to businessowner
+	$scope.toOwner = function(){
+		var xhr = new XMLHttpRequest({mozSystem: true});
+
+		console.log($rootScope.businessid);
 	    console.log("Second Query Should Start");
 	    $http.get("http://localhost:3412/ClassDemo3Srv/businessownerInfo",{params: {username:$rootScope.username, creditcard:$rootScope.creditcard, ccexp:$rootScope.ccexp, businessid: $rootScope.businessid}},xhr).success(function(data2){
 	    var r = data2;
@@ -346,8 +366,7 @@ angular.module('your_app_name.auth.controllers', [])
 
 	    $scope.completeReg();
 		//$state.go('main.app.feed.deals');
-	};
-	
+	}
 	
 })
 
