@@ -77,23 +77,6 @@ var mailOptions = {
     // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
 };
 
-//pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
-//    if (err)
-//        console.log('Error while connecting: ' + err); 
-//    client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
-//        if (err) 
-//            console.log('ignoring the error. DB already exists'); // ignore if the db is there
-//        client.end(); // close the connection
-
-        // create a new connection to the new db
-        //pg.connect(conStringPost, function(err, clientOrg, done) {
-            // create the table
-        //    clientOrg.query('CREATE TABLE IF NOT EXISTS ' + tableName + ' ' +
-        //            '(...some sql...)';
-        //});
-//    });
-//});
-
 app.get('/ClassDemo3Srv/login', function(req,res){
 console.log("GET TEST QUERY");
 console.log(req.query);
@@ -102,24 +85,15 @@ var response = {Exists : exists,
 		username : '',
 		email : '',
 		region : ''};
-//pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
- //   if (err)
-   //     console.log('Error while connecting: ' + err); 
-    //client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
-     //   if (err) 
-       //     console.log('ignoring the error. DB already exists' + err); // ignore if the db is there
-        //client.end(); // close the connection
 
-	
-        // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
-            // create the table
+
             var q = clientOrg.query("SELECT username, email, password, picture, isbusinessowner  FROM users", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end(); 
+ 
 		done();
 		
 	});
@@ -150,24 +124,15 @@ console.log("GET TEST QUERY");
 console.log(req.query);
 var exists = false;
 var response = {Exists : exists};
-//pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
-  //  if (err)
-    //    console.log('Error while connecting: ' + err); 
-    //client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
-    //    if (err) 
-    //        console.log('ignoring the error. DB already exists'); // ignore if the db is there
-      //  client.end(); // close the connection
 
-	
-        // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
-            // create the table
+
             var q = clientOrg.query("SELECT username, email FROM users", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
+
 		done();
 	});
 		console.log('New username: ' + req.query.username);
@@ -182,24 +147,23 @@ var response = {Exists : exists};
 		res.json(response);
 		});
 	    });	//End Connect
-        //});
+
     });//END Get
-//});
+
 //////////////////////////////////////////////////////////////////////////////////
 app.get('/ClassDemo3Srv/addUser', function(req,res){
 console.log("GET Add User");
 console.log(req.query);
 var exists = false;
 var response = [];
-        // create a new connection to the new db
+
         pg.connect(conStringPost, function(err, clientOrg, done) {
-            // create the table
+
             var q = clientOrg.query("INSERT INTO users (username, email,password, isbusinessowner) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"',"+req.query.isbusinessowner+")", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
 		done();
 	});
 		q.on('row', function(row){
@@ -213,20 +177,21 @@ var response = [];
        		auth: {user: 'beer.route2016@gmail.com', // Your email id
             	pass: 'Beer_Craft2016'} // Your password
     		});
+		mailOptions.text = 'Hello. Thank you for creating an account in Beer Route. Please confirm your account by logging in \n\n' + 'http://localhost:8100/#/intro/auth-login';
 		mailOptions.to = req.query.email
 		transporter.sendMail(mailOptions, function(error, info){
     		if(error){
        		console.log(error);
-        	//res.json({yo: 'error'});
+
     		}else{
         	console.log('Message sent: ' + info.response);
-        	//res.json({yo: info.response});
+
     		};
 		});
 		res.json(response);
 		});
 	    });
-        //});
+
     });
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -235,7 +200,6 @@ console.log("POST business Info");
 console.log(req.body);
 var exists = false;
 var response = [];
-        // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             
             var q = clientOrg.query("INSERT INTO business (businessname, address, region, description) VALUES ('"+req.query.businessname+"','"+req.query.address+"','"+req.query.region+"','"+req.query.description+"')", function(err){
@@ -243,7 +207,6 @@ var response = [];
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
 		done();
 	});
 		q.on('row', function(row){
@@ -254,7 +217,6 @@ var response = [];
 		res.json(response);
 		});
 	    });
-        //});
     });
 
 //*******************************************************************
@@ -263,7 +225,7 @@ console.log("POST business owner Info");
 console.log(req.body);
 var exists = false;
 var response = [];
-        // create a new connection to the new db
+
         pg.connect(conStringPost, function(err, clientOrg, done) {
             console.log(req.query);
             var q = clientOrg.query("INSERT INTO businessowner (username, creditcard, ccexp, businessid) VALUES ('"+req.query.username+"',"+req.query.creditcard+",'"+req.query.ccexp+"',"+req.query.businessid+")", function(err){
@@ -271,7 +233,7 @@ var response = [];
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
+
 		done();
 	});
 		q.on('row', function(row){
@@ -282,7 +244,6 @@ var response = [];
 		res.json(response);
 		});
 	    });
-        //});
     });
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -294,7 +255,7 @@ console.log("POST business owner Info");
 console.log(req.body);
 var exists = false;
 var response = [];
-        // create a new connection to the new db
+
         pg.connect(conStringPost, function(err, clientOrg, done) {
             console.log(req.query);
             var q = clientOrg.query("SELECT businessid FROM business WHERE businessname='"+req.query.businessname+"'", function(err){
@@ -302,7 +263,7 @@ var response = [];
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
+
 		done();
 	});
 		q.on('row', function(row){
@@ -313,7 +274,6 @@ var response = [];
 		res.json(response);
 		});
 	    });
-        //});
     });
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -326,24 +286,15 @@ console.log("GET BEER QUERY");
 console.log(req.query);
 var exists = false;
 var response = [];
-//pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
-  //  if (err)
-    //    console.log('Error while connecting: ' + err); 
-    //client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
-    //   if (err) 
-    //       console.log('ignoring the error. DB already exists'); // ignore if the db is there
-      //  client.end(); // close the connection
 
-	
-        // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
-            // create the table
+
             var q = clientOrg.query("SELECT beerid, beername, beerStyle, description, path FROM beer", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
+
 		done();		
 		});
 	
@@ -356,11 +307,9 @@ var response = [];
 		});
 		
 	    });
-	
-	
-        //});
+
     });
-//});
+
 
 
 app.get('/ClassDemo3Srv/wishBeer', function(req,res){
@@ -368,15 +317,15 @@ console.log("Wish Beer");
 console.log(req.query);
 var exists = false;
 var response = [];
-        // create a new connection to the new db
+
         pg.connect(conStringPost, function(err, clientOrg, done) {
-            // create the table
+
             var q = clientOrg.query("INSERT INTO wishlist (username, beerid) VALUES ('"+req.query.username+"',"+req.query.beerid+")", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
+
 		done();
 	});
 		q.on('row', function(row){
@@ -387,11 +336,8 @@ var response = [];
 		res.json(response);
 		});
 	    });
-        //});
+
     });
-
-
-
 
 
 //*************************************************
@@ -400,24 +346,14 @@ console.log("GET BEER REVIEW QUERY");
 console.log(req.query);
 var exists = false;
 var response = [];
-//pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
-  //  if (err)
-    //    console.log('Error while connecting: ' + err); 
-    //client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
-    //    if (err) 
-    //        console.log('ignoring the error. DB already exists'); // ignore if the db is there
-      //  client.end(); // close the connection
 
-	
-        // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
-            // create the table
+
             var q = clientOrg.query("SELECT picture, beerid, rating, comment, rdate, username FROM beer natural inner join beerrating natural inner join users WHERE beerid = " + req.query.id, function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
 		done();
 	});
 		q.on('row', function(row){
@@ -428,9 +364,7 @@ var response = [];
 		res.json(response);
 		});
 	    });
-        //});
     });
-//});
 ///////////////////////////////////
 
 //#############################################################
@@ -439,7 +373,7 @@ console.log("POST Add Review");
 console.log(req.body);
 var exists = false;
 var response = [];
-        // create a new connection to the new db
+
         pg.connect(conStringPost, function(err, clientOrg, done) {
             
             var q = clientOrg.query("INSERT INTO businessrating (businessid, rating, comment, rdate,  username) VALUES ("+req.query.id+",'"+req.query.rating+"','"+req.query.comment+"','"+req.query.rdate+"','"+req.query.username+"')", function(err){
@@ -447,7 +381,7 @@ var response = [];
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
+
 		done();
 	});
 		q.on('row', function(row){
@@ -458,7 +392,6 @@ var response = [];
 		res.json(response);
 		});
 	    });
-        //});
     });
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -468,7 +401,7 @@ console.log("POST Add Beer Review");
 console.log(req.body);
 var exists = false;
 var response = [];
-        // create a new connection to the new db
+
         pg.connect(conStringPost, function(err, clientOrg, done) {
             
             var q = clientOrg.query("INSERT INTO beerrating (beerid, rating, comment, rdate,  username) VALUES ("+req.query.beerid+",'"+req.query.rating+"','"+req.query.comment+"','"+req.query.rdate+"','"+req.query.username+"')", function(err){
@@ -476,7 +409,7 @@ var response = [];
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
+
 		done();
 	});
 		q.on('row', function(row){
@@ -487,7 +420,6 @@ var response = [];
 		res.json(response);
 		});
 	    });
-        //});
     });
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -497,7 +429,7 @@ console.log("POST Add new Feed");
 console.log(req.body);
 var exists = false;
 var response = [];
-        // create a new connection to the new db
+
         pg.connect(conStringPost, function(err, clientOrg, done) {
             
             var q = clientOrg.query("INSERT INTO newsfeed (description, businessid) VALUES ('"+req.query.description+"',"+req.query.businessid+")", function(err){
@@ -505,7 +437,7 @@ var response = [];
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
+
 		done();
 	});
 		q.on('row', function(row){
@@ -516,7 +448,6 @@ var response = [];
 		res.json(response);
 		});
 	    });
-        //});
     });
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -527,10 +458,9 @@ console.log(req.query);
 var exists = false;
 var response = [];
 	
-        // create a new connection to the new db
+
         pg.connect(conStringPost, function(err, clientOrg, done) {
-            // create the table
-		//console.log(req.query.username);
+
             var q = clientOrg.query("SELECT username, creditcard, ccexp, businessid, ownerid FROM businessowner WHERE username='"+req.query.username+"'", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
@@ -557,24 +487,15 @@ console.log("GET WISH QUERY");
 console.log(req.query);
 var exists = false;
 var response = [];
-//pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
-  //  if (err)
-    //    console.log('Error while connecting: ' + err); 
-   // client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
-   //     if (err) 
-   //         console.log('ignoring the error. DB already exists'); // ignore if the db is there
-      //  client.end(); // close the connection
 
-	
-        // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
-            // create the table
+
             var q = clientOrg.query("SELECT beerid, beername, description, path FROM wishlist natural inner join beer natural inner join users WHERE username='"+req.query.username+"'", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
+
 		done();
 	});
 		q.on('row', function(row){
@@ -585,9 +506,7 @@ var response = [];
 		res.json(response);
 		});
 	    });
-        //});
     });
-//});
 
 ///////////////////////////////////
 
@@ -597,16 +516,7 @@ console.log(req.query);
 var exists = false;
 var response = {};
 response.products = [];
-//pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
-  //  if (err)
-    //    console.log('Error while connecting: ' + err); 
-    //client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
-      //  if (err) 
-        //    console.log('ignoring the error. DB already exists'); // ignore if the db is there
-      //  client.end(); // close the connection
 
-	
-        // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
             // create the table
             var q = clientOrg.query("SELECT businessname, address, region, description, path, businessid FROM business", function(err){
@@ -614,7 +524,7 @@ response.products = [];
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
+
 		done();
 });
 		q.on('row', function(row){
@@ -626,34 +536,23 @@ response.products = [];
 		});
 		
 	    });
-	
-        //});
     });
-//});
+
 
 app.get('/ClassDemo3Srv/getbusinessreview', function(req,res){
 console.log("GET BUSINESS REVIEW QUERY");
 console.log(req.query);
 var exists = false;
 var response = [];
-//pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
-  //  if (err)
-    //    console.log('Error while connecting: ' + err); 
-    //client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
-      //  if (err) 
-    //        console.log('ignoring the error. DB already exists'); // ignore if the db is there
-      //  client.end(); // close the connection
 
-	
-        // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
-            // create the table
+
             var q = clientOrg.query("SELECT picture, businessid, ratingid, rdate, comment, username FROM businessrating natural inner join users WHERE businessid = " + req.query.id, function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
+
 		done();
 	});
 		q.on('row', function(row){
@@ -664,33 +563,23 @@ var response = [];
 		res.json(response);
 		});
 	    });
-        //});
     });
-//});
+
 
 app.get('/ClassDemo3Srv/getbeerreview', function(req,res){
 console.log("UNUSED QUERY");
 console.log(req.query);
 var exists = false;
 var response = [];
-//pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
-  //  if (err)
-    //    console.log('Error while connecting: ' + err); 
-    //client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
-    //    if (err) 
-    //        console.log('ignoring the error. DB already exists'); // ignore if the db is there
-      //  client.end(); // close the connection
 
-	
-        // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
-            // create the table
+
             var q = clientOrg.query("SELECT rating, rdate, comment, username FROM beerratng", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
+
 		done();
 	});
 		q.on('row', function(row){
@@ -701,9 +590,9 @@ var response = [];
 		res.json(response);
 		});
 	    });
-        //});
+
     });
-//});
+
 
 app.get('/ClassDemo3Srv/getevents', function(req,res){
 console.log("GET EVENTS QUERY");
@@ -711,24 +600,15 @@ console.log(req.query);
 var exists = false;
 var response = {};
 response.products = [];
-//pg.connect(conStringPri, function(err, client, done) { // connect to postgres db
-  //  if (err)
-    //    console.log('Error while connecting: ' + err); 
-    //client.query('CREATE DATABASE ' + config.database, function(err) { // create user's db
-    //    if (err) 
-    //        console.log('ignoring the error. DB already exists'); // ignore if the db is there
-      //  client.end(); // close the connection
 
-	
-        // create a new connection to the new db
         pg.connect(conStringPost, function(err, clientOrg, done) {
-            // create the table
+
             var q = clientOrg.query("SELECT path, newsfeed.description, businessname, business.businessid, event_id, event_name FROM newsfeed, business WHERE newsfeed.businessid=business.businessid ORDER BY event_id desc", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-           // clientOrg.end();
+
 		done();
 	});
 		q.on('row', function(row){
@@ -740,25 +620,24 @@ response.products = [];
 		});
 		
 	    });
-	
-        //});
+
     });
-//});
+
 
 app.get('/ClassDemo3Srv/makePayment', function(req,res){
 console.log("GET Add Transaction");
 console.log(req.query);
 var exists = false;
 var response = [];
-        // create a new connection to the new db
+
         pg.connect(conStringPost, function(err, clientOrg, done) {
-            // create the table
+
             var q = clientOrg.query("INSERT INTO transaction (ownerid, amount, creditcard) VALUES ('"+req.query.ownerid+"','"+15.00+"','"+req.query.creditcard+"')", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
 	}
-            //clientOrg.end();
+
 		done();
 	});
 		q.on('row', function(row){
@@ -774,14 +653,12 @@ var response = [];
             	pass: 'Beer_Craft2016'} // Your password
     		});
 		mailOptions.to = req.query.email;
-		mailOptions.text ='Membership payment successfully processed. Thank you for your continued support of Beer Route';
+		mailOptions.text = 'Membership payment successfully processed. Thank you for your continued support of Beer Route';
 		transporter.sendMail(mailOptions, function(error, info){
     		if(error){
        		console.log(error);
-        	//res.json({yo: 'error'});
     		}else{
         	console.log('Message sent: ' + info.response);
-        	//res.json({yo: info.response});
     		};
 		});
 		res.json(response);
