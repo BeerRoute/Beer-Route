@@ -1,18 +1,9 @@
 angular.module('your_app_name.account.controllers', [])
 
 .controller('ProfileCtrl', function($scope, user, $ionicPopover, $ionicPopup, $ionicActionSheet, $state, $http, $rootScope) {
-  //$scope.user = user;
   $scope.user = {};
   console.log(user[0]);
-  //$scope.user_credit_cards = user.credit_cards;
-  //$scope.user_shipping_addresses = user.shipping_addresses;
   $scope.data = {};
-  //$scope.data.selected_card = user.credit_cards[0];
-  //$scope.data.selected_address = user.shipping_addresses[0];
-
-  //console.log("Printing Redit card number: " + user.creditcard);
-
-  //$scope.data.selected_card = user[0].creditcard; 
   $scope.data.selected_card = user[0].creditcard;
 
   $scope.data.card_exp = user[0].ccexp;
@@ -34,27 +25,6 @@ angular.module('your_app_name.account.controllers', [])
   $scope.notifications.promotions = false;
   $scope.notifications.shipment_updates = true;
   $scope.ownerid = user[0].ownerid;
-  
-  
-  $scope.test = function(){
-var xhr = new XMLHttpRequest({mozSystem: true});
-
-$http.get("http://localhost:3412/ClassDemo3Srv/ok",{params: {sname: '', password:'********'}},xhr).success(function(data){
-var r = data;
-$ionicPopup.alert(
-{title: JSON.stringify(r),
-template: r.Message});
-//console.log(r[0]);
-//console.log(r[1]);
-})
-.error(function(data,status){
-var d = data;
-var s = status;
-$ionicPopup.alert(
-{title: JSON.stringify(d),
-template: JSON.stringify(s)});
-});
-}
 
   $ionicPopover.fromTemplateUrl('views/checkout/partials/address-chooser-popover.html', {
     scope: $scope
@@ -141,7 +111,6 @@ template: JSON.stringify(s)});
       cssClass: 'popup-outer food-review-view',
       templateUrl: 'views/account/post.html',
       controller: 'ProfileCtrl',
-      //scope: angular.extend($scope, {})
       title: 'Post',
       scope: $scope,
       buttons: [
@@ -152,29 +121,24 @@ template: JSON.stringify(s)});
 
   $scope.SavePost = function(){
     console.log('INSIDE new Post Function!!');
-    //console.log($rootScope.username);
     var xhr = new XMLHttpRequest({mozSystem: true});
 
-    var comments = document.getElementById("myTextArea").value;   
-    //console.log(comments);    
+    var comments = document.getElementById("myTextArea").value;       
     console.log(user);
     
 
     $http.get("http://localhost:3412/ClassDemo3Srv/addFeedPost",{params: {description: comments, businessid: $scope.data.businessid }},xhr).success(function(data){
     var r = data;
     $ionicPopup.alert(
-    {title: JSON.stringify('success'),
-    template: r.Message});
-    //console.log(r[0]);
-    //console.log(r[1]);
+    {title: JSON.stringify('Success')});
     })
     .error(function(data,status){
     var d = data;
     var s = status;
     console.log('Error');
     $ionicPopup.alert(
-    {title: JSON.stringify(d),
-    template: JSON.stringify('Error')});
+    {title: JSON.stringify('Error'),
+    template: JSON.stringify('Could not connect to the server. Try again later.')});
     });
     
 
@@ -226,13 +190,13 @@ template: JSON.stringify(s)});
 					// type: 'icon-left ion-trash-a delete-button',
 					type: 'delete-button',
           onTap: function(e) {
-            // return $scope.data;
+
           }
         },
         {
           text: 'Edit',
           onTap: function(e) {
-            // return $scope.data;
+
           }
         }
       ]

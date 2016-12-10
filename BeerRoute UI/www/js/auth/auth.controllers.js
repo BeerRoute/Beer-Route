@@ -20,13 +20,6 @@ angular.module('your_app_name.auth.controllers', [])
 			$http.get("http://localhost:3412/ClassDemo3Srv/login",{params: {email: $scope.user.email, password: $scope.user.password}},xhr).success(function(data){
 			var r = data;
 			console.log(r);
-			//$ionicPopup.alert(
-			//{title: JSON.stringify(r),
-			//template: r.Exists});
-
-			// Simulate login OK
-			// $state.go('main.app.feed.fashion');
-      			// $ionicLoading.hide();
 			if(r.Exists){
 			$rootScope.username = r.username;
 			$rootScope.password = r.password;
@@ -53,9 +46,7 @@ angular.module('your_app_name.auth.controllers', [])
 
       			$ionicLoading.hide();
 
-			// Simulate login ERROR
-			//$scope.error = "This is an error message";
-			//$ionicLoading.hide();
+
 		}, 800);
 	};
 
@@ -71,9 +62,7 @@ angular.module('your_app_name.auth.controllers', [])
 			$state.go('main.app.account.profile');
       $ionicLoading.hide();
 
-			// Simulate login ERROR
-			// $scope.error = "This is an error message";
-			// $ionicLoading.hide();
+
 		}, 800);
 	};
 })
@@ -93,7 +82,6 @@ angular.module('your_app_name.auth.controllers', [])
 			cssClass: 'popup-outer food-review-view',
 			templateUrl: 'views/auth/completeReg.html',
 			controller: 'SignupCtrl',
-			//scope: angular.extend($scope, {})
 			title: 'Registration',
 			scope: $scope,
 			buttons: [
@@ -142,7 +130,6 @@ angular.module('your_app_name.auth.controllers', [])
 			console.log("To business View");
 		}
 		else{
-			//$state.go('main.app.account.profile');
 			fun.completeReg();
 			console.log("To regular user View");
 			console.log("Is business owner"+$scope.user.type);
@@ -173,13 +160,7 @@ angular.module('your_app_name.auth.controllers', [])
 
 
 
-		// Simulate login OK
-		// $state.go('main.app.feed.fashion');
-      		// $ionicLoading.hide();
 
-		// Simulate login ERROR
-		//$scope.error = "This is an error message";
-		//$ionicLoading.hide();
 		}, 800);
 
 		
@@ -203,9 +184,7 @@ angular.module('your_app_name.auth.controllers', [])
 			$state.go('main.app.account');
       $ionicLoading.hide();
 
-			// Simulate login ERROR
-			// $scope.error = "This is an error message";
-			// $ionicLoading.hide();
+
 		}, 800);
 	};
 
@@ -253,14 +232,13 @@ angular.module('your_app_name.auth.controllers', [])
 			cssClass: 'popup-outer food-review-view',
 			templateUrl: 'views/auth/completeReg.html',
 			controller: 'BusinessInfoCtrl',
-			//scope: angular.extend($scope, {})
 			title: 'Registration',
 			scope: $scope,
 			buttons: [
 				{ text: 'Close', type: 'close-popup'}
 			]
 		})
-		//$state.go('intro.walkthrough-welcome');
+
 	}
 
 	$scope.Closecomplete = function(){
@@ -272,9 +250,6 @@ angular.module('your_app_name.auth.controllers', [])
 	$scope.busInfo = function(){
 		console.log("getting business info from user");
 
-		//$ionicLoading.show({
-      	//	template: 'Creating account...'
-    	//	});		
 			
 		var xhr = new XMLHttpRequest({mozSystem: true});
 
@@ -328,8 +303,6 @@ angular.module('your_app_name.auth.controllers', [])
 	    {title: JSON.stringify('Business Owner Info Success'),
 	    template: bID.Message});
 	    
-	    //console.log(r[0]);
-	    //console.log(r[1]);
 	    $scope.toOwner();
 	    })
 	    .error(function(data3,status3){
@@ -356,8 +329,7 @@ angular.module('your_app_name.auth.controllers', [])
 	    $ionicPopup.alert(
 	    {title: JSON.stringify('Business Owner Info Success'),
 	    template: r.Message});
-	    //console.log(r[0]);
-	    //console.log(r[1]);
+
 	    })
 	    .error(function(data2,status2){
 	    var d2 = data2;
@@ -370,7 +342,7 @@ angular.module('your_app_name.auth.controllers', [])
 	     console.log("Second Query Should End");
 
 	    $scope.completeReg();
-		//$state.go('main.app.feed.deals');
+
 	}
 	
 })
@@ -396,9 +368,7 @@ angular.module('your_app_name.auth.controllers', [])
 			$state.go('main.app.feed.fashion');
       $ionicLoading.hide();
 
-			// Simulate login ERROR
-			// $scope.error = "This is an error message";
-			// $ionicLoading.hide();
+
 		}, 800);
 	};
 });
