@@ -295,6 +295,8 @@ angular.module('your_app_name.auth.controllers', [])
 		$rootScope.path 		= $scope.bus.path;//????
 		$rootScope.creditcard   = $scope.bus.creditcard;
 		$rootScope.ccexp		= $scope.bus.ccexp;
+
+		  $scope.businessID();
 	    })
 	    .error(function(data,status){
 	    var d = data;
@@ -305,7 +307,7 @@ angular.module('your_app_name.auth.controllers', [])
 	    template: JSON.stringify('Error')});
 	    });
 
-	    $scope.businessID();
+	  
 
 	};
 
@@ -319,12 +321,16 @@ angular.module('your_app_name.auth.controllers', [])
 	    $http.get("http://localhost:3412/ClassDemo3Srv/getbusinessID",{params: {businessname: $rootScope.businessname}},xhr).success(function(data3){
 	    var bID = data3;
 	    console.log(bID);
+	    $rootScope.businessid=bID[0].businessid;
+	    
+	    console.log("Assigned business ID correctly? >>>>"+ $rootScope.businessid);
 	    $ionicPopup.alert(
 	    {title: JSON.stringify('Business Owner Info Success'),
 	    template: bID.Message});
-	    $rootScope.businessid=bID.businessid;
+	    
 	    //console.log(r[0]);
 	    //console.log(r[1]);
+	    $scope.toOwner();
 	    })
 	    .error(function(data3,status3){
 	    var d3 = data3;
@@ -335,8 +341,6 @@ angular.module('your_app_name.auth.controllers', [])
 	    template: JSON.stringify('Error')});
 	    });	
 	    console.log("End ID query");
-
-	    $scope.toOwner();
 	}
 
 
@@ -345,6 +349,7 @@ angular.module('your_app_name.auth.controllers', [])
 		var xhr = new XMLHttpRequest({mozSystem: true});
 
 		console.log($rootScope.businessid);
+		console.log($rootScope.businessname);
 	    console.log("Second Query Should Start");
 	    $http.get("http://localhost:3412/ClassDemo3Srv/businessownerInfo",{params: {username:$rootScope.username, creditcard:$rootScope.creditcard, ccexp:$rootScope.ccexp, businessid: $rootScope.businessid}},xhr).success(function(data2){
 	    var r = data2;
