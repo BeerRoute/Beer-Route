@@ -284,6 +284,9 @@ angular.module('your_app_name', [
                       }
                     }
                   })
+
+          
+
           //Search Beers
           .state('main.app.searchBeer', {
             url: '/searchBeer',

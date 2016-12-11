@@ -103,13 +103,21 @@ angular.module('your_app_name.feed.services', [])
       var product = _.find(database.products, function(product){
         return product.businessid == productId;
       });
-
+      //Reviews
       service.getRelatedProducts(product).then(function(related_products){
         product.related_products = related_products;
         //console.log(product);
       }, function(error){
         console.log("ups", error);
       });
+      //Available beers
+      service.getAvailableBeers(product).then(function(available_beers){
+        product.available_beers = available_beers;
+        //console.log(product.available_beers);
+      }, function(error){
+        console.log("ups", error);
+      });
+
 
       dfd.resolve(product);
       console.log('AQUI ESTA GET PRODUCT');
@@ -135,7 +143,7 @@ angular.module('your_app_name.feed.services', [])
     
       //add product data to this order
 
-      console.log("HEHA...");
+      console.log("Inside Related Products");
       var related_products = reviews;
      
       dfd.resolve(related_products);
@@ -144,6 +152,36 @@ angular.module('your_app_name.feed.services', [])
 
     return dfd.promise;
   };
+
+  //Available beers
+  this.getAvailableBeers = function(product){
+    var dfd = $q.defer();
+    console.log("Inside available beers");
+    
+    //$http.get('beer_db.json').success(function(database) {
+      var xhr = new XMLHttpRequest({mozSystem: true});
+
+    $http.get("http://localhost:3412/ClassDemo3Srv/getavailablebeers",{params: {id: product.businessid}},xhr)
+     .success(function(beers){
+    //console.log("Beers: "+beers);
+      //add product data to this order
+
+      //console.log("HEHAAAAAA...");
+      var available_beers = beers;
+      //console.log("Beers: "+available_beers);
+      dfd.resolve(available_beers);
+      console.log(available_beers);
+      console.log(available_beers[0].beerid);
+      console.log(available_beers[0].path);
+    });
+
+
+    return dfd.promise;
+
+  };
+
+
+
 })
 
 .service('DealsService', function ($http, $q,$ionicPopup){

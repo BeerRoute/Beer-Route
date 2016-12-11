@@ -129,16 +129,22 @@
     <h3 class="product-sub-title">Available Beers</h3>
     <div class="row available-beers-row">
       <div class="row row-center info-row">
+
+
+        <div class="row beer-item" ng-repeate="available_beer in product.available_beers">
           <div class="col col-20 image-wrapper">              
                 <a class="product-anchor">
-                <a class="product-anchor" ui-sref="main.app.feed.food.contentB({productId: product.id})">
+                <a class="product-anchor" ui-sref="main.app.searchBeer.contentB({productId: available_beer.beerid})">
                   <pre-img ratio="_1_1">
-                    <img style="width:10vh;" class="logo-image" ng-src="{{ product.pic }}" spinner-on-load>
+                    <img style="width:10vh;" class="logo-image" ng-src="{{ available_beer.path }}" spinner-on-load>
                   </pre-img>
                 </a>
                 </a>              
           </div>                
       </div>
+
+
+    </div>
     </div>
     <hr class="product-sections-divider"/>
         <h3 class="product-sub-title">Reviews</h3>
