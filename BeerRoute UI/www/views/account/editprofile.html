@@ -5,15 +5,15 @@
   </ion-header-bar>
   <ion-content>
   <h3 class="edit-descr">Edit Description</h3>
-  	<textarea class="input-box">{{user.name}}
+  	<textarea id="new_description" class="input-box">{{data.bus_description}}
   	</textarea>
   	<h6></h6>
         <h5> </h5>
   <form>
   	<h3 class="edit-descr" type="text">Edit Address</h3> 
-    <input class="addressbar" type="text" name="text" value={{user.address}} />
+    <input class="addressbar" type="text" name="text" id="new_address" placeholder="{{data.selected_address}}"/>
     <h5></h5>
-    <div class="button save-button">Save Changes
+    <div class="button save-button" ng-click="editInfo()">Save Changes
     </div>
   	</form>
   	    <h5> </h5>

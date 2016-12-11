@@ -9,6 +9,7 @@ angular.module('your_app_name.account.controllers', [])
   $scope.data = {};
   //$scope.data.selected_card = user.credit_cards[0];
   $scope.data.selected_address = $rootScope.address;
+  $scope.data.bus_description = $rootScope.busDescription;
 
   //console.log("Printing Redit card number: " + user.creditcard);
 
@@ -211,6 +212,24 @@ template: JSON.stringify(s)});
      }
    });
  };
+
+//////////////////
+/////WORK IN PROGRESS///
+//////MUST CHANGE  QUERY VARIABLES
+//////MUST MAKE QUERY IN JS SERVER, UPDATE BLABLABLA
+ $scope.editInfo = function(){
+  var newDescr = document.getElementById('new_description').value;
+  console.log(newDescr);
+   var newAddr = document.getElementById('new_address').value;
+  console.log(newAddr);
+
+    var xhr = new XMLHttpRequest({mozSystem: true});
+    $http.get("http://localhost:3412/ClassDemo3Srv/updateBusiness",{params: {businessid: $scope.data.businessid, description: newDescr , address: newAddr}},xhr).success(function(data){
+              });
+ }
+ /////////////////////////////////////////
+ /////////////////////////////////////////
+ ////////////////////////////////////////
 
   $scope.showEditAddressPopup = function(address) {
 		$scope.address = address;

@@ -54,8 +54,8 @@ app.get('/ClassDemo3Srv/ok', function(req,res){
 // will be read if the config is not present
 var config = {
   user: 'postgres', //env var: PGUSER
-  database: 'LastestBeerRoute', //env var: PGDATABASE
-  password: 'Miflaquis15', //env var: PGPASSWORD
+  database: 'BeerRoute_1', //env var: PGDATABASE
+  password: '', //env var: PGPASSWORD
   host: 'localhost', // Server hosting the postgres database
   port: 5432, //env var: PGPORT
   max: 10, // max number of clients in the pool
@@ -114,7 +114,7 @@ var response = {Exists : exists,
 			response.businessid=row.businessid;
 			response.address=row.address;	
 			response.description=row.description;
-			respone.ownerid=row.ownerid;		
+			response.ownerid=row.ownerid;		
 			}
 			};
 		});
@@ -673,6 +673,36 @@ var response = [];
 		});
 	 });
 });
+
+
+
+//#############################################################
+app.get('/ClassDemo3Srv/updateBusiness', function(req,res){
+console.log("POST Update Business Info");
+console.log(req.body);
+var exists = false;
+var response = [];
+
+        pg.connect(conStringPost, function(err, clientOrg, done) {
+            
+            var q = clientOrg.query("UPDATE business SET address='"+req.query.address+"', description='"+req.query.description+"' WHERE businessid="+req.query.businessid, function(err){
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		res.json(response);
+		});
+	    });
+    });
+
 
 // Server starts running when listen is called.
 app.listen(process.env.PORT || 3412);
