@@ -366,6 +366,33 @@ var response = [];
 	    });
     });
 ///////////////////////////////////
+app.get('/ClassDemo3Srv/getavailablebeers', function(req,res){
+console.log("GET AVAILABLE BEERS QUERY");
+console.log(req.query);
+var exists = false;
+var response = [];
+
+        pg.connect(conStringPost, function(err, clientOrg, done) {	
+
+            var q = clientOrg.query("SELECT beerid, path FROM beer natural inner join available WHERE businessid = " + req.query.id , function(err){
+	console.log("available beers "+q);
+	if(err){
+	    console.log('Error connecting to the table');
+	    console.log(err);
+	}
+		done();
+	});
+		q.on('row', function(row){
+		console.log(row);
+		response.push(row);
+		});
+		q.on('end', function(result){
+		res.json(response);
+		});
+	    });
+    });
+
+
 
 //#############################################################
 app.get('/ClassDemo3Srv/addReview', function(req,res){

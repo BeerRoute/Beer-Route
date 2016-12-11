@@ -293,8 +293,8 @@ angular.module('your_app_name.content.controllers', [])
 	});
 	
 	$scope.isBarOwner = function(){
-	console.log("Calling Owner function");
-	console.log('isbusinessowner: ' + JSON.stringify($rootScope.isbusinessowner));
+	//console.log("Calling Owner function");
+	//console.log('isbusinessowner: ' + JSON.stringify($rootScope.isbusinessowner));
 	return $rootScope.isbusinessowner;
 	
 };
