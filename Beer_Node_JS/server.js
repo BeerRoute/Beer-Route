@@ -62,6 +62,10 @@ var config = {
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
 
+var default_business_path = './img/common/generic-bar-sign.jpg';
+
+var default_user_path = './img/common/generic-person.png';
+
 var conStringPri = 'postgres://' + config.user + ':' + config.password + '@' + config.host + 
     '/postgres';
 var conStringPost = 'postgres://' + config.user + ':' + config.password + '@' + config.host + 
@@ -167,7 +171,7 @@ var response = [];
 
         pg.connect(conStringPost, function(err, clientOrg, done) {
 
-            var q = clientOrg.query("INSERT INTO users (username, email,password, isbusinessowner) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"',"+req.query.isbusinessowner+")", function(err){
+            var q = clientOrg.query("INSERT INTO users (username, email,password, picture, isbusinessowner) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"','"+default_user_path+"','"+req.query.isbusinessowner+")", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -211,7 +215,7 @@ var exists = false;
 var response = [];
         pg.connect(conStringPost, function(err, clientOrg, done) {
             
-            var q = clientOrg.query("INSERT INTO business (businessname, address, region, description) VALUES ('"+req.query.businessname+"','"+req.query.address+"','"+req.query.region+"','"+req.query.description+"')", function(err){
+            var q = clientOrg.query("INSERT INTO business (businessname, address, region, description, path) VALUES ('"+req.query.businessname+"','"+req.query.address+"','"+req.query.region+"','"+req.query.description+"','"+default_business_path+")", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
