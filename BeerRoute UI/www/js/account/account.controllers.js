@@ -17,7 +17,7 @@ angular.module('your_app_name.account.controllers', [])
   $scope.data.businessid = $rootScope.businessid;  
   $scope.user_bar = $rootScope.owner;
 
-  console.log("En account contollers:")
+  console.log("En account contollers:");
   console.log($scope.data.selected_card);
   console.log($scope.data.card_exp);
   console.log($scope.data.businessid );
@@ -36,7 +36,8 @@ angular.module('your_app_name.account.controllers', [])
   
   
   $scope.test = function(){
-var xhr = new XMLHttpRequest({mozSystem: true});
+var xhr = new XMLHttpRequest({mozSystem: true});}
+
 
   $ionicPopover.fromTemplateUrl('views/checkout/partials/address-chooser-popover.html', {
     scope: $scope
@@ -200,7 +201,7 @@ var xhr = new XMLHttpRequest({mozSystem: true});
     var xhr = new XMLHttpRequest({mozSystem: true});
     $http.get("http://localhost:3412/ClassDemo3Srv/updateBusiness",{params: {businessid: $scope.data.businessid, description: newDescr , address: newAddr}},xhr).success(function(data){
               });
- }
+ };
  /////////////////////////////////////////
  /////////////////////////////////////////
  ////////////////////////////////////////
