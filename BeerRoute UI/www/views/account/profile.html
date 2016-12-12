@@ -36,23 +36,12 @@
     <div ng-show="isBarOwner()"> 
     <h3 class="account-sub-title">Business Address</h3>
      <button class="button button-block edit-button">{{data.selected_address}}</button>
-    <!--div class="address-chooser" ng-click="openAddressesPopover($event)">
-      <button class="button button-block icon-right addresses-popover-button" ng-class="{'ion-chevron-up': addresses_popover.isShown(), 'ion-chevron-down' : !addresses_popover.isShown()}">
-        {{data.selected_address.street || 'Select address'}}
-      </button>
-    </div-->
+
 
     <div ng-show="isBarOwner()">    
     <h3 class="account-sub-title">Credit Card</h3>
     <button class="button button-block edit-button">{{data.selected_card}}</button>
     
-    <!--h3 class="account-sub-title">Default Credit Card</h3-->
-
-    <!--div class="card-chooser" ng-click="openCardsPopover($event)">
-      <button class="button button-block icon-right cards-popover-button" ng-class="{'ion-chevron-up': addresses_popover.isShown(), 'ion-chevron-down' : !addresses_popover.isShown()}">
-        {{data.selected_card.number || 'Select Credit Card'}}
-      </button>
-    </div-->
 	</div>
 	
 
@@ -70,56 +59,15 @@
       </div>
 
 
-
-    <!--h3 class="account-sub-title">Notification Settings</h3>
-    <div class="row notifications-row">
-      <div class="col">
-        <ul class="list notifications-list">
-          <li class="item item-toggle">
-            <span class="notifications-text">Happy Hours Updates</span>
-            <label class="toggle">
-              <input type="checkbox" ng-model="notifications.promotions">
-              <div class="track">
-                <div class="handle"></div>
-              </div>
-            </label>
-          </li>
-          <li class="item item-toggle">
-            <span class="notifications-text">Shipment Updates</span>
-            <span class="notifications-text">Events Updates</span>
-            <label class="toggle">
-              <input type="checkbox" ng-model="notifications.shipment_updates">
-              <div class="track">
-                <div class="handle"></div>
-              </div>
-            </label>
-          </li-->
-
-
           <div ng-show="isBarOwner()">
           <button class= "button button-block test-button" ng-click="showConfirm()">Make Payment</button>
           </div>
-          <!--div ng-show="isBarOwner()">
-          <li>  <button class= "button button-block test-button" ng-click="test()"> Test Button</button>
 
-          </li>
-          </div-->
 
         
       </div>
     </div>
-    <!--div class="list account-divider">
-      <div class="item item-divider"></div>
-    </div>
-    <div class="row invite-and-rate-row">
-      <div class="col">
-        <button class="button button-block invite-friends-button">Invite Friends</button>
-        <button class="button button-block button-clear rate-app-button">
-          <i class="icon ion-android-star"></i>
-          <span>Rate this app!</span>
-        </button>
-      </div>
-    </div-->
+
     <div class="row logout-terms-row">
       <div class="col">
         <div class="row terms-row">
