@@ -185,6 +185,7 @@ var response = [];
        		auth: {user: 'beer.route2016@gmail.com', // Your email id
             	pass: 'Beer_Craft2016'} // Your password
     		});
+		mailOptions.subject = 'Welcome to Beer-Route';
 		mailOptions.text = 'Hello. Thank you for creating an account in Beer Route. Please confirm your account by logging in \n\n' + 'http://localhost:8100/#/intro/auth-login';
 		mailOptions.to = req.query.email
 		transporter.sendMail(mailOptions, function(error, info){
@@ -687,6 +688,7 @@ var response = [];
        		auth: {user: 'beer.route2016@gmail.com', // Your email id
             	pass: 'Beer_Craft2016'} // Your password
     		});
+		mailOptions.subject = 'Payment Succesfully processed';
 		mailOptions.to = req.query.email;
 		mailOptions.text = 'Membership payment successfully processed. Thank you for your continued support of Beer Route';
 		transporter.sendMail(mailOptions, function(error, info){
