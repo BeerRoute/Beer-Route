@@ -171,7 +171,7 @@ var response = [];
 
         pg.connect(conStringPost, function(err, clientOrg, done) {
 
-            var q = clientOrg.query("INSERT INTO users (username, email,password, picture, isbusinessowner) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"','"+default_user_path+"','"+req.query.isbusinessowner+")", function(err){
+            var q = clientOrg.query("INSERT INTO users (username, email,password, picture, isbusinessowner) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"','"+default_user_path+"','"+req.query.isbusinessowner+"')", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -215,7 +215,7 @@ var exists = false;
 var response = [];
         pg.connect(conStringPost, function(err, clientOrg, done) {
             
-            var q = clientOrg.query("INSERT INTO business (businessname, address, region, description, path) VALUES ('"+req.query.businessname+"','"+req.query.address+"','"+req.query.region+"','"+req.query.description+"','"+default_business_path+")", function(err){
+            var q = clientOrg.query("INSERT INTO business (businessname, address, region, description, path) VALUES ('"+req.query.businessname+"','"+req.query.address+"','"+req.query.region+"','"+req.query.description+"','"+default_business_path+"')", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
