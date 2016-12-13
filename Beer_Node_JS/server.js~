@@ -62,6 +62,10 @@ var config = {
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
 
+var default_business_path = './img/common/generic-bar-sign.jpg';
+
+var default_user_path = './img/common/generic-person.png';
+
 var conStringPri = 'postgres://' + config.user + ':' + config.password + '@' + config.host + 
     '/postgres';
 var conStringPost = 'postgres://' + config.user + ':' + config.password + '@' + config.host + 
@@ -167,7 +171,7 @@ var response = [];
 
         pg.connect(conStringPost, function(err, clientOrg, done) {
 
-            var q = clientOrg.query("INSERT INTO users (username, email,password, isbusinessowner) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"',"+req.query.isbusinessowner+")", function(err){
+            var q = clientOrg.query("INSERT INTO users (username, email,password, picture, isbusinessowner) VALUES ('"+req.query.username+"','"+req.query.email+"','"+req.query.password+"','"+default_user_path+"','"+req.query.isbusinessowner+"')", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -185,6 +189,7 @@ var response = [];
        		auth: {user: 'beer.route2016@gmail.com', // Your email id
             	pass: 'Beer_Craft2016'} // Your password
     		});
+		mailOptions.subject = 'Welcome to Beer Route';
 		mailOptions.text = 'Hello. Thank you for creating an account in Beer Route. Please confirm your account by logging in \n\n' + 'http://localhost:8100/#/intro/auth-login';
 		mailOptions.to = req.query.email
 		transporter.sendMail(mailOptions, function(error, info){
@@ -210,7 +215,7 @@ var exists = false;
 var response = [];
         pg.connect(conStringPost, function(err, clientOrg, done) {
             
-            var q = clientOrg.query("INSERT INTO business (businessname, address, region, description) VALUES ('"+req.query.businessname+"','"+req.query.address+"','"+req.query.region+"','"+req.query.description+"')", function(err){
+            var q = clientOrg.query("INSERT INTO business (businessname, address, region, description, path) VALUES ('"+req.query.businessname+"','"+req.query.address+"','"+req.query.region+"','"+req.query.description+"','"+default_business_path+"')", function(err){
 	if(err){
 	    console.log('Error connecting to the table');
 	    console.log(err);
@@ -382,7 +387,7 @@ var response = [];
 
         pg.connect(conStringPost, function(err, clientOrg, done) {	
 
-            var q = clientOrg.query("SELECT beerid, path FROM beer natural inner join available WHERE businessid = " + req.query.id + "AND availablity = true", function(err){
+            var q = clientOrg.query("SELECT beerid, path FROM beer natural inner join available WHERE businessid = " + req.query.id , function(err){
 	console.log("available beers "+q);
 	if(err){
 	    console.log('Error connecting to the table');
@@ -687,6 +692,7 @@ var response = [];
        		auth: {user: 'beer.route2016@gmail.com', // Your email id
             	pass: 'Beer_Craft2016'} // Your password
     		});
+		mailOptions.subject = 'Payment Succesfully processed';
 		mailOptions.to = req.query.email;
 		mailOptions.text = 'Membership payment successfully processed. Thank you for your continued support of Beer Route';
 		transporter.sendMail(mailOptions, function(error, info){
@@ -705,7 +711,7 @@ var response = [];
 
 //#############################################################
 app.get('/ClassDemo3Srv/updateBusiness', function(req,res){
-console.log("POST Add Review");
+console.log("POST Update Business Info");
 console.log(req.body);
 var exists = false;
 var response = [];
