@@ -3,17 +3,6 @@ angular.module('your_app_name.liked.services', [])
 .service('ListService', function ($http, $q, $rootScope,$ionicPopup){
 
   this.getUserLists = function(){
-    /*var dfd = $q.defer();
-    $http.get('logged_user_db.json').success(function(database) {
-      dfd.resolve(database.user.lists);
-    });
-    return dfd.promise;*/
-
-    //$scope.path = "";
-    //$scope.name = "";
-    //$scope.description = "";
-
-    
     
     var xhr = new XMLHttpRequest({mozSystem: true});
     var dfd = $q.defer();
@@ -23,30 +12,14 @@ angular.module('your_app_name.liked.services', [])
               
         dfd.resolve(lists);
 
-
-        /*var r = data;
-        console.log(r);
-
-        for(i=0; i<2;i++){
-         path[i] = r[i].path;
-         name[i] = r[i].beername;
-         category[i] = r[i].description;
-         
-         console.log(path[i]);
-         console.log(name[i]);
-         console.log(category[i]);*/
-
-        
         
       })
 
 
       .error(function(data,status){
-        var d = data;
-        var s = status;
         $ionicPopup.alert(
-        {title: JSON.stringify(d),
-        template: JSON.stringify(s)});
+        {title: "Error",
+        template: "Could not connect to server. Please try again later"});
         });
       
 
@@ -55,17 +28,7 @@ angular.module('your_app_name.liked.services', [])
      return dfd.promise; 
   };
 
-  /*this.getList = function(listId){
-    var dfd = $q.defer();
-    $http.get('logged_user_db.json').success(function(database) {
-      var list = _.find(database.user.lists, function(list){
-        return list.id == listId;
-      });
-      dfd.resolve(list);
-    });
 
-    return dfd.promise;
-  };*/
 })
 
 ;

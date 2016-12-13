@@ -14,20 +14,13 @@ angular.module('your_app_name.content.controllers', [])
 			$http.get("http://localhost:3412/ClassDemo3Srv/wishBeer",{params: {beerid: beerid, username: $rootScope.username}},xhr).success(function(data){
 			var r = data;
 			console.log(r);
-
 			})
 			.error(function(data,status){
 			$ionicPopup.alert(
-			{title: 'Login failed',
+			{title: 'Error',
 			template: 'Could not connect to server. Please try again'});
 			});
-      		
 
-      	
-
-			// Simulate login ERROR
-			//$scope.error = "This is an error message";
-			//$ionicLoading.hide();
 	};	
 
 
@@ -84,7 +77,6 @@ angular.module('your_app_name.content.controllers', [])
 			cssClass: 'popup-outer food-review-view',
 			templateUrl: 'views/content/food/review.html',
 			controller: 'FashionContentCtrl',
-			//scope: angular.extend($scope, {})
 			title: 'Review',
 			scope: $scope,
 			buttons: [
@@ -117,19 +109,15 @@ angular.module('your_app_name.content.controllers', [])
 
 		$http.get("http://localhost:3412/ClassDemo3Srv/addBeerReview",{params: {beerid: product.beerid, rating: starValue, comment: comments, rdate: '2016-12-06', username: $rootScope.username}},xhr).success(function(data){
 		var r = data;
-		//$ionicPopup.alert(
-		//{title: JSON.stringify('success'),
-		//template: r.Message});
-		//console.log(r[0]);
-		//console.log(r[1]);
+
 		})
 		.error(function(data,status){
 		var d = data;
 		var s = status;
 		console.log('Error');
 		$ionicPopup.alert(
-		{title: JSON.stringify(d),
-		template: JSON.stringify('Error')});
+		{title: 'Error',
+		template: 'Could not connect to server. Please try again.'});
 		});
 		newBeerReviewPopup.close();
 	};
@@ -157,7 +145,7 @@ angular.module('your_app_name.content.controllers', [])
 
 	$scope.product = product;
 
-	/*var jsonBarInfo = require("./home/prel/Desktop/Beer-Route/BeerRoute UI/www/food_db.json");*/
+	
 
 	$scope.product.selected_schedule = {
 		name: "Thursday to Sunday 4:00 pm to 12:00 am"
@@ -186,15 +174,7 @@ angular.module('your_app_name.content.controllers', [])
 			lat: 18.380330,
 			lng: -67.217394
 		},
-		/*{
-			street: "50 Northfield Way",
-			city: "Brooklyn",
-			state: "NY",
-			postal_code: "11210",
-			phone: "1-(347)846-3569",
-			lat: 43.07493,
-			lng: -88.381388
-		}*/
+		
 	];
 
 	$scope.product.selected_address = product.addresses[0];
@@ -237,7 +217,7 @@ angular.module('your_app_name.content.controllers', [])
 			cssClass: 'popup-outer food-review-view',
 			templateUrl: 'views/content/food/review.html',
 			controller: 'FoodContentCtrl',
-			//scope: angular.extend($scope, {})
+			
 			title: 'Review',
 			scope: $scope,
 			buttons: [
@@ -270,19 +250,15 @@ angular.module('your_app_name.content.controllers', [])
 
 		$http.get("http://localhost:3412/ClassDemo3Srv/addReview",{params: {id: product.businessid, rating: starValue, comment: comments, rdate: '2015-12-12', username: $rootScope.username}},xhr).success(function(data){
 		var r = data;
-		$ionicPopup.alert(
-		{title: JSON.stringify('success'),
-		template: r.Message});
-		//console.log(r[0]);
-		//console.log(r[1]);
+		console.log(r);
 		})
 		.error(function(data,status){
 		var d = data;
 		var s = status;
 		console.log('Error');
 		$ionicPopup.alert(
-		{title: JSON.stringify(d),
-		template: JSON.stringify('Error')});
+		{title: 'Error',
+		template: 'Could not connect to server. Please try again'});
 		});
 		newReviewPopup.close();
 	};
@@ -293,8 +269,7 @@ angular.module('your_app_name.content.controllers', [])
 	});
 	
 	$scope.isBarOwner = function(){
-	//console.log("Calling Owner function");
-	//console.log('isbusinessowner: ' + JSON.stringify($rootScope.isbusinessowner));
+	
 	return $rootScope.isbusinessowner;
 	
 };
@@ -308,26 +283,5 @@ angular.module('your_app_name.content.controllers', [])
 
 	$scope.product = product;
 })
-/*
-.controller('DealsContentCtrl', function($scope, $state, $rootScope, product) {
-	$scope.goBack = function() {
-		var previous_view = _.last($rootScope.previousView);
-		$state.go(previous_view.fromState, previous_view.fromParams );
-	};
-
-	$scope.product = product;
-})
-
-.controller('RealStateContentCtrl', function($scope, $state, $rootScope, product) {
-	$scope.goBack = function() {
-		var previous_view = _.last($rootScope.previousView);
-		$state.go(previous_view.fromState, previous_view.fromParams );
-	};
-
-	$scope.product = product;
-})
-*/
-
-
 
 ;

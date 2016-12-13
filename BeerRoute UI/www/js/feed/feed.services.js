@@ -7,7 +7,7 @@ angular.module('your_app_name.feed.services', [])
      $http.get("http://localhost:3412/ClassDemo3Srv/getbeer",xhr)
      .success(function(products){
       console.log(products);
-    //$http.get('beer_db.json').success(function(database) {
+
       console.log("JEJEJE");
       dfd.resolve(products);
     });
@@ -18,7 +18,7 @@ angular.module('your_app_name.feed.services', [])
     var dfd = $q.defer();
     var service = this;
 
-    //$http.get('beer_db.json').success(function(database) {
+
       var xhr = new XMLHttpRequest({mozSystem: true});
      $http.get("http://localhost:3412/ClassDemo3Srv/getbeer",xhr)
      .success(function(products){
@@ -30,7 +30,7 @@ angular.module('your_app_name.feed.services', [])
 
       service.getRelatedProducts(product).then(function(related_products){
         product.related_products = related_products;
-        //console.log(product);
+
       }, function(error){
         console.log("ups", error);
       });
@@ -50,32 +50,15 @@ angular.module('your_app_name.feed.services', [])
   this.getRelatedProducts = function(product){
     var dfd = $q.defer();
     
-    //$http.get('beer_db.json').success(function(database) {
       var xhr = new XMLHttpRequest({mozSystem: true});
      $http.get("http://localhost:3412/ClassDemo3Srv/getreviews",{params: {id: product.beerid}},xhr)
      .success(function(reviews){
     
-      //add product data to this order
+
 
       console.log("HEHA...");
       var related_products = reviews;
-      /*var related_products = _.map(reviews, function(product){
-        console.log("Esto es product: dentro de map:");
-        console.log(product);
 
-
-        return _.find(reviews, function(reviews){
-        console.log("Esto es reviews dentro de find:"); 
-        console.log(reviews);
-
-        console.log("Esto es reviews.beerid dentro de find:"); 
-        console.log(reviews.beerid);
-        console.log("Esto es product.beerid dentro de find:"); 
-        console.log(product.beerid);
-
-
-          return reviews.beerid == product.beerid; });
-      });*/
       dfd.resolve(related_products);
       console.log(related_products);
     });
@@ -113,7 +96,7 @@ angular.module('your_app_name.feed.services', [])
       //Available beers
       service.getAvailableBeers(product).then(function(available_beers){
         product.available_beers = available_beers;
-        //console.log(product.available_beers);
+
       }, function(error){
         console.log("ups", error);
       });
@@ -127,8 +110,8 @@ angular.module('your_app_name.feed.services', [])
         var d = data;
         var s = status;
         $ionicPopup.alert(
-        {title: JSON.stringify(d),
-        template: JSON.stringify(s)});
+        {title: 'Error',
+        template: 'Could not connect to server. Try again later.'});
         });
     return dfd.promise;
   };
@@ -136,12 +119,12 @@ angular.module('your_app_name.feed.services', [])
     this.getRelatedProducts = function(product){
     var dfd = $q.defer();
     
-    //$http.get('beer_db.json').success(function(database) {
+
       var xhr = new XMLHttpRequest({mozSystem: true});
      $http.get("http://localhost:3412/ClassDemo3Srv/getbusinessreview",{params: {id: product.businessid}},xhr)
      .success(function(reviews){
     
-      //add product data to this order
+
 
       console.log("Inside Related Products");
       var related_products = reviews;
@@ -158,17 +141,13 @@ angular.module('your_app_name.feed.services', [])
     var dfd = $q.defer();
     console.log("Inside available beers");
     
-    //$http.get('beer_db.json').success(function(database) {
+
       var xhr = new XMLHttpRequest({mozSystem: true});
 
     $http.get("http://localhost:3412/ClassDemo3Srv/getavailablebeers",{params: {id: product.businessid}},xhr)
      .success(function(beers){
-    //console.log("Beers: "+beers);
-      //add product data to this order
 
-      //console.log("HEHAAAAAA...");
       var available_beers = beers;
-      //console.log("Beers: "+available_beers);
       dfd.resolve(available_beers);
       console.log(available_beers);
       console.log(available_beers[0].beerid);
@@ -203,8 +182,8 @@ angular.module('your_app_name.feed.services', [])
         var d = data;
         var s = status;
         $ionicPopup.alert(
-        {title: JSON.stringify(d),
-        template: JSON.stringify(s)});
+        {title: 'Error',
+        template: 'Could not connect to the server. Try again later'});
         });
     return dfd.promise;
   };

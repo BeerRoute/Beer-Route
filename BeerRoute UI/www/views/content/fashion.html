@@ -9,7 +9,7 @@
     </div>
     <h1 class="title">{{product.beername}}</h1>
     <div class="buttons">
-      <!--button class="button button-clear share-button">Share</button-->
+
     </div>
   </ion-header-bar>
   <ion-content>
@@ -17,12 +17,12 @@
       <ion-slide>
         <div class="image-container" multi-bg="[product.path]">
           <div class="product-illustration-container">
-            <!--img class="product-illustration" ng-src="[product.pictures[0]]"-->
+
           </div>
         </div>
       </ion-slide>
       <ion-slide ng-repeat="product_image in product.pictures.slice(1) track by $index">
-        <!--div class="image-container" multi-bg="[product.pictures[0]]"></div-->
+
       </ion-slide>
     </ion-slide-box>
     <div class="row brief-info-row">
@@ -31,35 +31,15 @@
         <h5 class="product-style">{{product.beerstyle}}</h5>
       </div>
       <div class="col col-20">
-        <!--span class="product-price-range" ng-repeat="price in [].constructor(product.price_range) track by $index">$</span-->
+        
         <a href="#" onclick="wishBeer(product.beerid);">
           <img src="./img/BeerIcons/black-beer-icon.png" ng-click="wishBeer(product.beerid)" width="46" height="48" border="0"/></a>
           <div></div>
           Wish Beer
-         <!--button class="button button-clear back-button" ng-click="wishBeer(product.beerid)">WishBeer</button-->
+         
       </div>
     </div>
-    <!--div class="row rating-row">
-      <div class="col rating-col">
-        <span class="product-rating rating-{{ product.rating | floor }}">{{product.rating}}</span>
-      </div>
-      <div class="col rating-col">
-        <i class="icon ion-ios-star-outline"></i>
-        <span class="other-rating">3</span>
-      </div>
-      <div class="col rating-col">
-        <i class="icon ion-ios-star-outline"></i>
-        <span class="other-rating">1</span>
-      </div>
-      <div class="col rating-col">
-        <i class="icon ion-ios-star-outline"></i>
-        <span class="other-rating">2</span>
-      </div>
-      <div class="col rating-col">
-        <i class="icon ion-ios-star-outline"></i>
-        <span class="other-rating">8</span>
-      </div>
-    </div-->
+    
     <div class="row schedules-and-address-row">
       <div class="col">
       <div class="row middle-row">
@@ -105,14 +85,7 @@
           <div class="col description-col">
             <h3 class="review-author-name">{{related_product.username}}</h3>
             <div class="row icons-container">
-              <!--div class="col icon-group">
-                <i class="icon ion-navicon"></i>
-                <span class="icon-text">2 Reviews</span>
-              </div-->
-              <!--div class="col icon-group">
-                <i class="icon ion-ionic"></i>
-                <span class="icon-text">26 Points</span>
-              </div-->
+              
             </div>
           </div>
           <div class="col reputation-col">
@@ -129,33 +102,10 @@
             </p>
           </div>
         </div>
-        <!--div class="row bottom-row">
-          <div class="col review-other-ratings-container">
-            <div class="row">
-              <div class="col rating-col">
-                <i class="icon ion-ios-star-outline"></i>
-                <span class="other-rating">4.2</span>
-              </div>
-              <div class="col rating-col">
-                <i class="icon ion-ios-star-outline"></i>
-                <span class="other-rating">4.4</span>
-              </div>
-              <div class="col rating-col">
-                <i class="icon ion-ios-star-outline"></i>
-                <span class="other-rating">3.8</span>
-              </div>
-            </div>
-          </div>
-        </div-->
+        
       </div>
     </article>
-    <!--div class="row all-reviews-row">
-      <div class="col">
-        <button class="button button-block icon-right ion-chevron-right read-all-reviews-button" ng-click="showAllReviews()">
-          Read all the reviews (15)
-        </button>
-      </div>
-    </div-->
+    
     <hr class="product-sections-divider"/>
     <div class="row write-review-row" ng-hide="isBarOwner()">
       <div class="col">

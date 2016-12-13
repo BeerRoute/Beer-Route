@@ -172,19 +172,15 @@ angular.module('your_app_name.content.controllersBeer', [])
 
 		$http.get("http://localhost:3412/ClassDemo3Srv/addBeerReview",{params: {id: product.beerid, rating: starValue, comment: comments, rdate: '2015-12-12', username: $rootScope.username}},xhr).success(function(data){
 		var r = data;
-		$ionicPopup.alert(
-		{title: JSON.stringify('success'),
-		template: r.Message});
-		//console.log(r[0]);
-		//console.log(r[1]);
+		console.log(r);
 		})
 		.error(function(data,status){
 		var d = data;
 		var s = status;
 		console.log('Error');
 		$ionicPopup.alert(
-		{title: JSON.stringify(d),
-		template: JSON.stringify('Error')});
+		{title: 'Error',
+		template: 'Could not connect to server. Please try again later'});
 		});
 		newReviewPopup.close();
 	};
@@ -203,26 +199,3 @@ angular.module('your_app_name.content.controllersBeer', [])
 
 	$scope.product = product;
 })
-/*
-.controller('DealsContentCtrl', function($scope, $state, $rootScope, product) {
-	$scope.goBack = function() {
-		var previous_view = _.last($rootScope.previousView);
-		$state.go(previous_view.fromState, previous_view.fromParams );
-	};
-
-	$scope.product = product;
-})
-
-.controller('RealStateContentCtrl', function($scope, $state, $rootScope, product) {
-	$scope.goBack = function() {
-		var previous_view = _.last($rootScope.previousView);
-		$state.go(previous_view.fromState, previous_view.fromParams );
-	};
-
-	$scope.product = product;
-})
-
-
-
-*/
-

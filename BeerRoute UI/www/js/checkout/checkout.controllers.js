@@ -118,7 +118,7 @@ angular.module('your_app_name.checkout.controllers', [])
         { text: 'Close' },
         {
           text: 'Delete',
-					// type: 'icon-left ion-trash-a delete-button',
+					
 					type: 'delete-button',
           onTap: function(e) {
             // return $scope.data;
@@ -223,7 +223,7 @@ angular.module('your_app_name.checkout.controllers', [])
         { text: 'Close' },
 				{
           text: 'Delete',
-					// type: 'icon-left ion-trash-a delete-button',
+					
 					type: 'delete-button',
           onTap: function(e) {
             // return $scope.data;

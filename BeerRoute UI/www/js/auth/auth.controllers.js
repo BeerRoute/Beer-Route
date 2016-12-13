@@ -6,7 +6,6 @@ angular.module('your_app_name.auth.controllers', [])
 
 	$scope.user.email = "";
 	$scope.user.password = "";
-	// $scope.user.password = "12345";
 
 	$scope.doLogIn = function(){
 		console.log("doing log in");
@@ -130,9 +129,6 @@ angular.module('your_app_name.auth.controllers', [])
 		console.log("Query success");	
 		console.log("Is Business Owner:"+$scope.user.type);	
 		var r = data;
-		$ionicPopup.alert(
-		{title: JSON.stringify(r),
-		template: r.Exists});
 		if(!r.Exists){
 		$http.get("http://localhost:3412/ClassDemo3Srv/addUser",{params: {username: $scope.user.name, email: $scope.user.email, password: $scope.user.password, isbusinessowner: $scope.user.type}},xhr).success(function(data){
 		$rootScope.username = $scope.user.name;
@@ -273,12 +269,6 @@ angular.module('your_app_name.auth.controllers', [])
 
 		$http.get("http://localhost:3412/ClassDemo3Srv/businessInfo",{params: {businessname: $scope.bus.businessname, address: $scope.bus.address, region:$scope.bus.region, description:$scope.bus.description}},xhr).success(function(data){
 	    var r = data;
-	    $ionicPopup.alert(
-	    {title: JSON.stringify('success'),
-	    template: r.Message});
-	    //console.log(r[0]);
-	    //console.log(r[1]);
-	    
 	    $rootScope.businessname = $scope.bus.businessname;
 	    console.log("Business Name arriba: "+ $rootScope.businessname);
 	    console.log("Business Name arriba bus: "+ $scope.bus.businessname);
@@ -296,8 +286,8 @@ angular.module('your_app_name.auth.controllers', [])
 	    var s = status;
 	    console.log('Error');
 	    $ionicPopup.alert(
-	    {title: JSON.stringify(d),
-	    template: JSON.stringify('Error')});
+	    {title: "Error",
+	    template: "Could not connect to server. Please try again later."});
 	    });
 
 	  
@@ -317,9 +307,7 @@ angular.module('your_app_name.auth.controllers', [])
 	    $rootScope.businessid=bID[0].businessid;
 	    
 	    console.log("Assigned business ID correctly? >>>>"+ $rootScope.businessid);
-	    $ionicPopup.alert(
-	    {title: JSON.stringify('Business Owner Info Success'),
-	    template: bID.Message});
+
 	    
 	    $scope.toOwner();
 	    })
@@ -328,8 +316,8 @@ angular.module('your_app_name.auth.controllers', [])
 	    var s3 = status3;
 	    console.log('Error');
 	    $ionicPopup.alert(
-	    {title: JSON.stringify(d3),
-	    template: JSON.stringify('Error')});
+	    {title: 'Error',
+	    template: 'Could not connect to the server. Please try again.'});
 	    });	
 	    console.log("End ID query");
 	}
@@ -344,9 +332,7 @@ angular.module('your_app_name.auth.controllers', [])
 	    console.log("Second Query Should Start");
 	    $http.get("http://localhost:3412/ClassDemo3Srv/businessownerInfo",{params: {username:$rootScope.username, creditcard:$rootScope.creditcard, ccexp:$rootScope.ccexp, businessid: $rootScope.businessid}},xhr).success(function(data2){
 	    var r = data2;
-	    $ionicPopup.alert(
-	    {title: JSON.stringify('Business Owner Info Success'),
-	    template: r.Message});
+
 
 	    })
 	    .error(function(data2,status2){
@@ -354,8 +340,8 @@ angular.module('your_app_name.auth.controllers', [])
 	    var s2 = status2;
 	    console.log('Error');
 	    $ionicPopup.alert(
-	    {title: JSON.stringify(d2),
-	    template: JSON.stringify('Error')});
+	    {title: 'Error',
+	    template: 'Could not connect to server. Please try again later.'});
 	    });		
 	     console.log("Second Query Should End");
 

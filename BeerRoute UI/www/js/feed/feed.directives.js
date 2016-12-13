@@ -10,15 +10,12 @@ angular.module('your_app_name.feed.directives', [])
 					active_class = $scope.active_class = "",
 					utils = this;
 
-			// $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+			
 			var stateChangeListener = $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
 				console.log("state changed", toState);
 				console.log("active_class", $scope.active_class);
 
-				// debugger;
-				// var $fromState = $state.get(fromState.name),
-				// 		$toState = $state.get(toState.name);
-				// if(!$fromState.includes('main.app.feed') && $toState.includes('main.app.feed'))
+
 				console.log("from ["+fromState.name+"] indexOf", fromState.name.indexOf('main.app.feed'));
 				console.log("to ["+toState.name+"] indexOf", toState.name.indexOf('main.app.feed'));
 				console.log(JSON.stringify($rootScope.previousView));
@@ -71,26 +68,19 @@ angular.module('your_app_name.feed.directives', [])
 				var vw = scroll.clientWidth,
 						scroll_to = (item.position.left - ((vw/2) - (item.position.width/2)));
 				$ionicScrollDelegate.$getByHandle('sliding-list-scroll').scrollTo(scroll_to, 0, true);
-				// $ionicScrollDelegate.$getByHandle('feeds-content').resize();
-				// document.getElementsByClassName('category-feed')[0].style.webkitTransform = 'scale(1)';
-				// var t = document.createTextNode(' ');
-			  // document.body.appendChild(t);
-			  // setTimeout(function() { t.parentNode.removeChild(t); }, 0);
+
 
 				console.log("fixing safari lazy repaint bug");
 				// Hack to prevent white screen on safari ios caused by safari lazy repaint bug
 				$element[0].style.display='none';
 				$element[0].offsetHeight; // no need to store this anywhere, the reference is enough
 				$element[0].style.display='block';
-				// document.getElementsByClassName('category-feed')[0].style.display='none';
-				// document.getElementsByClassName('category-feed')[0].offsetHeight; // no need to store this anywhere, the reference is enough
-				// document.getElementsByClassName('category-feed')[0].style.display='block';
+
 			});
 
 			this.addItem = function(item) {
 				if (items.length === 0) {
-					// console.log("FIRST ITEM, SHULD SELECT?", item);
-					// utils.selectItem(item);
+
 					console.log("The state is: ", $state.current.name);
 				}
 				item.index = items.length || 0;
@@ -127,15 +117,7 @@ angular.module('your_app_name.feed.directives', [])
 			};
 		},
 		link: function(scope, element, attr, slidingListCtrl) {
-			// We moved this to the controller
-			// var scroll = element[0].querySelector('.scroll');
-			//
-			// scope.$on("item-selected", function(event, item){
-			// 	console.log("scrolling, ITEM => ", item);
-			// 	var vw = scroll.clientWidth,
-			// 			scroll_to = (item.position.left - ((vw/2) - (item.position.width/2)));
-			// 	$ionicScrollDelegate.$getByHandle('sliding-list-scroll').scrollTo(scroll_to, 0, true);
-			// });
+
 		},
 		templateUrl: 'views/feed/templates/sliding-list.html'
 	};
@@ -172,14 +154,7 @@ angular.module('your_app_name.feed.directives', [])
 			state: '@'
 		},
 		controller: function($scope, $element, $attrs) {
-			// Store position at the begining
-			// var list_item = $element,
-			// 		item_position = {};
-			// $timeout(function(){
-			// 	item_position = $ionicPosition.position(list_item);
-			// 	$scope.position = item_position;
-			// 	// console.log("["+$element[0].computedName+", "+$scope.state+"] My position is: ", item_position);
-			// }, 0);
+
 
 			$scope.select = function(item){
 				$scope.$emit("item-selected", item);
@@ -192,7 +167,7 @@ angular.module('your_app_name.feed.directives', [])
 			$timeout(function(){
 				item_position = $ionicPosition.position(list_item);
 				scope.position = item_position;
-				// console.log("["+$element[0].computedName+", "+$scope.state+"] My position is: ", item_position);
+
 				slidingListCtrl.addItem(scope);
 			}, 0);
 

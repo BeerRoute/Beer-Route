@@ -18,11 +18,7 @@ angular.module('your_app_name.sort.controllers', [])
 		});
 	};
 
-  //CLICK IN USER NAME
-  // $scope.navigateToUserProfile = function(user){
-  //   sortPopup.close();
-  //   // $state.go('app.profile.posts', {userId: user.id});
-  // };
+
 })
 
 ;

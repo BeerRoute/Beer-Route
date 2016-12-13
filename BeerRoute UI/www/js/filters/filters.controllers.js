@@ -39,10 +39,7 @@ angular.module('your_app_name.filters.controllers', [])
 		$state.go(previous_view.fromState, previous_view.fromParams );
 	};
 
-	/*$scope.applyRefine = function(){
-		var previous_view = _.last($rootScope.previousView);
-		$state.go(previous_view.fromState, previous_view.fromParams );
-	};*/
+
 	$scope.applyRefine = function(){
 		$scope.tags_filter = {query: ''};
 		$scope.products = results;

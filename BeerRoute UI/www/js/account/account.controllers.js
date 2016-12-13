@@ -4,13 +4,11 @@ angular.module('your_app_name.account.controllers', [])
   $scope.user = {};
   console.log(user[0]);
   $scope.data = {};
-  //$scope.data.selected_card = user.credit_cards[0];
+  
   $scope.data.selected_address = $rootScope.address;
   $scope.data.bus_description = $rootScope.busDescription;
 
-  //console.log("Printing Redit card number: " + user.creditcard);
-
-  //$scope.data.selected_card = user[0].creditcard; 
+ 
   $scope.data.selected_card = $rootScope.creditcard;
 
   $scope.data.card_exp = $rootScope.ccexp;
@@ -142,16 +140,15 @@ var xhr = new XMLHttpRequest({mozSystem: true});}
 
     $http.get("http://localhost:3412/ClassDemo3Srv/addFeedPost",{params: {description: comments, businessid: $scope.data.businessid }},xhr).success(function(data){
     var r = data;
-    $ionicPopup.alert(
-    {title: JSON.stringify('Success')});
+
     })
     .error(function(data,status){
     var d = data;
     var s = status;
     console.log('Error');
     $ionicPopup.alert(
-    {title: JSON.stringify('Error'),
-    template: JSON.stringify('Could not connect to the server. Try again later.')});
+    {title: 'Error',
+    template: 'Could not connect to the server. Try again later.'});
     });
     
 
@@ -178,8 +175,8 @@ var xhr = new XMLHttpRequest({mozSystem: true});}
     var s = status;
     console.log('Error');
     $ionicPopup.alert(
-    {title: JSON.stringify(d),
-    template: JSON.stringify('Error')});
+    {title: 'Error',
+    template: 'Could not connect to the server. Try again later.'
 
 });
      } else {

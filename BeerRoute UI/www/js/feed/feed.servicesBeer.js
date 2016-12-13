@@ -2,8 +2,7 @@ angular.module('your_app_name.feed.servicesBeer', [])
 
 .service('FashionServiceBeer', function ($http, $q){
   this.getProducts = function(){
-    //var dfd = $q.defer();
-    //$http.get('beer_db.json').success(function(database) {
+
     var xhr = new XMLHttpRequest({mozSystem: true});
     var dfd = $q.defer();
     $http.get("http://localhost:3412/ClassDemo3Srv/getbeer", {params: {username: $rootScope.username}},xhr).success(function(products){
@@ -17,7 +16,7 @@ angular.module('your_app_name.feed.servicesBeer', [])
     var dfd = $q.defer();
     var service = this;
     var xhr = new XMLHttpRequest({mozSystem: true});
-    //$http.get('beer_db.json').success(function(database) {
+
       $http.get("http://localhost:3412/ClassDemo3Srv/getbeer", {params: {username: $rootScope.username}},xhr).success(function(products){
       console.log("I am here...")
       var product = _.find(database.products, function(product){
@@ -74,26 +73,7 @@ angular.module('your_app_name.feed.servicesBeer', [])
     return dfd.promise;
   };
 })
-/*
-.service('DealsService', function ($http, $q){
-  this.getProducts = function(){
-    var dfd = $q.defer();
-    $http.get('http://localhost:3412/ClassDemo3Srv/getevents').success(function(database) {
-      dfd.resolve(database.products);
-    });
-    return dfd.promise;
-  };
 
-  this.getProduct = function(productId){
-    var dfd = $q.defer();
-    $http.get('http://localhost:3412/ClassDemo3Srv/getevents').success(function(database) {
-      var product = _.find(database.products, function(product){ return product.id == productId; });
-      dfd.resolve(product);
-    });
-    return dfd.promise;
-  };
-})
-*/
 .service('TravelService', function ($http, $q){
   this.getProducts = function(){
     var dfd = $q.defer();

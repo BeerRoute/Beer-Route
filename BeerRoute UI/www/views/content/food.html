@@ -8,7 +8,7 @@
     </div>
     <h1 class="title">{{product.businessname}}</h1>
     <div class="buttons">
-      <!--button class="button button-clear share-button">Share</button-->
+      
     </div>
   </ion-header-bar>
   <ion-content>
@@ -16,7 +16,7 @@
       <ion-slide>
         <div class="image-container" multi-bg="[product.path]">
           <div class="product-illustration-container">
-            <!--img class="product-illustration" ng-src="./img/sample-images/travel/TravelIcon1.png"/-->
+            
           </div>
         </div>
       </ion-slide>
@@ -91,25 +91,11 @@
       </div>
     </div>
     <hr class="product-sections-divider"/>
-    <!--h3 class="product-sub-title">User's photos</h3>
-    <div class="row row-center images-row">
-      <div class="col col-20 image-wrapper" ng-repeat="picture in product.pictures.slice(0, 5) track by $index">
-        <pre-img ratio="_1_1">
-          <img style="width:100%;" class="product-image" ng-src="{{ picture }}" spinner-on-load>
-        </pre-img>
-        <div class="has-more-images" ng-if="$index == 4 && product.pictures.length > 5">
-          <span class="images-count">{{ product.pictures.length - 5 }}</span-->
+    
         </div>
       </div>
     </div>
-    <!--div class="row upload-row">
-      <div class="col">
-        <button class="button button-block upload-photo-button" ng-click="uploadPhoto()">
-          Upload a photo
-        </button>
-      </div>
-    </div>
-    <hr class="product-sections-divider"/-->
+    
     <h3 class="product-sub-title">Popular beers</h3>
     <div class="row popular-dishes-row">
       <div class="col">
@@ -159,14 +145,7 @@
           <div class="col description-col">
             <h3 class="review-author-name">{{related_product.username}}</h3>
             <div class="row icons-container">
-              <!--div class="col icon-group">
-                <i class="icon ion-navicon"></i>
-                <span class="icon-text">2 Reviews</span>
-              </div-->
-              <!--div class="col icon-group">
-                <i class="icon ion-ionic"></i>
-                <span class="icon-text">26 Points</span>
-              </div-->
+              
             </div>
           </div>
           <div class="col reputation-col">
@@ -183,33 +162,10 @@
             </p>
           </div>
         </div>
-        <!--div class="row bottom-row">
-          <div class="col review-other-ratings-container">
-            <div class="row">
-              <div class="col rating-col">
-                <i class="icon ion-ios-star-outline"></i>
-                <span class="other-rating">4.2</span>
-              </div>
-              <div class="col rating-col">
-                <i class="icon ion-ios-star-outline"></i>
-                <span class="other-rating">4.4</span>
-              </div>
-              <div class="col rating-col">
-                <i class="icon ion-ios-star-outline"></i>
-                <span class="other-rating">3.8</span>
-              </div>
-            </div>
-          </div>
-        </div-->
+        
       </div>
     </article>
-    <!--div class="row all-reviews-row">
-      <div class="col">
-        <button class="button button-block icon-right ion-chevron-right read-all-reviews-button" ng-click="showAllReviews()">
-          Read all the reviews (15)
-        </button>
-      </div>
-    </div-->
+    
     <hr class="product-sections-divider"/>
     <div class="row write-review-row" ng-hide="isBarOwner()">
       <div class="col">

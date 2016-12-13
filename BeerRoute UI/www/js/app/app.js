@@ -5,7 +5,6 @@ angular.module('underscore', [])
 
 angular.module('your_app_name', [
   'ionic',
-  //'your_app_name.views',
   'your_app_name.common.controllers',
   'your_app_name.common.directives',
 
@@ -138,15 +137,6 @@ angular.module('your_app_name', [
         }
       })
 
-      /*.state('intro.walkthrough-learn', {
-        url: '/walkthrough-learn',
-        views: {
-          'intro-view@intro': {
-            templateUrl: 'views/walkthrough/learn.html',
-            controller: 'GettingStartedCtrl'
-          }
-        }
-      })*/
 
       .state('intro.auth-login', {
         url: '/auth-login',
@@ -356,9 +346,7 @@ angular.module('your_app_name', [
                   }
                 }
               })
-              // Tenemos que agregarle un parametro de list_id a esta ruta
-              // Resolver la data de esa lista aca
-              // DONE
+
 
               .state('main.app.liked.new-list', {
                 url: '/new-list',
@@ -409,25 +397,7 @@ angular.module('your_app_name', [
                     }
                   })
 
-              /*.state('main.app.account.orders', {
-                url: '/orders',
-                views: {
-                  'my-orders@main.app.account': {
-                    templateUrl: 'views/account/orders.html',
-                    controller: 'OrdersCtrl'
-                  }
-                },
-                resolve: {
-                  orders: function(OrderService){
-                    return OrderService.getUserOrders();
-                  }
-                }
-              })*/
-              // Resolver el listado de productos comprados, los atributos en un principio deberian ser:
-              //    - product_id
-              //    - fecha de comprado
-              //    - status (shipped, bla bla)
-              // DONE
+
 
           .state('main.app.shopping-cart', {
             url: '/shopping-cart',
@@ -489,17 +459,7 @@ angular.module('your_app_name', [
                   }
                 }
               })
-              // Aca deberiamos resolver un listado de tarjetas de credito que el usuario guardo
 
-              /*.state('main.app.checkout.promo-code', {
-                url: '/promo-code',
-                views: {
-                  'main-view@main': {
-                    templateUrl: 'views/checkout/promo-code.html',
-                    controller: 'CheckoutPromoCodeCtrl'
-                  }
-                }
-              })*/
 
               .state('main.app.checkout.thanks', {
                 url: '/thanks',
@@ -513,5 +473,5 @@ angular.module('your_app_name', [
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/intro/walkthrough-welcome');
-  // $urlRouterProvider.otherwise('/main/app/feed/fashion');
+
 });
