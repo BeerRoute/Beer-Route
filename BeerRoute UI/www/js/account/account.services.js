@@ -59,7 +59,7 @@ angular.module('your_app_name.account.services', [])
       var s = status;
       console.log('Error');
       $ionicPopup.alert(
-      {title: 'Error'
+      {title: 'Error',
       template: 'Could not connect to the server. Try again later.'});
       });
 

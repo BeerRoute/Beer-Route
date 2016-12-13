@@ -176,10 +176,8 @@ var xhr = new XMLHttpRequest({mozSystem: true});}
     console.log('Error');
     $ionicPopup.alert(
     {title: 'Error',
-    template: 'Could not connect to the server. Try again later.'
-
-});
-     } else {
+    template: 'Could not connect to the server. Try again later.'});
+     })} else {
        console.log('You are not sure');
      }
    });
